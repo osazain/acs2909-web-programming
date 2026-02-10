@@ -1,0 +1,3404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="author" content="OsaZain">
+    <meta name="description" content="Complete Web Programming Study Guide by OsaZain - HTML, CSS, JavaScript, and Assignment A1">
+    <title>Complete Web Programming Study Guide | OsaZain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border: #30363d;
+            --accent: #58a6ff;
+            --accent-hover: #79c0ff;
+            --success: #238636;
+            --success-light: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg-primary); 
+            color: var(--text-primary); 
+            line-height: 1.6; 
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 16px; }
+        
+        /* Header */
+        .header { background: var(--bg-secondary); border-bottom: 1px solid var(--border); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 12px; }
+        .logo i { color: var(--accent); }
+        
+        /* Navigation */
+        .nav { 
+            display: flex; 
+            gap: 8px; 
+            padding: 16px 0; 
+            overflow-x: auto; 
+            flex-wrap: nowrap; 
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .nav::-webkit-scrollbar { display: none; }
+        .nav-btn { 
+            padding: 12px 20px; 
+            background: var(--bg-secondary); 
+            border: 1px solid var(--border); 
+            border-radius: 8px; 
+            color: var(--text-secondary); 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            font-size: 16px;
+            min-height: 44px;
+            min-width: 44px;
+            flex-shrink: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .nav-btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .nav-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        
+        /* Sections */
+        .section { display: none; }
+        .section.active { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        /* Cards */
+        .card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+        .card-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .card-title i { color: var(--accent); }
+        
+        /* Code blocks */
+        .code-block { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 16px 0; }
+        .code-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--bg-tertiary); border-bottom: 1px solid var(--border); }
+        .code-lang { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+        .code-copy { 
+            background: none; 
+            border: none; 
+            color: var(--text-secondary); 
+            cursor: pointer; 
+            min-width: 44px; 
+            min-height: 44px; 
+            padding: 8px 12px;
+            font-size: 16px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        pre { 
+            padding: 16px; 
+            overflow-x: auto; 
+            font-family: 'SF Mono', Monaco, monospace; 
+            font-size: 14px; 
+            line-height: 1.6;
+            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
+        }
+        code { font-family: inherit; }
+        
+        /* Info boxes */
+        .info-box { background: rgba(88, 166, 255, 0.1); border-left: 4px solid var(--accent); padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+        .warning-box { background: rgba(210, 153, 34, 0.1); border-left: 4px solid var(--warning); padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+        .error-box { background: rgba(248, 81, 73, 0.1); border-left: 4px solid var(--danger); padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+        .success-box { background: rgba(35, 134, 54, 0.1); border-left: 4px solid var(--success-light); padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0; font-size: 15px; }
+        
+        /* Tables */
+        .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 16px 0; }
+        table { width: 100%; border-collapse: collapse; min-width: 320px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--bg-tertiary); font-weight: 600; }
+        
+        /* Quiz */
+        .quiz-container { max-width: 700px; margin: 0 auto; }
+        .quiz-progress { display: flex; gap: 8px; margin-bottom: 24px; }
+        .progress-bar { flex: 1; height: 8px; background: var(--bg-tertiary); border-radius: 4px; }
+        .progress-bar.filled { background: var(--accent); }
+        .question-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        .question-text { font-size: 16px; font-weight: 500; margin-bottom: 20px; }
+        .question-code { background: #0d1117; padding: 16px; border-radius: 8px; margin-bottom: 20px; font-family: monospace; font-size: 14px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .options { display: flex; flex-direction: column; gap: 12px; }
+        .option { 
+            padding: 16px; 
+            background: var(--bg-tertiary); 
+            border: 2px solid transparent; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            text-align: left; 
+            color: var(--text-primary); 
+            font-size: 16px; 
+            min-height: 44px;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .option:hover { border-color: var(--accent); }
+        .option.correct { background: rgba(35, 134, 54, 0.2); border-color: var(--success-light); }
+        .option.wrong { background: rgba(248, 81, 73, 0.2); border-color: var(--danger); }
+        .option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .explanation { display: none; margin-top: 20px; padding: 16px; background: rgba(88, 166, 255, 0.1); border-radius: 8px; border-left: 4px solid var(--accent); font-size: 15px; }
+        .explanation.show { display: block; }
+        
+        /* Games */
+        .game-card { 
+            background: var(--bg-secondary); 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            padding: 20px; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            min-height: 44px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .game-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        
+        /* Simulator */
+        .simulator { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 768px) { 
+            .simulator { grid-template-columns: 1fr; } 
+            .sim-panel { height: 350px; }
+        }
+        .sim-panel { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; height: 400px; }
+        .sim-header { padding: 12px 16px; background: var(--bg-tertiary); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .sim-tabs { display: flex; gap: 8px; }
+        .sim-tab { 
+            padding: 8px 16px; 
+            background: none; 
+            border: none; 
+            color: var(--text-secondary); 
+            cursor: pointer; 
+            border-radius: 4px; 
+            font-size: 16px;
+            min-height: 44px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .sim-tab.active { background: var(--accent); color: #fff; }
+        .sim-editor { display: none; flex: 1; }
+        .sim-editor.active { display: block; }
+        .sim-textarea { 
+            width: 100%; 
+            height: 100%; 
+            background: #0d1117; 
+            border: none; 
+            padding: 16px; 
+            color: var(--text-primary); 
+            font-family: monospace; 
+            resize: none; 
+            font-size: 14px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .sim-preview { width: 100%; height: 100%; border: none; background: #fff; }
+        
+        .hidden { display: none !important; }
+        .btn { 
+            padding: 12px 24px; 
+            border-radius: 8px; 
+            border: none; 
+            cursor: pointer; 
+            font-size: 16px; 
+            transition: all 0.2s; 
+            min-height: 44px;
+            min-width: 44px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-primary { background: var(--accent); color: #fff; }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-secondary { background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border); }
+        
+        /* Tags */
+        .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .tag { 
+            padding: 10px 16px; 
+            background: var(--bg-tertiary); 
+            border: 1px solid var(--border); 
+            border-radius: 100px; 
+            cursor: pointer; 
+            transition: all 0.2s; 
+            font-size: 16px;
+            min-height: 44px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tag:hover { border-color: var(--accent); }
+        .tag.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        
+        h2 { margin: 32px 0 16px; color: var(--accent); font-size: 1.5rem; }
+        h3 { margin: 24px 0 12px; color: var(--text-primary); font-size: 1.25rem; }
+        p { margin-bottom: 12px; color: var(--text-secondary); font-size: 16px; }
+        ul, ol { margin-left: 24px; margin-bottom: 16px; color: var(--text-secondary); }
+        li { margin-bottom: 8px; }
+        
+        /* Form inputs - prevent zoom on iOS */
+        input, textarea, select {
+            font-size: 16px;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        /* Mobile Media Queries */
+        @media (max-width: 768px) {
+            .container { padding: 12px; }
+            .header-content { padding: 0 12px; }
+            .logo span { font-size: 1.1rem; }
+            .card { padding: 16px; }
+            .card-title { font-size: 1.1rem; }
+            h2 { font-size: 1.25rem; }
+            h3 { font-size: 1.1rem; }
+            .games-grid { grid-template-columns: 1fr; }
+            .sim-panel { height: 300px; }
+            .sim-tab { padding: 8px 12px; font-size: 14px; }
+            th, td { padding: 8px; font-size: 14px; }
+        }
+        
+        @media (max-width: 480px) {
+            .logo { font-size: 1.2rem; }
+            .logo span { display: none; }
+            .logo::after { content: 'Study Guide'; }
+            .nav-btn { padding: 10px 16px; font-size: 14px; }
+            .option { padding: 14px; }
+            .tag { padding: 8px 14px; font-size: 14px; }
+            pre { font-size: 12px; padding: 12px; }
+            .question-code { font-size: 12px; padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo" onclick="showSection('home'); return false;">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Complete Midterm Study Guide</span>
+            </a>
+            <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 500;">by OsaZain</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="nav">
+            <button class="nav-btn active" onclick="showSection('home')">Home</button>
+            <button class="nav-btn" onclick="showSection('html')">HTML</button>
+            <button class="nav-btn" onclick="showSection('css')">CSS</button>
+            <button class="nav-btn" onclick="showSection('js')">JavaScript</button>
+            <button class="nav-btn" onclick="showSection('quiz')">Quiz</button>
+            <button class="nav-btn" onclick="showSection('games')">Games</button>
+            <button class="nav-btn" onclick="showSection('code')">Code</button>
+            <button class="nav-btn" onclick="showSection('a1')">A1</button>
+        </nav>
+
+        <!-- HOME SECTION -->
+        <section id="home" class="section active">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-rocket"></i> Welcome to Your Complete Study Guide</div>
+                <p>This guide contains <strong>everything</strong> from your slides, explained in detail. No prior knowledge assumed.</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px;">Created by <strong style="color: var(--accent);">OsaZain</strong></p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 16px; margin-top: 24px;">
+                    <div style="text-align: center; padding: 20px; background: var(--bg-tertiary); border-radius: 8px;">
+                        <div style="font-size: 2rem; color: var(--accent);">8</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Topics</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: var(--bg-tertiary); border-radius: 8px;">
+                        <div style="font-size: 2rem; color: var(--accent);">100+</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Questions</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: var(--bg-tertiary); border-radius: 8px;">
+                        <div style="font-size: 2rem; color: var(--accent);">5</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Games</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: var(--bg-tertiary); border-radius: 8px;">
+                        <div style="font-size: 2rem; color: var(--accent);">∞</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Examples</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fas fa-book-open"></i> Quick Navigation</div>
+                <div style="display: grid; gap: 12px;">
+                    <div onclick="showSection('html')" style="padding: 16px; background: var(--bg-tertiary); border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 12px;">
+                        <i class="fab fa-html5" style="font-size: 1.5rem; color: #e34c26;"></i>
+                        <div>
+                            <div style="font-weight: 600;">HTML</div>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary);">Document structure, elements, semantic HTML</div>
+                        </div>
+                    </div>
+                    <div onclick="showSection('css')" style="padding: 16px; background: var(--bg-tertiary); border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 12px;">
+                        <i class="fab fa-css3-alt" style="font-size: 1.5rem; color: #264de4;"></i>
+                        <div>
+                            <div style="font-weight: 600;">CSS</div>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary);">Selectors, box model, flexbox, positioning</div>
+                        </div>
+                    </div>
+                    <div onclick="showSection('js')" style="padding: 16px; background: var(--bg-tertiary); border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 12px;">
+                        <i class="fab fa-js" style="font-size: 1.5rem; color: #f0db4f;"></i>
+                        <div>
+                            <div style="font-weight: 600;">JavaScript</div>
+                            <div style="font-size: 0.9rem; color: var(--text-secondary);">Types, operators, comparisons, functions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HTML SECTION -->
+        <section id="html" class="section">
+            <div class="tags">
+                <button class="tag active" onclick="showHtmlTopic('structure')">Document Structure</button>
+                <button class="tag" onclick="showHtmlTopic('elements')">Elements</button>
+                <button class="tag" onclick="showHtmlTopic('links')">Links & Images</button>
+                <button class="tag" onclick="showHtmlTopic('semantic')">Semantic HTML</button>
+            </div>
+
+            <!-- HTML Structure -->
+            <div id="html-structure" class="html-topic">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-file-code"></i> Document Structure</div>
+                    <p>Every HTML document must follow a specific structure. Think of it like a letter - it needs an envelope (DOCTYPE), a header with info (head), and the actual message (body).</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">HTML</span>
+                            <button class="code-copy" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- All visible content goes here --&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong><i class="fas fa-lightbulb"></i> Key Points:</strong>
+                        <ul>
+                            <li><code>&lt;!DOCTYPE html&gt;</code> must be the first line - tells the browser to use modern rendering (standards mode)</li>
+                            <li>The <code>&lt;head&gt;</code> contains information ABOUT the page, not visible content</li>
+                            <li>Only elements inside <code>&lt;body&gt;</code> appear on the screen</li>
+                            <li>Always include the viewport meta tag for mobile responsiveness!</li>
+                        </ul>
+                    </div>
+
+                    <h3>The DOCTYPE Declaration</h3>
+                    <p>The <code>&lt;!DOCTYPE html&gt;</code> declaration is required at the very beginning of your HTML document. It tells the browser which version of HTML you're using. For HTML5 (the current standard), it's simply <code>&lt;!DOCTYPE html&gt;</code>.</p>
+                    
+                    <div class="warning-box">
+                        <strong><i class="fas fa-exclamation-triangle"></i> Important:</strong> Without DOCTYPE, browsers enter "quirks mode" and render pages inconsistently. Always include it!
+                    </div>
+
+                    <h3>Essential Meta Tags</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Meta Tag</th><th>Purpose</th><th>Required?</th></tr>
+                        <tr><td><code>charset="UTF-8"</code></td><td>Character encoding (supports all languages)</td><td>Yes</td></tr>
+                        <tr><td><code>viewport</code></td><td>Makes page responsive on mobile devices</td><td>Yes</td></tr>
+                        <tr><td><code>title</code></td><td>Text shown in browser tab</td><td>Yes</td></tr>
+                    </table>
+
+                    <div class="error-box">
+                        <strong><i class="fas fa-times-circle"></i> Common Mistakes:</strong>
+                        <ul>
+                            <li>Forgetting the viewport meta tag (breaks mobile layout!)</li>
+                            <li>Using wrong character encoding (causes weird symbols)</li>
+                            <li>Putting meta tags in the body (they belong in head)</li>
+                            <li>Missing closing tags for html, head, or body</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-heading"></i> Headings</div>
+                    <p>Headings create a document outline. HTML has six levels of headings, from h1 (most important) to h6 (least important).</p>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;h1&gt;Main Page Title (ONE per page!)&lt;/h1&gt;
+&lt;h2&gt;Major Section&lt;/h2&gt;
+&lt;h3&gt;Subsection&lt;/h3&gt;
+&lt;h4&gt;Sub-subsection&lt;/h4&gt;
+&lt;h5&gt;Minor heading&lt;/h5&gt;
+&lt;h6&gt;Smallest heading&lt;/h6&gt;</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>Only ONE h1 per page!</strong> The h1 should describe the main topic of the entire page. Using multiple h1s confuses search engines and screen readers.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-paragraph"></i> Paragraphs and Text Formatting</div>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+
+&lt;p&gt;This is &lt;strong&gt;important&lt;/strong&gt; text (bold, semantic).&lt;/p&gt;
+
+&lt;p&gt;This is &lt;em&gt;emphasized&lt;/em&gt; text (italic, semantic).&lt;/p&gt;
+
+&lt;p&gt;This text has &lt;br&gt;a line break in the middle.&lt;/p&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Semantic vs Presentational:</strong>
+                        <ul>
+                            <li><code>&lt;strong&gt;</code> = important content (bold)</li>
+                            <li><code>&lt;em&gt;</code> = emphasized content (italic)</li>
+                            <li>These carry meaning, not just visual style</li>
+                            <li>Use instead of <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> which are purely visual</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-list"></i> Lists</div>
+                    
+                    <h3>Unordered List (Bullets)</h3>
+                    <div class="code-block">
+                        <pre><code>&lt;ul&gt;
+  &lt;li&gt;First item&lt;/li&gt;
+  &lt;li&gt;Second item&lt;/li&gt;
+  &lt;li&gt;Third item&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    </div>
+
+                    <h3>Ordered List (Numbers)</h3>
+                    <div class="code-block">
+                        <pre><code>&lt;ol&gt;
+  &lt;li&gt;Step one&lt;/li&gt;
+  &lt;li&gt;Step two&lt;/li&gt;
+  &lt;li&gt;Step three&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>CSS List Styles:</strong>
+                        <ul>
+                            <li><code>list-style-type: disc</code> - filled circle (default)</li>
+                            <li><code>list-style-type: circle</code> - empty circle</li>
+                            <li><code>list-style-type: square</code> - square bullet</li>
+                            <li><code>list-style-type: none</code> - no bullets (great for nav menus!)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HTML Elements -->
+            <div id="html-elements" class="html-topic hidden">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-cubes"></i> Common HTML Elements</div>
+                    
+                    <h3>Block vs Inline Elements</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Block Elements</th><th>Inline Elements</th></tr>
+                        <tr><td>Take full width available</td><td>Take only needed width</td></tr>
+                        <tr><td>Start on new line</td><td>Flow with text</td></tr>
+                        <tr><td>Examples: &lt;div&gt;, &lt;p&gt;, &lt;h1&gt;-&lt;h6&gt;</td><td>Examples: &lt;span&gt;, &lt;a&gt;, &lt;em&gt;, &lt;strong&gt;</td></tr>
+                    </table></div>
+
+                    <h3>Generic Containers</h3>
+                    <div class="code-block">
+                        <pre><code>&lt;!-- Block container --&gt;
+&lt;div class="container"&gt;
+  &lt;p&gt;Content here&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Inline container --&gt;
+&lt;p&gt;Some text with a &lt;span class="highlight"&gt;highlighted word&lt;/span&gt;.&lt;/p&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>When to use:</strong>
+                        <ul>
+                            <li><code>&lt;div&gt;</code> - For grouping block-level content, creating layout sections</li>
+                            <li><code>&lt;span&gt;</code> - For styling inline text within a paragraph</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Links & Images -->
+            <div id="html-links" class="html-topic hidden">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-link"></i> Links (Anchor Elements)</div>
+                    
+                    <h3>The href Attribute</h3>
+                    <p>The <code>href</code> (hypertext reference) attribute tells the browser where the link goes:</p>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;!-- Without href - just text --&gt;
+&lt;p&gt;This is just &lt;a&gt;text&lt;/a&gt;, not a link.&lt;/p&gt;
+
+&lt;!-- With href - clickable link --&gt;
+&lt;p&gt;Visit &lt;a href="https://example.com"&gt;Example.com&lt;/a&gt;.&lt;/p&gt;</code></pre>
+                    </div>
+
+                    <h3>Types of Links</h3>
+                    
+                    <p><strong>1. Absolute Links</strong> - Link to other websites (full URL):</p>
+                    <div class="code-block">
+                        <pre><code>&lt;a href="https://developer.mozilla.org"&gt;MDN Web Docs&lt;/a&gt;</code></pre>
+                    </div>
+
+                    <p><strong>2. Relative Links</strong> - Link to files relative to current file:</p>
+                    <div class="code-block">
+                        <pre><code>&lt;!-- Same folder --&gt;
+&lt;a href="about.html"&gt;About Page&lt;/a&gt;
+
+&lt;!-- Subfolder --&gt;
+&lt;a href="products/item.html"&gt;Product&lt;/a&gt;
+
+&lt;!-- Parent folder (go up one level) --&gt;
+&lt;a href="../index.html"&gt;Home&lt;/a&gt;</code></pre>
+                    </div>
+
+                    <p><strong>3. Root-Relative Links</strong> - Relative to website root:</p>
+                    <div class="code-block">
+                        <pre><code>&lt;!-- Starts from domain root --&gt;
+&lt;a href="/"&gt;Home Page&lt;/a&gt;
+&lt;a href="/about.html"&gt;About&lt;/a&gt;</code></pre>
+                    </div>
+
+                    <h3>Opening Links in New Tab</h3>
+                    <div class="code-block">
+                        <pre><code>&lt;a href="https://example.com" target="_blank"&gt;
+  Open in New Tab
+&lt;/a&gt;</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>Naming Convention:</strong> NEVER use spaces in filenames! Use hyphens instead:
+                        <ul>
+                            <li>❌ Bad: <code>my page.html</code> (becomes <code>my%20page.html</code>)</li>
+                            <li>✅ Good: <code>my-page.html</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-image"></i> Images</div>
+                    
+                    <h3>Basic Image Syntax</h3>
+                    <div class="code-block">
+                        <pre><code>&lt;!-- Basic image --&gt;
+&lt;img src="photo.jpg" alt="Description of the image"&gt;
+
+&lt;!-- With dimensions --&gt;
+&lt;img src="photo.jpg" alt="Description" width="300"&gt;
+
+&lt;!-- Image as a link --&gt;
+&lt;a href="page.html"&gt;
+  &lt;img src="thumbnail.jpg" alt="Click to view"&gt;
+&lt;/a&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Image Attributes:</strong>
+                        <ul>
+                            <li><code>src</code> - Path to the image file (required)</li>
+                            <li><code>alt</code> - Alternative text description (required for accessibility)</li>
+                            <li><code>width</code> - Width in pixels (optional, maintain aspect ratio)</li>
+                            <li><code>height</code> - Height in pixels (optional, maintain aspect ratio)</li>
+                        </ul>
+                    </div>
+
+                    <div class="error-box">
+                        <strong>Always include alt text!</strong>
+                        <ul>
+                            <li>Shown if image fails to load</li>
+                            <li>Read by screen readers for visually impaired users</li>
+                            <li>Improves SEO</li>
+                            <li>Required by HTML standards</li>
+                        </ul>
+                    </div>
+
+                    <h3>Image Formats</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Format</th><th>Best For</th><th>Notes</th></tr>
+                        <tr><td>JPG/JPEG</td><td>Photographs</td><td>Good compression, no transparency</td></tr>
+                        <tr><td>PNG</td><td>Icons, diagrams, logos</td><td>Full transparency support</td></tr>
+                        <tr><td>GIF</td><td>Simple animations</td><td>Limited colors, binary transparency</td></tr>
+                        <tr><td>SVG</td><td>Scalable graphics</td><td>Vector format, scales infinitely</td></tr>
+                    </table></div>
+                </div>
+            </div>
+
+            <!-- Semantic HTML -->
+            <div id="html-semantic" class="html-topic hidden">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-layer-group"></i> Semantic HTML</div>
+                    <p>Semantic elements describe their meaning to browsers, search engines, and developers. They give meaning to content.</p>
+                    
+                    <div class="code-block">
+                        <pre><code>&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;My Website&lt;/h1&gt;
+    &lt;nav&gt;
+      &lt;a href="/"&gt;Home&lt;/a&gt;
+      &lt;a href="/about"&gt;About&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;article&gt;
+      &lt;h2&gt;Blog Post Title&lt;/h2&gt;
+      &lt;p&gt;Article content...&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2024 My Website&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+                    </div>
+
+                    <h3>Common Semantic Elements</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Element</th><th>Purpose</th></tr>
+                        <tr><td>&lt;header&gt;</td><td>Introductory content, navigation links</td></tr>
+                        <tr><td>&lt;nav&gt;</td><td>Navigation links section</td></tr>
+                        <tr><td>&lt;main&gt;</td><td>Main content of the document (one per page)</td></tr>
+                        <tr><td>&lt;article&gt;</td><td>Self-contained, independent content</td></tr>
+                        <tr><td>&lt;section&gt;</td><td>Thematic grouping of content</td></tr>
+                        <tr><td>&lt;aside&gt;</td><td>Sidebar content, tangentially related</td></tr>
+                        <tr><td>&lt;footer&gt;</td><td>Footer information, copyright, links</td></tr>
+                    </table></div>
+
+                    <div class="success-box">
+                        <strong>Benefits of Semantic HTML:</strong>
+                        <ul>
+                            <li>Better for SEO (search engines understand your content)</li>
+                            <li>Better for accessibility (screen readers can navigate)</li>
+                            <li>Easier to read and maintain</li>
+                            <li>Consistent structure across websites</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
+</html>
+
+
+        <!-- CSS SECTION -->
+        <section id="css" class="section">
+            <div class="tags">
+                <button class="tag active" onclick="showCssTopic('selectors')">Selectors</button>
+                <button class="tag" onclick="showCssTopic('boxmodel')">Box Model</button>
+                <button class="tag" onclick="showCssTopic('positioning')">Positioning</button>
+                <button class="tag" onclick="showCssTopic('flexbox')">Flexbox</button>
+                <button class="tag" onclick="showCssTopic('advanced')">Advanced</button>
+            </div>
+
+            <!-- CSS Selectors -->
+            <div id="css-selectors" class="css-topic">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-bullseye"></i> CSS Selectors</div>
+                    <p>Selectors are how we tell CSS which HTML elements to style. Different selectors target elements in different ways.</p>
+                    
+                    <h3>Basic Selectors</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Selector</th><th>Targets</th><th>Example</th></tr>
+                        <tr><td><code>*</code></td><td>All elements</td><td><code>* { margin: 0; }</code></td></tr>
+                        <tr><td><code>element</code></td><td>All elements of type</td><td><code>p { color: red; }</code></td></tr>
+                        <tr><td><code>.class</code></td><td>Elements with class</td><td><code>.warning { color: orange; }</code></td></tr>
+                        <tr><td><code>#id</code></td><td>Element with ID</td><td><code>#header { height: 60px; }</code></td></tr>
+                    </table></div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">CSS</span>
+                            <button class="code-copy" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <pre><code>/* Type selector - targets all p elements */
+p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Class selector - targets elements with class="highlight" */
+.highlight {
+  background-color: yellow;
+}
+
+/* ID selector - targets element with id="header" */
+#header {
+  background: #333;
+  color: white;
+}
+
+/* Universal selector - targets everything */
+* {
+  box-sizing: border-box;
+}</code></pre>
+                    </div>
+
+                    <h3>Descendant and Child Selectors</h3>
+                    
+                    <p><strong>Descendant Selector (space):</strong> Selects any descendant, no matter how deep</p>
+                    <div class="code-block">
+                        <pre><code>/* All li elements inside nav, at any level */
+nav li {
+  display: inline-block;
+}
+
+/* HTML structure this applies to:
+&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Item 1&lt;/li&gt;     ✓ Matched
+    &lt;li&gt;Item 2&lt;/li&gt;     ✓ Matched
+  &lt;/ul&gt;
+&lt;/nav&gt;
+*/</code></pre>
+                    </div>
+
+                    <p><strong>Child Selector (>):</strong> Selects only direct children</p>
+                    <div class="code-block">
+                        <pre><code>/* Only direct li children of ul */
+ul > li {
+  margin-bottom: 10px;
+}
+
+/* HTML structure:
+&lt;ul&gt;
+  &lt;li&gt;Direct child&lt;/li&gt;     ✓ Matched
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Nested item&lt;/li&gt;  ✗ Not matched (too deep)
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+*/</code></pre>
+                    </div>
+
+                    <h3>Pseudo-Classes</h3>
+                    <p>Pseudo-classes target elements in a specific state or position:</p>
+                    
+                    <div class="table-wrapper"><table>
+                        <tr><th>Pseudo-class</th><th>Selects...</th></tr>
+                        <tr><td><code>:hover</code></td><td>Element being hovered over</td></tr>
+                        <tr><td><code>:focus</code></td><td>Element that has keyboard focus</td></tr>
+                        <tr><td><code>:active</code></td><td>Element being clicked/activated</td></tr>
+                        <tr><td><code>:first-child</code></td><td>Element that is first child of its parent</td></tr>
+                        <tr><td><code>:last-child</code></td><td>Element that is last child of its parent</td></tr>
+                        <tr><td><code>:nth-child(n)</code></td><td>Element at position n</td></tr>
+                    </table></div>
+
+                    <div class="code-block">
+                        <pre><code>/* Change color when hovering */
+a:hover {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+/* Style focused input */
+input:focus {
+  border-color: #0066cc;
+  outline: none;
+}
+
+/* Alternate row colors in table */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Remove margin from first list item */
+li:first-child {
+  margin-top: 0;
+}</code></pre>
+                    </div>
+
+                    <h3>Chaining Selectors</h3>
+                    <p>Combine selectors to target more specifically:</p>
+                    <div class="code-block">
+                        <pre><code>/* Elements that have BOTH classes */
+.btn.primary {
+  background: blue;
+  color: white;
+}
+
+/* HTML: &lt;button class="btn primary"&gt;Submit&lt;/button&gt; */
+
+/* Type AND class together */
+div.container {
+  max-width: 1200px;
+}
+
+/* HTML: &lt;div class="container"&gt; ✓ Matched
+         &lt;section class="container"&gt; ✗ Not matched */</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Multiple Selectors:</strong> Use commas to apply same styles to multiple selectors:
+                        <pre style="margin-top: 10px;"><code>h1, h2, h3 {
+  font-family: Georgia, serif;
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-link"></i> CSS Link States</div>
+                    <p>Links have different states that can be styled. Order matters!</p>
+                    
+                    <div class="code-block">
+                        <pre><code>/* LVHA order - very important! */
+
+/* Default state */
+a:link {
+  color: blue;
+  text-decoration: none;
+}
+
+/* Already visited */
+a:visited {
+  color: purple;
+}
+
+/* Hovering over link */
+a:hover {
+  color: darkblue;
+  text-decoration: underline;
+}
+
+/* Link being clicked */
+a:active {
+  color: red;
+}</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>LVHA Order:</strong> Must be in this order:
+                        <ol>
+                            <li><code>:link</code></li>
+                            <li><code>:visited</code></li>
+                            <li><code>:hover</code></li>
+                            <li><code>:active</code></li>
+                        </ol>
+                        If you put <code>:hover</code> before <code>:link</code>, the hover styles won't work properly!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Box Model -->
+            <div id="css-boxmodel" class="css-topic hidden">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-cube"></i> The Box Model</div>
+                    <p>Every HTML element is a box! Understanding how these boxes work is essential for layout.</p>
+
+                    <h3>The Four Layers of the Box Model</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Layer</th><th>CSS Property</th><th>Description</th></tr>
+                        <tr><td>Content</td><td>width, height</td><td>The actual content (text, images)</td></tr>
+                        <tr><td>Padding</td><td>padding</td><td>Space between content and border</td></tr>
+                        <tr><td>Border</td><td>border</td><td>The edge of the box</td></tr>
+                        <tr><td>Margin</td><td>margin</td><td>Space outside the border (between boxes)</td></tr>
+                    </table></div>
+
+                    <div style="background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin: 20px 0;">
+                        <div style="background: #FFA500; padding: 20px; border-radius: 4px;">
+                            <div style="background: #FF4444; padding: 20px; border-radius: 4px;">
+                                <div style="background: #5555FF; padding: 20px; border-radius: 4px;">
+                                    <div style="background: white; color: black; padding: 20px; text-align: center; border-radius: 4px;">
+                                        <strong>Content</strong><br>
+                                        <span style="font-size: 0.8rem;">width × height</span>
+                                    </div>
+                                    <div style="color: white; text-align: center; padding-top: 10px;"><strong>Padding</strong></div>
+                                </div>
+                                <div style="color: white; text-align: center; padding-top: 10px;"><strong>Border</strong></div>
+                            </div>
+                            <div style="color: white; text-align: center; padding-top: 10px;"><strong>Margin</strong></div>
+                        </div>
+                    </div>
+
+                    <h3>Padding</h3>
+                    <div class="code-block">
+                        <pre><code>/* All sides */
+.box {
+  padding: 20px;
+}
+
+/* Top/bottom, left/right */
+.box {
+  padding: 10px 20px;
+}
+
+/* Top, right, bottom, left (clockwise) */
+.box {
+  padding: 10px 20px 15px 25px;
+}
+
+/* Individual sides */
+.box {
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  padding-left: 25px;
+}</code></pre>
+                    </div>
+
+                    <h3>Margin</h3>
+                    <p>Margins work the same way as padding, but they create space OUTSIDE the element.</p>
+                    
+                    <div class="code-block">
+                        <pre><code>/* Center an element horizontally */
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  /* OR shorthand: */
+  margin: 0 auto;
+}</code></pre>
+                    </div>
+
+                    <h3>Margin Collapse</h3>
+                    <div class="warning-box">
+                        <strong>What is Margin Collapse?</strong>
+                        <p>When two block elements' vertical margins touch, they don't add up - they collapse to the larger of the two margins.</p>
+                        
+                        <div class="code-block">
+                            <pre><code>.top {
+  margin-bottom: 20px;
+}
+.bottom {
+  margin-top: 30px;
+}
+
+/* Result: 30px gap (not 50px!) */</code></pre>
+                        </div>
+                        
+                        <p><strong>Important:</strong> Only vertical margins collapse. Horizontal margins always add up.</p>
+                    </div>
+
+                    <h3>Border</h3>
+                    <div class="code-block">
+                        <pre><code>/* Shorthand */
+.box {
+  border: 2px solid #333;
+  /* border-width border-style border-color */
+}
+
+/* Individual properties */
+.box {
+  border-width: 2px;
+  border-style: solid;  /* solid, dashed, dotted, double */
+  border-color: #333;
+  border-radius: 8px;   /* rounded corners */
+}
+
+/* Individual sides */
+.box {
+  border-top: 1px solid #ccc;
+  border-bottom: 3px solid #000;
+}</code></pre>
+                    </div>
+
+                    <h3>Box-Sizing</h3>
+                    <div class="code-block">
+                        <pre><code>/* Without border-box (default) */
+.box {
+  width: 300px;
+  padding: 20px;
+  border: 2px solid black;
+  /* Actual width: 300 + 20 + 20 + 2 + 2 = 344px! */
+}
+
+/* With border-box */
+.box {
+  box-sizing: border-box;
+  width: 300px;
+  padding: 20px;
+  border: 2px solid black;
+  /* Actual width: 300px (padding and border inside!) */
+}</code></pre>
+                    </div>
+
+                    <div class="success-box">
+                        <strong>Best Practice - Reset Border Box:</strong>
+                        <p>Always include this at the top of your CSS:</p>
+                        <pre style="margin-top: 10px;"><code>* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}</code></pre>
+                        <p>This makes width/height include padding and border, which is much more intuitive!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Positioning -->
+            <div id="css-positioning" class="css-topic hidden">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-arrows-alt"></i> CSS Positioning</div>
+                    <p>The <code>position</code> property changes how elements are placed in the document.</p>
+
+                    <div class="table-wrapper"><table>
+                        <tr><th>Position</th><th>Behavior</th><th>Use Case</th></tr>
+                        <tr><td><code>static</code></td><td>Normal document flow (default)</td><td>Most content</td></tr>
+                        <tr><td><code>relative</code></td><td>Offset from normal position</td><td>Small adjustments, positioning context</td></tr>
+                        <tr><td><code>absolute</code></td><td>Positioned relative to nearest positioned ancestor</td><td>Overlays, dropdowns, tooltips</td></tr>
+                        <tr><td><code>fixed</code></td><td>Positioned relative to viewport</td><td>Sticky headers, floating buttons</td></tr>
+                    </table></div>
+
+                    <h3>Static (Default)</h3>
+                    <p>Elements with <code>position: static</code> follow the normal document flow. You cannot use <code>top</code>, <code>left</code>, <code>right</code>, or <code>bottom</code> with static positioning.</p>
+
+                    <h3>Relative Positioning</h3>
+                    <div class="code-block">
+                        <pre><code>.box {
+  position: relative;
+  top: 20px;    /* Move down 20px from normal position */
+  left: 30px;   /* Move right 30px from normal position */
+}
+
+/* The element still takes up its original space!
+   Other elements don't move to fill the gap */</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Why use relative positioning?</strong>
+                        <ul>
+                            <li>To make small adjustments without affecting layout</li>
+                            <li>To create a positioning context for absolute children</li>
+                            <li>To layer elements with z-index</li>
+                        </ul>
+                    </div>
+
+                    <h3>Absolute Positioning</h3>
+                    <div class="code-block">
+                        <pre><code>/* Parent creates positioning context */
+.container {
+  position: relative;
+}
+
+/* Child positioned relative to parent */
+.overlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  /* Positioned 10px from top-right of .container */
+}
+
+/* Another example - centering */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Perfect center! */
+}</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>Important:</strong> Absolute positioned elements are removed from document flow. They don't affect other elements' positions!
+                    </div>
+
+                    <h3>Fixed Positioning</h3>
+                    <div class="code-block">
+                        <pre><code>.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: white;
+  z-index: 100;
+}
+
+/* Stays at top even when scrolling! */</code></pre>
+                    </div>
+
+                    <h3>Z-Index (Stacking Order)</h3>
+                    <p>Controls which element appears on top when they overlap.</p>
+                    
+                    <div class="code-block">
+                        <pre><code>.back {
+  position: absolute;
+  z-index: 1;
+}
+
+.front {
+  position: absolute;
+  z-index: 2;  /* Higher = on top */
+}
+
+/* Only works on positioned elements (not static!) */</code></pre>
+                    </div>
+
+                    <div class="error-box">
+                        <strong>Common Mistakes:</strong>
+                        <ul>
+                            <li>Trying to use z-index on static elements (doesn't work!)</li>
+                            <li>Forgetting to set position: relative on parent when using absolute children</li>
+                            <li>Not accounting for space removed from flow with absolute/fixed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flexbox -->
+            <div id="css-flexbox" class="css-topic hidden">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-th-large"></i> Flexbox</div>
+                    <p>Flexbox is a powerful layout system for one-dimensional layouts (row OR column).</p>
+
+                    <h3>Setting Up Flexbox</h3>
+                    <div class="code-block">
+                        <pre><code>/* The parent becomes a flex container */
+.container {
+  display: flex;
+}
+
+/* All direct children become flex items */
+/* HTML:
+   <div class="container">
+     <div>Item 1</div>  ← flex item
+     <div>Item 2</div>  ← flex item
+     <div>Item 3</div>  ← flex item
+   </div>
+*/</code></pre>
+                    </div>
+
+                    <h3>Main Properties on Container</h3>
+
+                    <h4>flex-direction</h4>
+                    <p>Controls the main axis (direction items are laid out):</p>
+                    <div class="code-block">
+                        <pre><code>.container {
+  display: flex;
+  flex-direction: row;           /* Default: left to right */
+  flex-direction: row-reverse;   /* Right to left */
+  flex-direction: column;        /* Top to bottom */
+  flex-direction: column-reverse;/* Bottom to top */
+}</code></pre>
+                    </div>
+
+                    <h4>justify-content (Main Axis Alignment)</h4>
+                    <div class="code-block">
+                        <pre><code>.container {
+  display: flex;
+  
+  /* Distribute space */
+  justify-content: flex-start;   /* Default: items to start */
+  justify-content: flex-end;     /* Items to end */
+  justify-content: center;       /* Items centered */
+  justify-content: space-between;/* Space between items */
+  justify-content: space-around; /* Space around items */
+  justify-content: space-evenly; /* Equal space everywhere */
+}</code></pre>
+                    </div>
+
+                    <h4>align-items (Cross Axis Alignment)</h4>
+                    <div class="code-block">
+                        <pre><code>.container {
+  display: flex;
+  
+  /* Vertical alignment (if row direction) */
+  align-items: stretch;     /* Default: stretch to fill */
+  align-items: flex-start;  /* Align to top */
+  align-items: flex-end;    /* Align to bottom */
+  align-items: center;      /* Center vertically */
+  align-items: baseline;    /* Align text baselines */
+}</code></pre>
+                    </div>
+
+                    <h4>Common Patterns</h4>
+                    <p><strong>Center a div both horizontally and vertically:</strong></p>
+                    <div class="code-block">
+                        <pre><code>.center-container {
+  display: flex;
+  justify-content: center;  /* Horizontal center */
+  align-items: center;      /* Vertical center */
+  min-height: 100vh;        /* Full viewport height */
+}</code></pre>
+                    </div>
+
+                    <p><strong>Navigation bar:</strong></p>
+                    <div class="code-block">
+                        <pre><code>.navbar {
+  display: flex;
+  justify-content: space-between;  /* Logo left, menu right */
+  align-items: center;             /* Vertically centered */
+  padding: 20px;
+}</code></pre>
+                    </div>
+
+                    <h3>Flex Wrap</h3>
+                    <p>By default, flex items try to fit on one line. Use <code>flex-wrap</code> to allow wrapping:</p>
+                    <div class="code-block">
+                        <pre><code>.container {
+  display: flex;
+  flex-wrap: wrap;        /* Allow items to wrap */
+  gap: 16px;              /* Space between items (modern!) */
+}
+
+.item {
+  flex: 1 1 300px;        /* Grow, shrink, base size */
+  /* OR */
+  flex-basis: 300px;      /* Ideal starting width */
+}</code></pre>
+                    </div>
+
+                    <h3>Individual Flex Item Properties</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Property</th><th>What it does</th></tr>
+                        <tr><td><code>flex-grow</code></td><td>How much item grows relative to others (0 = don't grow)</td></tr>
+                        <tr><td><code>flex-shrink</code></td><td>How much item shrinks relative to others</td></tr>
+                        <tr><td><code>flex-basis</code></td><td>Starting size before growing/shrinking</td></tr>
+                        <tr><td><code>align-self</code></td><td>Override align-items for this item only</td></tr>
+                    </table></div>
+
+                    <div class="code-block">
+                        <pre><code>/* Shorthand: flex: grow shrink basis */
+.item {
+  flex: 0 0 200px;  /* Fixed 200px width, no grow/shrink */
+}
+
+.item-grow {
+  flex: 1;          /* Grow to fill space equally */
+}
+
+.item-double {
+  flex: 2;          /* Grows twice as much */
+}</code></pre>
+                    </div>
+
+                    <div class="success-box">
+                        <strong>Flexbox Tips:</strong>
+                        <ul>
+                            <li>Use <code>gap</code> instead of margins for spacing (cleaner!)</li>
+                            <li><code>flex: 1</code> makes items share space equally</li>
+                            <li><code>margin-left: auto</code> pushes an item to the right</li>
+                            <li>Flexbox is one-dimensional - use Grid for two-dimensional layouts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced CSS -->
+            <div id="css-advanced" class="css-topic hidden">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-star"></i> Advanced CSS Concepts</div>
+                    
+                    <h3>CSS Units</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Unit</th><th>Type</th><th>Description</th></tr>
+                        <tr><td><code>px</code></td><td>Absolute</td><td>Pixels - fixed size</td></tr>
+                        <tr><td><code>%</code></td><td>Relative</td><td>Percentage of parent</td></tr>
+                        <tr><td><code>em</code></td><td>Relative</td><td>Relative to parent font-size</td></tr>
+                        <tr><td><code>rem</code></td><td>Relative</td><td>Relative to root (html) font-size</td></tr>
+                        <tr><td><code>vw</code></td><td>Relative</td><td>Viewport width percentage</td></tr>
+                        <tr><td><code>vh</code></td><td>Relative</td><td>Viewport height percentage</td></tr>
+                    </table></div>
+
+                    <div class="code-block">
+                        <pre><code>html {
+  font-size: 16px;
+}
+
+.parent {
+  font-size: 20px;
+}
+
+.child-em {
+  font-size: 1.5em;    /* 30px (1.5 × parent 20px) */
+  padding: 1em;        /* 30px */
+}
+
+.child-rem {
+  font-size: 1.5rem;   /* 24px (1.5 × root 16px) */
+  padding: 1rem;       /* 16px */
+}</code></pre>
+                    </div>
+
+                    <h3>CSS Reset Pattern</h3>
+                    <div class="code-block">
+                        <pre><code>/* Universal box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}</code></pre>
+                    </div>
+
+                    <h3>Browser Stylesheet</h3>
+                    <div class="info-box">
+                        <strong>Important:</strong> Browsers apply default styles (like margins on &lt;body&gt;, padding on &lt;ul&gt;). The reset above removes these so you start with a clean slate.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- JAVASCRIPT SECTION -->
+        <section id="js" class="section">
+            <div class="tags">
+                <button class="tag active" onclick="showJsTopic('types')">Data Types</button>
+                <button class="tag" onclick="showJsTopic('operators')">Operators</button>
+                <button class="tag" onclick="showJsTopic('comparison')">Comparisons</button>
+                <button class="tag" onclick="showJsTopic('conversion')">Type Conversion</button>
+            </div>
+
+            <!-- Data Types -->
+            <div id="js-types" class="js-topic">
+                <div class="card">
+                    <div class="card-title"><i class="fab fa-js"></i> JavaScript Data Types</div>
+                    <p>JavaScript has 8 basic data types. Every value belongs to one of these types.</p>
+
+                    <h3>Primitive Types (7)</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+                        <tr><td><code>number</code></td><td>Any number (integers and decimals)</td><td><code>42, 3.14, -7</code></td></tr>
+                        <tr><td><code>bigint</code></td><td>Very large integers</td><td><code>9007199254740991n</code></td></tr>
+                        <tr><td><code>string</code></td><td>Text</td><td><code>"hello", 'world'</code></td></tr>
+                        <tr><td><code>boolean</code></td><td>true or false</td><td><code>true, false</code></td></tr>
+                        <tr><td><code>null</code></td><td>Intentional "nothing" value</td><td><code>null</code></td></tr>
+                        <tr><td><code>undefined</code></td><td>Value not assigned</td><td><code>undefined</code></td></tr>
+                        <tr><td><code>symbol</code></td><td>Unique identifier</td><td><code>Symbol('id')</code></td></tr>
+                    </table></div>
+
+                    <h3>Object Type (1)</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><td><code>object</code></td><td>Collections of data</td><td><code>{ name: "John" }, [1, 2, 3]</code></td></tr>
+                    </table></div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">JavaScript</span>
+                            <button class="code-copy" onclick="copyCode(this)"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <pre><code>// Numbers
+let age = 25;
+let price = 19.99;
+let infinity = Infinity;  // Special number value
+let notANumber = NaN;     // "Not a Number" - result of failed math
+
+// Strings
+let name = "Alice";
+let message = 'Hello, World!';
+let template = `Hello, ${name}`;  // Template literal
+
+// Booleans
+let isActive = true;
+let hasPermission = false;
+
+// Null and Undefined
+let empty = null;           // Intentionally empty
+let notAssigned;            // undefined - hasn't been given a value
+
+// Objects
+let person = {
+  name: "Bob",
+  age: 30
+};
+
+let numbers = [1, 2, 3];    // Array (special type of object)</code></pre>
+                    </div>
+
+                    <h3>Checking Types with typeof</h3>
+                    <div class="code-block">
+                        <pre><code>typeof 42;           // "number"
+typeof "hello";      // "string"
+typeof true;         // "boolean"
+typeof undefined;    // "undefined"
+typeof Symbol();     // "symbol"
+typeof 10n;          // "bigint"
+typeof {};           // "object"
+typeof [];           // "object" (arrays are objects!)
+typeof null;         // "object" (THIS IS A BUG in JavaScript!)</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>Important Quirk:</strong> <code>typeof null</code> returns <code>"object"</code>. This is a well-known JavaScript bug that has existed since the beginning and cannot be fixed for compatibility reasons. Use <code>value === null</code> to check for null.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operators -->
+            <div id="js-operators" class="js-topic hidden">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-calculator"></i> JavaScript Operators</div>
+
+                    <h3>Unary Operators (One operand)</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Operator</th><th>Name</th><th>Example</th><th>Result</th></tr>
+                        <tr><td><code>+</code></td><td>Unary plus</td><td><code>+"5"</code></td><td><code>5</code> (converts to number)</td></tr>
+                        <tr><td><code>-</code></td><td>Unary negation</td><td><code>-5</code></td><td><code>-5</code></td></tr>
+                        <tr><td><code>++</code></td><td>Increment</td><td><code>x++</code></td><td>Adds 1</td></tr>
+                        <tr><td><code>--</code></td><td>Decrement</td><td><code>x--</code></td><td>Subtracts 1</td></tr>
+                        <tr><td><code>!</code></td><td>Logical NOT</td><td><code>!true</code></td><td><code>false</code></td></tr>
+                        <tr><td><code>typeof</code></td><td>Type of</td><td><code>typeof 5</code></td><td><code>"number"</code></td></tr>
+                    </table></div>
+
+                    <h3>Binary Operators (Two operands)</h3>
+
+                    <h4>Arithmetic Operators</h4>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Operator</th><th>Name</th><th>Example</th><th>Result</th></tr>
+                        <tr><td><code>+</code></td><td>Addition</td><td><code>5 + 3</code></td><td><code>8</code></td></tr>
+                        <tr><td><code>-</code></td><td>Subtraction</td><td><code>5 - 3</code></td><td><code>2</code></td></tr>
+                        <tr><td><code>*</code></td><td>Multiplication</td><td><code>5 * 3</code></td><td><code>15</code></td></tr>
+                        <tr><td><code>/</code></td><td>Division</td><td><code>6 / 3</code></td><td><code>2</code></td></tr>
+                        <tr><td><code>%</code></td><td>Modulo (remainder)</td><td><code>7 % 3</code></td><td><code>1</code></td></tr>
+                        <tr><td><code>**</code></td><td>Exponentiation</td><td><code>2 ** 3</code></td><td><code>8</code> (2³)</td></tr>
+                    </table></div>
+
+                    <h4>String Concatenation with +</h4>
+                    <div class="code-block">
+                        <pre><code>// If any operand is a string, + does concatenation
+"5" + 3;      // "53" (string!)
+5 + "3";      // "53" (string!)
+"Hello " + "World";  // "Hello World"
+
+// Multiple operations - left to right
+5 + 3 + "2";  // "82" (5+3=8, then 8+"2"="82")
+"5" + 3 + 2;  // "532" ("5"+3="53", then "53"+2="532")</code></pre>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>Important:</strong> The <code>+</code> operator is different from other arithmetic operators:
+                        <ul>
+                            <li>If ANY operand is a string, + becomes concatenation</li>
+                            <li>Other operators (-, *, /, %) always try to convert to numbers</li>
+                        </ul>
+                    </div>
+
+                    <h4>Assignment Operators</h4>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Operator</th><th>Example</th><th>Same as</th></tr>
+                        <tr><td><code>=</code></td><td><code>x = 5</code></td><td></td></tr>
+                        <tr><td><code>+=</code></td><td><code>x += 5</code></td><td><code>x = x + 5</code></td></tr>
+                        <tr><td><code>-=</code></td><td><code>x -= 5</code></td><td><code>x = x - 5</code></td></tr>
+                        <tr><td><code>*=</code></td><td><code>x *= 5</code></td><td><code>x = x * 5</code></td></tr>
+                        <tr><td><code>/=</code></td><td><code>x /= 5</code></td><td><code>x = x / 5</code></td></tr>
+                        <tr><td><code>%=</code></td><td><code>x %= 5</code></td><td><code>x = x % 5</code></td></tr>
+                    </table>
+
+                    <h3>Operator Precedence</h3>
+                    <p>Operations are performed in order of precedence (higher number = done first):</p>
+                    
+                    <div class="table-wrapper"><table>
+                        <tr><th>Precedence</th><th>Operator</th><th>Description</th></tr>
+                        <tr><td>15</td><td><code>()</code></td><td>Grouping (highest priority)</td></tr>
+                        <tr><td>14</td><td><code>++</code>, <code>--</code></td><td>Postfix increment/decrement</td></tr>
+                        <tr><td>13</td><td><code>++</code>, <code>--</code>, <code>!</code>, <code>+</code>(unary), <code>-</code>(unary)</td><td>Prefix operators</td></tr>
+                        <tr><td>12</td><td><code>**</code></td><td>Exponentiation</td></tr>
+                        <tr><td>11</td><td><code>*</code>, <code>/</code>, <code>%</code></td><td>Multiplication, division, modulo</td></tr>
+                        <tr><td>10</td><td><code>+</code>, <code>-</code></td><td>Addition, subtraction</td></tr>
+                        <tr><td>3</td><td><code>=</code>, <code>+=</code>, etc.</td><td>Assignment (lowest)</td></tr>
+                    </table></div>
+
+                    <div class="code-block">
+                        <pre><code>// Precedence examples
+2 + 2 * 2;        // 6 (not 8) - * has higher precedence
+(2 + 2) * 2;      // 8 - parentheses override
+5 + 3 - 2;        // 6 (left to right, same precedence)
+10 / 2 * 5;       // 25 (left to right, same precedence)</code></pre>
+                    </div>
+
+                    <h3>Increment/Decrement: Prefix vs Postfix</h3>
+                    <div class="code-block">
+                        <pre><code>let a = 5;
+let b = 5;
+
+// Postfix: returns value, THEN increments
+let x = a++;      // x = 5, a = 6
+
+// Prefix: increments, THEN returns value
+let y = ++b;      // y = 6, b = 6
+
+// In standalone statements, no difference:
+a++;   // same as ++a</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Best Practice:</strong> If you don't need the return value, use <code>i++</code> or <code>i--</code> (more common). If you need the incremented value immediately, use <code>++i</code>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparisons -->
+            <div id="js-comparison" class="js-topic hidden">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-balance-scale"></i> Comparison Operators</div>
+
+                    <h3>Comparison Operators Table</h3>
+                    <div class="table-wrapper"><table>
+                        <tr><th>Operator</th><th>Name</th><th>Example</th><th>Result</th></tr>
+                        <tr><td><code>&gt;</code></td><td>Greater than</td><td><code>5 &gt; 3</code></td><td><code>true</code></td></tr>
+                        <tr><td><code>&lt;</code></td><td>Less than</td><td><code>5 &lt; 3</code></td><td><code>false</code></td></tr>
+                        <tr><td><code>&gt;=</code></td><td>Greater than or equal</td><td><code>5 &gt;= 5</code></td><td><code>true</code></td></tr>
+                        <tr><td><code>&lt;=</code></td><td>Less than or equal</td><td><code>5 &lt;= 3</code></td><td><code>false</code></td></tr>
+                        <tr><td><code>==</code></td><td>Loose equality</td><td><code>5 == "5"</code></td><td><code>true</code> (converts types)</td></tr>
+                        <tr><td><code>!=</code></td><td>Loose not equal</td><td><code>5 != "5"</code></td><td><code>false</code></td></tr>
+                        <tr><td><code>===</code></td><td>Strict equality</td><td><code>5 === "5"</code></td><td><code>false</code> (types differ)</td></tr>
+                        <tr><td><code>!==</code></td><td>Strict not equal</td><td><code>5 !== "5"</code></td><td><code>true</code></td></tr>
+                    </table></div>
+
+                    <div class="warning-box">
+                        <strong>Double vs Triple Equals:</strong>
+                        <ul>
+                            <li><code>==</code> (loose): Converts types, then compares</li>
+                            <li><code>===</code> (strict): Compares value AND type</li>
+                        </ul>
+                        <p><strong>Always use === and !==</strong> to avoid unexpected behavior!</p>
+                    </div>
+
+                    <h3>String Comparison</h3>
+                    <p>Strings are compared letter by letter using Unicode values (dictionary/lexicographical order):</p>
+                    
+                    <div class="code-block">
+                        <pre><code>// Lexicographical (dictionary) order
+"Z" > "A";           // true
+"Glow" > "Glee";     // true (o > e at position 3)
+"Bee" > "Be";        // true (longer string is greater)
+
+// Case matters!
+"a" > "A";           // true (lowercase has higher Unicode value)
+"Apple" === "apple"; // false</code></pre>
+                    </div>
+
+                    <h3>Comparing Different Types</h3>
+                    <p>When comparing values of different types, JavaScript converts them to numbers:</p>
+                    
+                    <div class="code-block">
+                        <pre><code>// Loose equality converts to numbers
+"2" > 1;             // true ("2" becomes 2)
+"01" == 1;           // true ("01" becomes 1)
+true == 1;           // true (true becomes 1)
+false == 0;          // true (false becomes 0)
+
+// But strict equality does NOT convert
+"2" === 2;           // false (string vs number)
+true === 1;          // false (boolean vs number)</code></pre>
+                    </div>
+
+                    <h3>The Null and Undefined Traps</h3>
+                    <div class="code-block">
+                        <pre><code>// Strict equality
+null === undefined;  // false (different types)
+
+// Loose equality - special case!
+null == undefined;   // true (they are "loosely equal")
+
+// BUT comparisons with null/undefined
+null > 0;            // false (null becomes 0)
+null == 0;           // false (special case!)
+null >= 0;           // true (null becomes 0)
+
+// undefined comparisons
+undefined > 0;       // false (undefined becomes NaN)
+undefined == 0;      // false
+undefined < 0;       // false</code></pre>
+                    </div>
+
+                    <div class="error-box">
+                        <strong>Confusing but True:</strong>
+                        <p><code>null >= 0</code> is <code>true</code> but <code>null > 0</code> and <code>null == 0</code> are both <code>false</code>.</p>
+                        <p>This happens because:
+                            <ul>
+                                <li>Comparisons convert null to 0, so <code>null >= 0</code> works</li>
+                                <li>But equality check has special rule: null only equals undefined</li>
+                            </ul>
+                        </p>
+                    </div>
+
+                    <div class="success-box">
+                        <strong>How to Avoid Comparison Issues:</strong>
+                        <ul>
+                            <li>Always use <code>===</code> and <code>!==</code> instead of <code>==</code> and <code>!=</code></li>
+                            <li>Treat comparisons with null/undefined separately</li>
+                            <li>Use explicit conversions when unsure</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Type Conversion -->
+            <div id="js-conversion" class="js-topic hidden">
+                <div class="card">
+                    <div class="card-title"><i class="fas fa-exchange-alt"></i> Type Conversion</div>
+
+                    <h3>Implicit (Automatic) Conversion</h3>
+                    <p>JavaScript automatically converts types in certain situations:</p>
+                    
+                    <div class="code-block">
+                        <pre><code>// String + anything = string concatenation
+"5" + 3;             // "53" (string!)
+"5" + true;          // "5true"
+
+// Other operators convert to number
+"5" - 3;             // 2 (number!)
+"5" * 2;             // 10
+"10" / 2;            // 5
+"5" - "2";           // 3 (both become numbers)
+
+// Logical contexts convert to boolean
+if ("hello") { }     // true (non-empty string)
+if ("") { }          // false (empty string)
+if (0) { }           // false
+if (1) { }           // true</code></pre>
+                    </div>
+
+                    <h3>Explicit Conversion</h3>
+
+                    <h4>To String</h4>
+                    <div class="code-block">
+                        <pre><code>let num = 123;
+
+String(num);         // "123"
+num.toString();      // "123"
+
+// Alternative (less common)
+num + "";            // "123" (but uses concatenation)</code></pre>
+                    </div>
+
+                    <h4>To Number</h4>
+                    <div class="code-block">
+                        <pre><code>// Using Number()
+Number("123");       // 123
+Number("123.45");    // 123.45
+Number("");          // 0
+Number("   ");       // 0
+Number("hello");     // NaN (Not a Number)
+Number(true);        // 1
+Number(false);       // 0
+Number(null);        // 0
+Number(undefined);   // NaN
+
+// Using unary plus (shorthand)
++"123";              // 123
++true;               // 1
++"";                 // 0</code></pre>
+                    </div>
+
+                    <h4>To Boolean</h4>
+                    <div class="code-block">
+                        <pre><code>// Falsy values (convert to false)
+Boolean(0);          // false
+Boolean("");         // false
+Boolean(null);       // false
+Boolean(undefined);  // false
+Boolean(NaN);        // false
+Boolean(false);      // false
+
+// Truthy values (convert to true) - everything else!
+Boolean(1);          // true
+Boolean("hello");    // true
+Boolean(" ");        // true (space is not empty!)
+Boolean([]);         // true (empty array)
+Boolean({});         // true (empty object)</code></pre>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>Falsy vs Truthy:</strong>
+                        <p>There are only 6 falsy values: <code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code>, <code>false</code>. Everything else is truthy!</p>
+                    </div>
+
+                    <h3>parseInt and parseFloat</h3>
+                    <div class="code-block">
+                        <pre><code>// parseInt - extracts integer from start of string
+parseInt("100px");   // 100
+parseInt("12.5");    // 12 (drops decimal)
+parseInt("px100");   // NaN (doesn't start with number)
+
+// parseFloat - extracts decimal number
+parseFloat("12.5");  // 12.5
+parseFloat("100.5px"); // 100.5
+
+// Second parameter = radix (number base)
+parseInt("0xFF", 16);  // 255 (hexadecimal)
+parseInt("10", 2);     // 2 (binary)</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- QUIZ SECTION -->
+        <section id="quiz" class="section">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-question-circle"></i> Comprehensive Quiz</div>
+                <p>Test your knowledge with questions covering every topic. Get detailed explanations for wrong answers!</p>
+                
+                <div class="tags" style="margin-top: 16px;">
+                    <button class="tag active" onclick="filterQuiz('all')">All Topics</button>
+                    <button class="tag" onclick="filterQuiz('html')">HTML</button>
+                    <button class="tag" onclick="filterQuiz('css')">CSS</button>
+                    <button class="tag" onclick="filterQuiz('js')">JavaScript</button>
+                    <button class="tag" onclick="filterQuiz('a1')">Assignment 1</button>
+                </div>
+            </div>
+
+            <div class="quiz-progress" id="quizProgress">
+                <div class="progress-bar" id="progress0"></div>
+                <div class="progress-bar" id="progress1"></div>
+                <div class="progress-bar" id="progress2"></div>
+                <div class="progress-bar" id="progress3"></div>
+                <div class="progress-bar" id="progress4"></div>
+            </div>
+
+            <div id="quizContainer"></div>
+            
+            <div id="quizResults" class="card hidden">
+                <div class="card-title"><i class="fas fa-trophy"></i> Quiz Results</div>
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 4rem; color: var(--accent); margin-bottom: 16px;">
+                        <span id="scoreValue">0</span> / <span id="totalValue">0</span>
+                    </div>
+                    <p id="scoreMessage">Complete the quiz to see your score!</p>
+                    <button class="btn btn-primary" onclick="restartQuiz()" style="margin-top: 24px;">
+                        Restart Quiz
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- GAMES SECTION -->
+        <section id="games" class="section">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-gamepad"></i> Learning Games</div>
+                <p>Practice your skills with interactive games!</p>
+            </div>
+
+            <div class="games-grid">
+                <div class="game-card" onclick="startGame('selector')">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">🎯</div>
+                    <h3>Selector Sleuth</h3>
+                    <p style="color: var(--text-secondary);">Match CSS selectors to HTML elements</p>
+                </div>
+
+                <div class="game-card" onclick="startGame('boxmodel')">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">📦</div>
+                    <h3>Box Model Builder</h3>
+                    <p style="color: var(--text-secondary);">Calculate total element dimensions</p>
+                </div>
+
+                <div class="game-card" onclick="startGame('flexbox')">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">🧩</div>
+                    <h3>Flexbox Navigator</h3>
+                    <p style="color: var(--text-secondary);">Position flex items correctly</p>
+                </div>
+
+                <div class="game-card" onclick="startGame('operators')">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">🔢</div>
+                    <h3>Operator Master</h3>
+                    <p style="color: var(--text-secondary);">Solve JavaScript operator puzzles</p>
+                </div>
+
+                <div class="game-card" onclick="startGame('comparison')">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">⚖️</div>
+                    <h3>Truth Teller</h3>
+                    <p style="color: var(--text-secondary);">Predict comparison results</p>
+                </div>
+            </div>
+
+            <!-- Game Areas -->
+            <div id="gameArea" class="hidden" style="margin-top: 24px;">
+                <div class="card">
+                    <div class="card-title">
+                        <span id="gameTitle">Game</span>
+                        <button class="btn btn-secondary" onclick="closeGame()" style="float: right;">Close</button>
+                    </div>
+                    <div id="gameContent"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CODE PLAYGROUND SECTION -->
+        <section id="code" class="section">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-code"></i> Live Code Playground</div>
+                <p>Type HTML and CSS on the left, see results on the right!</p>
+            </div>
+
+            <div class="simulator">
+                <div class="sim-panel">
+                    <div class="sim-header">
+                        <div class="sim-tabs">
+                            <button class="sim-tab active" onclick="switchTab('html')">HTML</button>
+                            <button class="sim-tab" onclick="switchTab('css')">CSS</button>
+                        </div>
+                        <button class="btn btn-primary" onclick="runCode()">Run ▶</button>
+                    </div>
+                    <div id="htmlEditor" class="sim-editor active">
+                        <textarea class="sim-textarea" id="htmlCode" placeholder="&lt;!-- Enter HTML here --&gt;
+&lt;div class=\"box\"&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;p&gt;Edit me!&lt;/p&gt;
+&lt;/div&gt;">&lt;div class="box"&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;p&gt;Edit the HTML and CSS, then click Run!&lt;/p&gt;
+&lt;/div&gt;</textarea>
+                    </div>
+                    <div id="cssEditor" class="sim-editor">
+                        <textarea class="sim-textarea" id="cssCode" placeholder="/* Enter CSS here */
+.box {
+  padding: 20px;
+}">.box {
+  padding: 20px;
+  background: #f0f0f0;
+  border-radius: 8px;
+}
+
+h1 {
+  color: #333;
+}
+
+p {
+  color: #666;
+}</textarea>
+                    </div>
+                </div>
+                <div class="sim-panel">
+                    <div class="sim-header">
+                        <span>Output</span>
+                        <button class="btn btn-secondary" onclick="resetCode()">Reset</button>
+                    </div>
+                    <iframe class="sim-preview" id="codeOutput"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- A1 SECTION -->
+        <section id="a1" class="section">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-tasks"></i> Assignment A1 Requirements</div>
+                <p>Everything you need to know to complete Assignment 1 successfully.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fas fa-folder-tree"></i> File Structure</div>
+                <div class="code-block">
+                    <pre><code>A1/
+├── index.html              (Homepage)
+├── fruit/
+│   ├── oranges.html
+│   └── strawberries.html
+├── styles/
+│   ├── A1.css             (Shared styles - LOAD FIRST!)
+│   ├── homepage.css       (Homepage-specific)
+│   ├── oranges.css        (Orange page overrides)
+│   └── strawberries.css   (Strawberry page overrides)
+└── images/
+    └── strawberries.jpg    (Download and place here)</code></pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fas fa-file-code"></i> Required HTML Structure</div>
+                <p>Every HTML file must have this exact structure:</p>
+                
+                <div class="code-block">
+                    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Homepage&lt;/title&gt;  &lt;!-- Or "Oranges", "Strawberries" --&gt;
+  
+  &lt;!-- Reset CSS - MUST LOAD FIRST --&gt;
+  &lt;link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"&gt;
+  
+  &lt;!-- Shared styles - LOAD SECOND --&gt;
+  &lt;link rel="stylesheet" href="styles/A1.css"&gt;
+  
+  &lt;!-- Page-specific styles - LOAD LAST --&gt;
+  &lt;link rel="stylesheet" href="styles/homepage.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="header"&gt;
+    &lt;h1&gt;Page Title&lt;/h1&gt;
+    &lt;ul id="navigation"&gt;
+      &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="fruit/oranges.html"&gt;Oranges&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="fruit/strawberries.html"&gt;Strawberries&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Blueberry"&gt;Blueberries&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  
+  &lt;div id="content_container"&gt;
+    &lt;!-- Page content goes here --&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+
+                <div class="warning-box">
+                    <strong>CSS Loading Order Matters!</strong>
+                    <p>Styles are applied in the order they load. Later styles can override earlier ones.</p>
+                    <ol>
+                        <li>Reset CSS (removes browser defaults)</li>
+                        <li>A1.css (your base styles)</li>
+                        <li>Page-specific CSS (color overrides)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fas fa-palette"></i> A1.css Requirements</div>
+                
+                <div class="code-block">
+                    <pre><code>/* BODY - margin except top */
+body {
+  margin: 20px;
+  margin-top: 100px;  /* Space for fixed header */
+}
+
+/* HEADER - fixed positioning */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 75px;       /* Visible height */
+  padding: 20px;
+  /* Background color set in page-specific CSS */
+}
+
+/* Flexbox for header layout */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Navigation */
+#navigation {
+  display: flex;
+  gap: 10px;          /* Space between menu items */
+  list-style: none;   /* Remove bullets */
+}
+
+#navigation li {
+  background: white;
+  border: 1px solid black;
+  padding: 5px 10px;
+}
+
+#navigation a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Content container */
+#content_container {
+  max-width: 800px;
+  margin: 0 auto;     /* Center horizontally */
+}
+
+/* Paragraphs and headings inside content */
+#content_container p,
+#content_container h2 {
+  padding-bottom: 20px;
+}
+
+/* Highlight paragraph */
+#content_container .highlight {
+  font-size: 1.6em;
+  color: #666666;
+}
+
+/* Images */
+img {
+  margin: 20px 0;     /* Top and bottom only */
+  max-width: 100%;    /* Responsive */
+}
+
+/* Lists */
+#content_container ul,
+#content_container ol {
+  padding-left: 40px;
+}
+
+#content_container li {
+  padding-bottom: 10px;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fas fa-paint-brush"></i> Page-Specific CSS</div>
+                
+                <h3>oranges.css</h3>
+                <div class="code-block">
+                    <pre><code>/* Override header background */
+#header {
+  background-color: #FFA500;
+}
+
+/* Override highlight color */
+#content_container .highlight {
+  color: #FFA500;
+}</code></pre>
+                </div>
+
+                <h3>strawberries.css</h3>
+                <div class="code-block">
+                    <pre><code>/* Override header background */
+#header {
+  background-color: #FF4444;
+}
+
+/* Override highlight color */
+#content_container .highlight {
+  color: #FF4444;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fas fa-cubes"></i> Box Model Diagram (Homepage)</div>
+                <p>Create this using 4 nested divs with the class "box_model":</p>
+                
+                <div class="code-block">
+                    <pre><code>&lt;!-- HTML --&gt;
+&lt;div id="box_outer" class="box_model"&gt;
+  &lt;div id="box_margin" class="box_model"&gt;
+    &lt;div id="box_border" class="box_model"&gt;
+      &lt;div id="box_padding" class="box_model"&gt;
+        Content
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <div class="code-block">
+                    <pre><code>/* homepage.css */
+
+/* All boxes share these styles */
+.box_model {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 30px;
+  padding-bottom: 10px;  /* Default bottom padding */
+  margin-bottom: 10px;
+}
+
+/* Individual colors (outside to inside) */
+#box_outer {
+  background-color: #FFFFFF;
+}
+
+#box_margin {
+  background-color: #FFA500;  /* Orange */
+}
+
+#box_border {
+  background-color: #FF4444;  /* Red */
+}
+
+#box_padding {
+  background-color: #5555FF;  /* Blue */
+  padding-bottom: 30px;       /* Override! */
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title"><i class="fas fa-exclamation-triangle"></i> Common A1 Mistakes</div>
+                <div class="error-box">
+                    <ul>
+                        <li><strong>Forgetting reset CSS</strong> - Must load the reset stylesheet first!</li>
+                        <li><strong>Wrong CSS order</strong> - Page-specific CSS must load AFTER A1.css</li>
+                        <li><strong>Missing viewport meta tag</strong> - Required for mobile responsiveness</li>
+                        <li><strong>Inline styles</strong> - All styles must be in CSS files</li>
+                        <li><strong>Wrong file paths</strong> - Be careful with ../ for parent folder</li>
+                        <li><strong>Wrong header height</strong> - Must be exactly 75px visible + 20px padding</li>
+                        <li><strong>Forgetting margin-top on body</strong> - Needs 100px to avoid header overlap</li>
+                        <li><strong>Not using flexbox for navigation</strong> - Required for positioning</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer style="background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 24px 0; margin-top: 40px;">
+        <div class="container" style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+            <p>Made with <i class="fas fa-heart" style="color: var(--danger);"></i> by <strong style="color: var(--text-secondary);">OsaZain</strong></p>
+            <p style="margin-top: 8px; font-size: 0.8rem;">Complete Web Programming Study Guide &copy; 2024</p>
+        </div>
+    </footer>
+
+    <script>
+
+        // Quiz Questions Database - Comprehensive coverage of all topics
+        const quizQuestions = [
+            // HTML Questions
+            {
+                category: 'html',
+                question: 'What is the purpose of the DOCTYPE declaration?',
+                code: '<!DOCTYPE html>',
+                options: [
+                    'It defines the HTML version and puts browser in standards mode',
+                    'It creates a new HTML document',
+                    'It imports CSS files',
+                    'It is optional and can be omitted'
+                ],
+                correct: 0,
+                explanation: 'DOCTYPE tells the browser to use modern rendering (standards mode). Without it, browsers enter "quirks mode" and render inconsistently. It must be the first line.'
+            },
+            {
+                category: 'html',
+                question: 'What meta tag is REQUIRED for mobile responsiveness?',
+                code: '',
+                options: [
+                    '<meta charset="utf-8">',
+                    '<meta name="viewport" content="width=device-width, initial-scale=1">',
+                    '<meta name="description">',
+                    '<meta name="keywords">'
+                ],
+                correct: 1,
+                explanation: 'The viewport meta tag tells mobile browsers to match the screen width and use a 1:1 scale. Without it, mobile browsers zoom out and show desktop layouts.'
+            },
+            {
+                category: 'html',
+                question: 'What is the difference between <strong> and <b>?',
+                code: '',
+                options: [
+                    '<strong> is bold and <b> is italic',
+                    '<strong> has semantic meaning (important), <b> is only visual',
+                    'They are identical in function',
+                    '<b> is newer and preferred'
+                ],
+                correct: 1,
+                explanation: '<strong> indicates important content (bold), while <b> is purely presentational. Use <strong> for semantic meaning, which helps accessibility and SEO.'
+            },
+            {
+                category: 'html',
+                question: 'Which element creates a bullet list?',
+                code: '',
+                options: [
+                    '<ol>',
+                    '<ul>',
+                    '<li>',
+                    '<list>'
+                ],
+                correct: 1,
+                explanation: '<ul> (unordered list) creates a bulleted list. <ol> creates a numbered list. <li> is the list item used inside both.'
+            },
+            {
+                category: 'html',
+                question: 'What makes a link actually clickable?',
+                code: '<a>Click me</a> vs <a href="page.html">Click me</a>',
+                options: [
+                    'The <a> tag always makes it clickable',
+                    'The href attribute is required for it to be a link',
+                    'The text content makes it clickable',
+                    'CSS is required to make it clickable'
+                ],
+                correct: 1,
+                explanation: 'Without the href attribute, an <a> element is just styled text. The href (hypertext reference) specifies the destination URL.'
+            },
+            {
+                category: 'html',
+                question: 'What happens if you use spaces in a filename?',
+                code: '<a href="my page.html">',
+                options: [
+                    'Nothing, spaces work fine',
+                    'Spaces become %20 in the URL',
+                    'The link breaks completely',
+                    'Browser automatically adds hyphens'
+                ],
+                correct: 1,
+                explanation: 'Spaces in URLs are encoded as %20. Use hyphens instead (my-page.html) to avoid confusion and make URLs cleaner.'
+            },
+            {
+                category: 'html',
+                question: 'What is the alt attribute for in an image?',
+                code: '<img src="photo.jpg" alt="Description">',
+                options: [
+                    'It sets the image alignment',
+                    'It provides alternative text for accessibility and when images fail to load',
+                    'It specifies image dimensions',
+                    'It is optional and rarely needed'
+                ],
+                correct: 1,
+                explanation: 'Alt text is read by screen readers for visually impaired users, shown when images fail to load, and helps with SEO. It is required by HTML standards.'
+            },
+            {
+                category: 'html',
+                question: 'Which element should contain the main content of a page?',
+                code: '',
+                options: [
+                    '<div id="main">',
+                    '<main>',
+                    '<content>',
+                    '<body>'
+                ],
+                correct: 1,
+                explanation: '<main> is the semantic element for the main content. Only one per page. Better for accessibility and SEO than <div>.'
+            },
+            
+            // CSS Selector Questions
+            {
+                category: 'css',
+                question: 'What does the . character mean in CSS?',
+                code: '.classname { color: red; }',
+                options: [
+                    'It targets an element with id="classname"',
+                    'It targets elements with class="classname"',
+                    'It targets <div> elements',
+                    'It is a syntax error'
+                ],
+                correct: 1,
+                explanation: 'The dot (.) prefix selects elements by class name. The hash (#) selects by ID. No prefix selects by element type.'
+            },
+            {
+                category: 'css',
+                question: 'What does div.container select?',
+                code: '',
+                options: [
+                    'All divs and all elements with class="container"',
+                    'Only <div> elements with class="container"',
+                    'All elements inside a div with class="container"',
+                    'It is invalid syntax'
+                ],
+                correct: 1,
+                explanation: 'Chaining selectors (no space) means "AND". div.container selects only <div> elements that ALSO have class="container".'
+            },
+            {
+                category: 'css',
+                question: 'What does nav li select?',
+                code: '',
+                options: [
+                    'Only direct children',
+                    'All li elements inside nav, at any depth',
+                    'The nav element itself',
+                    'Nav elements inside li elements'
+                ],
+                correct: 1,
+                explanation: 'A space between selectors means "descendant of". nav li selects all <li> elements that are anywhere inside a <nav> element, no matter how deeply nested.'
+            },
+            {
+                category: 'css',
+                question: 'What is the difference between nav > li and nav li?',
+                code: '',
+                options: [
+                    'They are the same',
+                    '> selects only direct children, space selects any descendant',
+                    '> selects the parent, space selects children',
+                    '> is invalid syntax'
+                ],
+                correct: 1,
+                explanation: 'The > child combinator only selects direct children. A space (descendant combinator) selects elements at any depth inside the parent.'
+            },
+            {
+                category: 'css',
+                question: 'When does a:hover apply?',
+                code: '',
+                options: [
+                    'When the link is clicked',
+                    'When the mouse is over the element',
+                    'When the link has been visited',
+                    'When the page loads'
+                ],
+                correct: 1,
+                explanation: ':hover applies when the user hovers their mouse over the element. Note: It does not work on touch devices.'
+            },
+            {
+                category: 'css',
+                question: 'What is the correct order for link states?',
+                code: '',
+                options: [
+                    'a:hover, a:link, a:active, a:visited',
+                    'a:link, a:visited, a:hover, a:active',
+                    'Order does not matter',
+                    'a:active, a:hover, a:link, a:visited'
+                ],
+                correct: 1,
+                explanation: 'LVHA order: Link, Visited, Hover, Active. If :hover comes before :link, hover styles will not work because :link overrides them.'
+            },
+
+            // Box Model Questions
+            {
+                category: 'css',
+                question: 'What is the correct order of box model layers from inside to outside?',
+                code: '',
+                options: [
+                    'Margin → Border → Padding → Content',
+                    'Content → Padding → Border → Margin',
+                    'Content → Border → Padding → Margin',
+                    'Padding → Content → Border → Margin'
+                ],
+                correct: 1,
+                explanation: 'From center outward: Content (the actual text/image), Padding (space inside the border), Border (the edge), Margin (space outside).'
+            },
+            {
+                category: 'css',
+                question: 'What is margin collapse?',
+                code: '.top { margin-bottom: 20px; }\n.bottom { margin-top: 30px; }',
+                options: [
+                    'Margins add up to 50px',
+                    'Vertical margins overlap and use the larger value (30px)',
+                    'Margins become zero',
+                    'Only the top margin applies'
+                ],
+                correct: 1,
+                explanation: 'When vertical margins touch, they collapse to the larger value. 20px + 30px becomes 30px, not 50px. Horizontal margins never collapse.'
+            },
+            {
+                category: 'css',
+                question: 'What does box-sizing: border-box do?',
+                code: '',
+                options: [
+                    'Adds a border to the box',
+                    'Makes width/height include padding and border',
+                    'Removes the box model entirely',
+                    'Only affects inline elements'
+                ],
+                correct: 1,
+                explanation: 'border-box makes width and height include padding and border. This is more intuitive - if you set width: 300px, the element is 300px wide including padding/border.'
+            },
+            {
+                category: 'css',
+                question: 'What is the actual width of this element without border-box?',
+                code: '.box {\n  width: 300px;\n  padding: 20px;\n  border: 2px solid black;\n}',
+                options: [
+                    '300px',
+                    '344px (300 + 20 + 20 + 2 + 2)',
+                    '322px',
+                    '340px'
+                ],
+                correct: 1,
+                explanation: 'Without border-box, width is only the content. Total width = 300 + 20(padding-left) + 20(padding-right) + 2(border-left) + 2(border-right) = 344px.'
+            },
+
+            // Positioning Questions
+            {
+                category: 'css',
+                question: 'What is the default position value?',
+                code: '',
+                options: [
+                    'relative',
+                    'static',
+                    'fixed',
+                    'absolute'
+                ],
+                correct: 1,
+                explanation: 'position: static is the default. Elements follow normal document flow and cannot use top/left/right/bottom properties.'
+            },
+            {
+                category: 'css',
+                question: 'What does position: relative do?',
+                code: '',
+                options: [
+                    'Positions relative to the viewport',
+                    'Offsets from the element\'s normal position',
+                    'Removes element from document flow',
+                    'Same as static'
+                ],
+                correct: 1,
+                explanation: 'relative positioning offsets an element from where it would normally be. The element still takes up its original space in the layout.'
+            },
+            {
+                category: 'css',
+                question: 'For absolute positioning, what does the element position relative to?',
+                code: '',
+                options: [
+                    'The viewport',
+                    'The nearest positioned ancestor (not static)',
+                    'The body element always',
+                    'Its original position in the flow'
+                ],
+                correct: 1,
+                explanation: 'absolute positions relative to the nearest ancestor with position other than static (usually position: relative). If none exists, it uses the body.'
+            },
+            {
+                category: 'css',
+                question: 'What does z-index control?',
+                code: '',
+                options: [
+                    'Horizontal positioning',
+                    'Stacking order (which element is on top)',
+                    'Zoom level',
+                    'Opacity'
+                ],
+                correct: 1,
+                explanation: 'z-index controls which element appears on top when they overlap. Higher values are on top. Only works on positioned elements (not static).'
+            },
+
+            // Flexbox Questions
+            {
+                category: 'css',
+                question: 'What does display: flex do to the children?',
+                code: '',
+                options: [
+                    'Makes them invisible',
+                    'Makes them flex items that can be positioned with flex properties',
+                    'Makes them position absolute',
+                    'Changes their display to inline'
+                ],
+                correct: 1,
+                explanation: 'display: flex on a parent makes its direct children flex items. These items can then be positioned using flexbox properties like justify-content and align-items.'
+            },
+            {
+                category: 'css',
+                question: 'What does justify-content: center do?',
+                code: '',
+                options: [
+                    'Centers vertically',
+                    'Centers horizontally along the main axis',
+                    'Centers both directions',
+                    'Justifies text alignment'
+                ],
+                correct: 1,
+                explanation: 'justify-content aligns items along the main axis (horizontal for row, vertical for column). center puts items in the center.'
+            },
+            {
+                category: 'css',
+                question: 'What does align-items: center do?',
+                code: '',
+                options: [
+                    'Centers horizontally',
+                    'Centers vertically along the cross axis',
+                    'Rotates items',
+                    'Scales items'
+                ],
+                correct: 1,
+                explanation: 'align-items aligns items along the cross axis (perpendicular to main axis). For row direction, this is vertical centering.'
+            },
+            {
+                category: 'css',
+                question: 'What is the default flex-direction?',
+                code: '',
+                options: [
+                    'column',
+                    'row',
+                    'row-reverse',
+                    'auto'
+                ],
+                correct: 1,
+                explanation: 'flex-direction defaults to row (left to right). Other options are row-reverse (right to left), column (top to bottom), and column-reverse.'
+            },
+            {
+                category: 'css',
+                question: 'How do you center a div both horizontally AND vertically?',
+                code: '',
+                options: [
+                    'text-align: center',
+                    'display: flex; justify-content: center; align-items: center;',
+                    'margin: auto',
+                    'position: absolute; left: 50%;'
+                ],
+                correct: 1,
+                explanation: 'justify-content: center centers horizontally, align-items: center centers vertically. Together they perfectly center the content both ways.'
+            },
+
+            // JavaScript Type Questions
+            {
+                category: 'js',
+                question: 'What is typeof null?',
+                code: '',
+                options: [
+                    '"null"',
+                    '"object"',
+                    '"undefined"',
+                    '"nulltype"'
+                ],
+                correct: 1,
+                explanation: 'typeof null returns "object". This is a well-known JavaScript bug that cannot be fixed for compatibility. Use value === null to check for null.'
+            },
+            {
+                category: 'js',
+                question: 'What are the falsy values in JavaScript?',
+                code: '',
+                options: [
+                    '0, null, undefined, false',
+                    '0, "", null, undefined, NaN, false',
+                    'false only',
+                    '0, null, undefined, false, [], {}'
+                ],
+                correct: 1,
+                explanation: 'There are exactly 6 falsy values: 0, "" (empty string), null, undefined, NaN, and false. Everything else is truthy, including empty arrays [] and empty objects {}.'
+            },
+
+            // Operator Questions
+            {
+                category: 'js',
+                question: 'What is the result of "5" + 3?',
+                code: '',
+                options: [
+                    '8',
+                    '"53"',
+                    'NaN',
+                    'Error'
+                ],
+                correct: 1,
+                explanation: 'When one operand is a string, + becomes concatenation. "5" + 3 = "53". The number 3 is converted to string "3".'
+            },
+            {
+                category: 'js',
+                question: 'What is the result of "5" - 3?',
+                code: '',
+                options: [
+                    '"53"',
+                    '2',
+                    '"2"',
+                    'NaN'
+                ],
+                correct: 1,
+                explanation: 'Unlike +, other operators (-, *, /, %) always try to convert to numbers. "5" becomes 5, so 5 - 3 = 2.'
+            },
+            {
+                category: 'js',
+                question: 'What is the result of 5 + 3 + "2"?',
+                code: '',
+                options: [
+                    '"532"',
+                    '"82"',
+                    '10',
+                    'NaN'
+                ],
+                correct: 1,
+                explanation: 'Operations are left to right: 5 + 3 = 8, then 8 + "2" = "82". The string "2" causes concatenation, not addition.'
+            },
+            {
+                category: 'js',
+                question: 'What is the difference between ++x and x++?',
+                code: '',
+                options: [
+                    'They are identical',
+                    '++x increments then returns, x++ returns then increments',
+                    'x++ only works in loops',
+                    '++x is invalid syntax'
+                ],
+                correct: 1,
+                explanation: '++x (prefix) increments the variable, then returns the new value. x++ (postfix) returns the current value, then increments. If used alone, they behave the same.'
+            },
+
+            // Comparison Questions
+            {
+                category: 'js',
+                question: 'What is the difference between == and ===?',
+                code: '',
+                options: [
+                    'They are identical',
+                    '== converts types, === requires same type and value',
+                    '== is for numbers only',
+                    '=== is deprecated'
+                ],
+                correct: 1,
+                explanation: '== (loose equality) converts types before comparing. === (strict equality) requires both value AND type to match. Always use === to avoid surprises!'
+            },
+            {
+                category: 'js',
+                question: 'What is "5" == 5?',
+                code: '',
+                options: [
+                    'false',
+                    'true',
+                    'undefined',
+                    'Error'
+                ],
+                correct: 1,
+                explanation: '"5" == 5 is true because == converts the string "5" to number 5 before comparing. "5" === 5 would be false (strict equality).'
+            },
+            {
+                category: 'js',
+                question: 'What is "5" === 5?',
+                code: '',
+                options: [
+                    'true',
+                    'false',
+                    'undefined',
+                    'Error'
+                ],
+                correct: 1,
+                explanation: '"5" === 5 is false because === checks both value AND type. Here the types differ (string vs number), so they are not strictly equal.'
+            },
+            {
+                category: 'js',
+                question: 'What is null == undefined?',
+                code: '',
+                options: [
+                    'false',
+                    'true',
+                    'TypeError',
+                    'undefined'
+                ],
+                correct: 1,
+                explanation: 'null == undefined is true due to a special rule in JavaScript. However, null === undefined is false because the types differ.'
+            },
+            {
+                category: 'js',
+                question: 'What is null >= 0?',
+                code: '',
+                options: [
+                    'true',
+                    'false',
+                    'undefined',
+                    'NaN'
+                ],
+                correct: 0,
+                explanation: 'null >= 0 is true because comparisons convert null to 0. BUT null == 0 is false because equality has special rules for null. This is confusing!'
+            },
+            {
+                category: 'js',
+                question: 'How are strings compared?',
+                code: '"Apple" > "Banana"',
+                options: [
+                    'By length',
+                    'By Unicode value, letter by letter',
+                    'Alphabetically ignoring case',
+                    'Randomly'
+                ],
+                correct: 1,
+                explanation: 'Strings are compared character by character using Unicode values. "A" (65) < "B" (66), so "Apple" < "Banana". Case matters: "a" > "A".'
+            },
+
+            // Type Conversion Questions
+            {
+                category: 'js',
+                question: 'What is Number("")?',
+                code: '',
+                options: [
+                    'NaN',
+                    '0',
+                    '""',
+                    'undefined'
+                ],
+                correct: 1,
+                explanation: 'Number("") returns 0. An empty string converts to 0. A string with only whitespace also converts to 0.'
+            },
+            {
+                category: 'js',
+                question: 'What is Number("hello")?',
+                code: '',
+                options: [
+                    '0',
+                    'NaN',
+                    '"hello"',
+                    'undefined'
+                ],
+                correct: 1,
+                explanation: 'Number("hello") returns NaN (Not a Number) because "hello" cannot be converted to a valid number. NaN is a special numeric value meaning "invalid number".'
+            },
+            {
+                category: 'js',
+                question: 'What is Boolean("")?',
+                code: '',
+                options: [
+                    'true',
+                    'false',
+                    'undefined',
+                    '""'
+                ],
+                correct: 1,
+                explanation: 'Boolean("") is false because empty string is falsy. But Boolean(" ") with a space is true - only completely empty string is falsy!'
+            },
+            {
+                category: 'js',
+                question: 'What is parseInt("100px")?',
+                code: '',
+                options: [
+                    'NaN',
+                    '100',
+                    '"100px"',
+                    '100px'
+                ],
+                correct: 1,
+                explanation: 'parseInt reads digits from the start of a string until it hits a non-digit. "100px" → 100. If the string started with letters, it would return NaN.'
+            },
+
+            // Assignment 1 Questions
+            {
+                category: 'a1',
+                question: 'In A1, what must the header height be?',
+                code: '',
+                options: [
+                    '100px',
+                    '75px visible height + 20px padding',
+                    '50px',
+                    'Auto height'
+                ],
+                correct: 1,
+                explanation: 'The header must have 75px visible height (content area) and 20px padding. This is specified in the assignment requirements.'
+            },
+            {
+                category: 'a1',
+                question: 'Why does body need margin-top: 100px?',
+                code: '',
+                options: [
+                    'For visual spacing',
+                    'To prevent content from being hidden under the fixed header',
+                    'It is optional',
+                    'To center the content'
+                ],
+                correct: 1,
+                explanation: 'The header is position: fixed, which removes it from document flow. Without margin-top on body, content would slide under the header.'
+            },
+            {
+                category: 'a1',
+                question: 'In what order must CSS files be loaded?',
+                code: '',
+                options: [
+                    'A1.css, then page-specific, then reset',
+                    'Reset first, then A1.css, then page-specific',
+                    'Page order does not matter',
+                    'Only A1.css is needed'
+                ],
+                correct: 1,
+                explanation: 'Load order: 1) Reset CSS (removes defaults), 2) A1.css (base styles), 3) Page-specific (color overrides). Later styles override earlier ones.'
+            },
+            {
+                category: 'a1',
+                question: 'What creates the space between navigation menu items?',
+                code: '',
+                options: [
+                    'margin on li elements',
+                    'gap property on the flex container (#navigation)',
+                    'padding on a elements',
+                    'Space character in HTML'
+                ],
+                correct: 1,
+                explanation: 'The assignment requires a 10px gap between menu items. With flexbox, use gap: 10px on the parent (#navigation) instead of margins on children.'
+            },
+            {
+                category: 'a1',
+                question: 'What is the purpose of the reset CSS file?',
+                code: '',
+                options: [
+                    'To add styles',
+                    'To remove browser default styles for consistency',
+                    'To load fonts',
+                    'To make the page responsive'
+                ],
+                correct: 1,
+                explanation: 'Reset CSS removes browser default styles (like body margins, list bullets, etc.) so you start with a clean slate across all browsers.'
+            }
+        ];
+
+        // State management
+        let currentQuizCategory = 'all';
+        let quizAnswers = {};
+        let filteredQuestions = [];
+        let currentGame = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initQuiz();
+            runCode();
+            
+            // Mobile touch improvements
+            setupMobileTouchHandling();
+        });
+        
+        // Mobile touch handling
+        function setupMobileTouchHandling() {
+            // Prevent double-tap zoom on buttons
+            const buttons = document.querySelectorAll('button, .nav-btn, .tag, .option, .game-card');
+            buttons.forEach(btn => {
+                btn.addEventListener('touchstart', function() {}, {passive: true});
+            });
+            
+            // Handle iOS viewport height issues
+            function setVh() {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+            setVh();
+            window.addEventListener('resize', setVh);
+            window.addEventListener('orientationchange', setVh);
+        }
+
+        // Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Topic switching
+        function showHtmlTopic(topic) {
+            document.querySelectorAll('.html-topic').forEach(t => t.classList.add('hidden'));
+            document.getElementById('html-' + topic).classList.remove('hidden');
+            document.querySelectorAll('#html .tag').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function showCssTopic(topic) {
+            document.querySelectorAll('.css-topic').forEach(t => t.classList.add('hidden'));
+            document.getElementById('css-' + topic).classList.remove('hidden');
+            document.querySelectorAll('#css .tag').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function showJsTopic(topic) {
+            document.querySelectorAll('.js-topic').forEach(t => t.classList.add('hidden'));
+            document.getElementById('js-' + topic).classList.remove('hidden');
+            document.querySelectorAll('#js .tag').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Quiz Functions
+        function initQuiz() {
+            filterQuiz('all');
+        }
+
+        function filterQuiz(category) {
+            currentQuizCategory = category;
+            quizAnswers = {};
+            
+            if (category === 'all') {
+                filteredQuestions = [...quizQuestions];
+            } else {
+                filteredQuestions = quizQuestions.filter(q => q.category === category);
+            }
+            
+            // Shuffle questions
+            filteredQuestions = filteredQuestions.sort(() => Math.random() - 0.5);
+            
+            // Update UI
+            document.querySelectorAll('#quiz .tag').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            renderQuiz();
+            updateProgress();
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+            container.innerHTML = '';
+            
+            filteredQuestions.forEach((q, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.dataset.index = index;
+                
+                let html = `<div class="question-text">${index + 1}. ${q.question}</div>`;
+                
+                if (q.code) {
+                    html += `<div class="question-code">${q.code.replace(/\n/g, '<br>')}</div>`;
+                }
+                
+                html += '<div class="options">';
+                q.options.forEach((opt, optIndex) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option';
+                    btn.textContent = opt;
+                    btn.onclick = () => selectOption(index, optIndex);
+                    
+                    if (quizAnswers[index] !== undefined) {
+                        btn.disabled = true;
+                        if (optIndex === q.correct) {
+                            btn.classList.add('correct');
+                        } else if (optIndex === quizAnswers[index] && optIndex !== q.correct) {
+                            btn.classList.add('wrong');
+                        }
+                    }
+                    
+                    html += btn.outerHTML;
+                });
+                html += '</div>';
+                
+                // Explanation
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation' + (quizAnswers[index] !== undefined ? ' show' : '');
+                explanationDiv.innerHTML = `<strong>Explanation:</strong> ${q.explanation}`;
+                html += explanationDiv.outerHTML;
+                
+                card.innerHTML = html;
+                container.appendChild(card);
+            });
+        }
+
+        function selectOption(questionIndex, optionIndex) {
+            if (quizAnswers[questionIndex] !== undefined) return;
+            
+            quizAnswers[questionIndex] = optionIndex;
+            
+            const card = document.querySelector(`.question-card[data-index="${questionIndex}"]`);
+            const options = card.querySelectorAll('.option');
+            const q = filteredQuestions[questionIndex];
+            
+            options.forEach((btn, idx) => {
+                btn.disabled = true;
+                if (idx === q.correct) {
+                    btn.classList.add('correct');
+                } else if (idx === optionIndex && idx !== q.correct) {
+                    btn.classList.add('wrong');
+                }
+            });
+            
+            card.querySelector('.explanation').classList.add('show');
+            
+            updateProgress();
+            checkQuizComplete();
+        }
+
+        function updateProgress() {
+            const answered = Object.keys(quizAnswers).length;
+            const total = filteredQuestions.length;
+            
+            document.querySelectorAll('.progress-bar').forEach((bar, index) => {
+                bar.classList.remove('filled');
+                if (index < (answered / total) * 5) {
+                    bar.classList.add('filled');
+                }
+            });
+        }
+
+        function checkQuizComplete() {
+            if (Object.keys(quizAnswers).length === filteredQuestions.length) {
+                const correct = Object.entries(quizAnswers).filter(([idx, ans]) => {
+                    return ans === filteredQuestions[idx].correct;
+                }).length;
+                
+                document.getElementById('scoreValue').textContent = correct;
+                document.getElementById('totalValue').textContent = filteredQuestions.length;
+                
+                const percentage = (correct / filteredQuestions.length) * 100;
+                let message = '';
+                if (percentage >= 90) message = '🎉 Excellent! You really know your stuff!';
+                else if (percentage >= 70) message = '👍 Good job! Keep studying the tricky parts.';
+                else if (percentage >= 50) message = '📚 Not bad! Review the explanations and try again.';
+                else message = '💪 Keep practicing! Check the study materials and try again.';
+                
+                document.getElementById('scoreMessage').textContent = message;
+                document.getElementById('quizResults').classList.remove('hidden');
+            }
+        }
+
+        function restartQuiz() {
+            quizAnswers = {};
+            document.getElementById('quizResults').classList.add('hidden');
+            filterQuiz(currentQuizCategory);
+        }
+
+        // Code Playground
+        function switchTab(tab) {
+            document.querySelectorAll('.sim-editor').forEach(e => e.classList.remove('active'));
+            document.querySelectorAll('.sim-tab').forEach(t => t.classList.remove('active'));
+            
+            document.getElementById(tab + 'Editor').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function runCode() {
+            const html = document.getElementById('htmlCode').value;
+            const css = document.getElementById('cssCode').value;
+            
+            const fullCode = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <style>${css}</style>
+                </head>
+                <body>${html}</body>
+                </html>
+            `;
+            
+            const output = document.getElementById('codeOutput');
+            output.srcdoc = fullCode;
+        }
+
+        function resetCode() {
+            document.getElementById('htmlCode').value = '<div class="box">\n  <h1>Hello World</h1>\n  <p>Edit the HTML and CSS, then click Run!</p>\n</div>';
+            document.getElementById('cssCode').value = '.box {\n  padding: 20px;\n  background: #f0f0f0;\n  border-radius: 8px;\n}\n\nh1 {\n  color: #333;\n}\n\np {\n  color: #666;\n}';
+            runCode();
+        }
+
+        // ===== GAMES =====
+        const games = {
+            selector: {
+                title: '🎯 Selector Sleuth',
+                description: 'Figure out which elements a CSS selector targets',
+                questions: [
+                    { html: '<div class="box">Text</div>\n<p>More</p>', selector: 'div.box', answer: 1, explanation: 'div.box selects only <div> elements with class="box". The <p> element is not selected.' },
+                    { html: '<div class="box">A</div>\n<div class="box">B</div>', selector: '.box', answer: 2, explanation: '.box selects ALL elements with class="box", regardless of tag type.' },
+                    { html: '<nav>\n  <ul>\n    <li>Item</li>\n  </ul>\n</nav>', selector: 'nav li', answer: 1, explanation: 'nav li selects <li> elements anywhere inside <nav>, no matter how deeply nested.' },
+                    { html: '<ul>\n  <li>A</li>\n  <li>B</li>\n</ul>', selector: 'ul > li', answer: 2, explanation: 'ul > li selects only DIRECT children. Both <li> elements are direct children of <ul>.' },
+                    { html: '<p class="highlight active">Text</p>', selector: 'p.highlight.active', answer: 1, explanation: 'Chaining classes means AND - the element must have BOTH classes AND be a <p> tag.' },
+                    { html: '<div id="main">Content</div>', selector: '#main', answer: 1, explanation: '#main selects the element with id="main". IDs should be unique, so this selects 1 element.' },
+                    { html: '<p>Para 1</p>\n<p>Para 2</p>\n<div>Div</div>', selector: 'p', answer: 2, explanation: 'p selects ALL <p> elements. There are 2 paragraphs.' },
+                    { html: '<a href="#">Link</a>\n<button class="btn">Btn</button>', selector: '.btn', answer: 1, explanation: '.btn selects only elements with class="btn". Only the button has this class.' }
+                ]
+            },
+            boxmodel: {
+                title: '📦 Box Model Builder',
+                description: 'Calculate the total dimensions (no border-box)',
+                questions: [
+                    { css: 'width: 200px;\npadding: 20px;\nborder: 2px solid;', expected: 244, explanation: '200 + 20 + 20 + 2 + 2 = 244px' },
+                    { css: 'width: 300px;\npadding: 10px 30px;\nborder: 1px solid;', expected: 362, explanation: '300 + 30 + 30 + 1 + 1 = 362px (padding: 10px 30px means 10px top/bottom, 30px left/right)' },
+                    { css: 'width: 150px;\npadding: 15px;\nborder: 3px solid;\nmargin: 20px;', expected: 186, explanation: '150 + 15 + 15 + 3 + 3 = 186px (margin does not affect the box size, only spacing)' },
+                    { css: 'width: 100px;\npadding: 0;\nborder: 5px solid;', expected: 110, explanation: '100 + 0 + 0 + 5 + 5 = 110px' },
+                    { css: 'width: 250px;\npadding: 20px 10px;\nborder: 2px solid;', expected: 274, explanation: '250 + 10 + 10 + 2 + 2 = 274px' }
+                ]
+            },
+            flexbox: {
+                title: '🧩 Flexbox Navigator',
+                description: 'Choose the correct flexbox properties',
+                questions: [
+                    { 
+                        scenario: 'You want to center items horizontally in a flex container.', 
+                        options: ['justify-content: center', 'align-items: center', 'flex-direction: center', 'text-align: center'],
+                        correct: 0,
+                        explanation: 'justify-content centers along the main axis (horizontal for flex-direction: row).'
+                    },
+                    { 
+                        scenario: 'You want to center items vertically in a flex container with flex-direction: row.', 
+                        options: ['justify-content: center', 'align-items: center', 'vertical-align: center', 'margin: auto'],
+                        correct: 1,
+                        explanation: 'align-items centers along the cross axis (vertical for flex-direction: row).'
+                    },
+                    { 
+                        scenario: 'You want items to be evenly distributed with space between them.', 
+                        options: ['justify-content: flex-start', 'justify-content: space-between', 'justify-content: center', 'gap: 100px'],
+                        correct: 1,
+                        explanation: 'space-between puts space between items, with the first at start and last at end.'
+                    },
+                    { 
+                        scenario: 'You want to change the direction so items stack vertically.', 
+                        options: ['flex-wrap: wrap', 'flex-direction: column', 'display: block', 'flex-flow: vertical'],
+                        correct: 1,
+                        explanation: 'flex-direction: column stacks items vertically (top to bottom).'
+                    },
+                    { 
+                        scenario: 'You want to make one flex item grow to fill available space.', 
+                        options: ['flex-grow: 1', 'flex-shrink: 1', 'flex-basis: 100%', 'width: 100%'],
+                        correct: 0,
+                        explanation: 'flex-grow: 1 allows the item to grow and fill available space.'
+                    }
+                ]
+            },
+            operators: {
+                title: '🔢 Operator Master',
+                description: 'Predict the result of JavaScript expressions',
+                questions: [
+                    { code: '"5" + 3', options: ['8', '"53"', 'NaN', 'Error'], correct: 1, explanation: 'When one operand is a string, + does concatenation: "5" + "3" = "53"' },
+                    { code: '"5" - 3', options: ['2', '"2"', 'NaN', 'Error'], correct: 0, explanation: '- converts to numbers: 5 - 3 = 2' },
+                    { code: '5 + 3 + "2"', options: ['"82"', '"532"', '10', 'NaN'], correct: 0, explanation: 'Left to right: 5 + 3 = 8, then 8 + "2" = "82" (concatenation)' },
+                    { code: '10 / 2 * 5', options: ['1', '25', '10', 'Error'], correct: 1, explanation: 'Same precedence, left to right: 10/2 = 5, then 5*5 = 25' },
+                    { code: 'let x = 5; x++', options: ['6', '5', 'undefined', 'Error'], correct: 1, explanation: 'Postfix returns the value THEN increments. Returns 5, then x becomes 6.' },
+                    { code: 'let x = 5; ++x', options: ['5', '6', 'undefined', 'Error'], correct: 1, explanation: 'Prefix increments THEN returns. x becomes 6, returns 6.' },
+                    { code: 'true + true', options: ['true', '2', 'Error', '1'], correct: 1, explanation: 'true converts to 1, so 1 + 1 = 2' },
+                    { code: '"" + 5 + 3', options: ['8', '"53"', '"8"', 'NaN'], correct: 1, explanation: ' "" + 5 = "5", then "5" + 3 = "53"' }
+                ]
+            },
+            comparison: {
+                title: '⚖️ Truth Teller',
+                description: 'Is this comparison true or false?',
+                questions: [
+                    { code: '"5" == 5', answer: true, explanation: '== converts types. "5" becomes 5, so 5 == 5 is true.' },
+                    { code: '"5" === 5', answer: false, explanation: '=== checks type AND value. String !== Number, so false.' },
+                    { code: 'null == undefined', answer: true, explanation: 'null and undefined are loosely equal (special rule).' },
+                    { code: 'null === undefined', answer: false, explanation: 'Different types (object vs undefined), so strictly not equal.' },
+                    { code: '0 == false', answer: true, explanation: '0 converts to false, so false == false is true.' },
+                    { code: '0 === false', answer: false, explanation: 'Number !== Boolean, strictly not equal.' },
+                    { code: '"" == false', answer: true, explanation: 'Empty string converts to 0, false converts to 0, so true.' },
+                    { code: 'null >= 0', answer: true, explanation: 'Comparisons convert null to 0, so 0 >= 0 is true (weird but true!).' }
+                ]
+            }
+        };
+
+        function startGame(gameType) {
+            const game = games[gameType];
+            if (!game) return;
+            
+            currentGame = { 
+                type: gameType, 
+                score: 0, 
+                questionIndex: 0,
+                totalQuestions: game.questions.length 
+            };
+            
+            document.getElementById('gameArea').classList.remove('hidden');
+            document.getElementById('gameTitle').textContent = game.title;
+            
+            renderGameIntro();
+        }
+
+        function renderGameIntro() {
+            const game = games[currentGame.type];
+            document.getElementById('gameContent').innerHTML = `
+                <div style="text-align: center; padding: 30px 20px;">
+                    <div style="font-size: 3rem; margin-bottom: 16px;">${game.title.split(' ')[0]}</div>
+                    <h3 style="margin-bottom: 12px;">${game.title.split(' ').slice(1).join(' ')}</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 24px;">${game.description}</p>
+                    <p style="margin-bottom: 24px;">${game.questions.length} questions</p>
+                    <button class="btn btn-primary" onclick="renderGameQuestion()" style="padding: 16px 32px; font-size: 1.1rem;">Start Game</button>
+                </div>
+            `;
+        }
+
+        function renderGameQuestion() {
+            const game = games[currentGame.type];
+            const q = game.questions[currentGame.questionIndex];
+            
+            if (!q) {
+                renderGameComplete();
+                return;
+            }
+            
+            const progress = ((currentGame.questionIndex / currentGame.totalQuestions) * 100).toFixed(0);
+            
+            let html = `
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                        <span>Question ${currentGame.questionIndex + 1} of ${currentGame.totalQuestions}</span>
+                        <span>Score: ${currentGame.score}</span>
+                    </div>
+                    <div style="background: var(--bg-tertiary); height: 8px; border-radius: 4px; overflow: hidden;">
+                        <div style="background: var(--accent); height: 100%; width: ${progress}%; transition: width 0.3s;"></div>
+                    </div>
+                </div>
+            `;
+            
+            if (currentGame.type === 'selector') {
+                html += `
+                    <div class="info-box" style="margin-bottom: 20px;">
+                        <strong>How many elements does this selector match?</strong>
+                    </div>
+                    <div class="code-block" style="margin: 20px 0;">
+                        <pre style="font-size: 14px;">${escapeHtml(q.html)}</pre>
+                    </div>
+                    <div style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px; margin-bottom: 20px; font-family: monospace;">
+                        Selector: <strong>${q.selector}</strong>
+                    </div>
+                    <div id="gameFeedback" style="margin-bottom: 16px;"></div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                        <button class="btn btn-secondary" onclick="checkSelectorAnswer(0)" style="padding: 20px; font-size: 1.2rem;">0</button>
+                        <button class="btn btn-secondary" onclick="checkSelectorAnswer(1)" style="padding: 20px; font-size: 1.2rem;">1</button>
+                        <button class="btn btn-secondary" onclick="checkSelectorAnswer(2)" style="padding: 20px; font-size: 1.2rem;">2</button>
+                    </div>
+                    <button class="btn btn-secondary" onclick="checkSelectorAnswer(3)" style="width: 100%; margin-top: 12px; padding: 16px;">3 or more</button>
+                `;
+            } else if (currentGame.type === 'boxmodel') {
+                html += `
+                    <div class="info-box" style="margin-bottom: 20px;">
+                        <strong>Calculate the total width:</strong>
+                        <br><small>(Without box-sizing: border-box)</small>
+                    </div>
+                    <div class="code-block" style="margin: 20px 0;">
+                        <pre style="font-size: 14px;">${q.css}</pre>
+                    </div>
+                    <div id="gameFeedback" style="margin-bottom: 16px;"></div>
+                    <div style="display: flex; gap: 12px;">
+                        <input type="number" id="gameAnswer" placeholder="Width in px" 
+                            style="flex: 1; padding: 16px; font-size: 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-tertiary); color: var(--text-primary);">
+                        <button class="btn btn-primary" onclick="checkBoxModelAnswer()" style="padding: 16px 24px;">Submit</button>
+                    </div>
+                `;
+            } else if (currentGame.type === 'flexbox') {
+                html += `
+                    <div class="info-box" style="margin-bottom: 20px;">
+                        <strong>${q.scenario}</strong>
+                    </div>
+                    <div id="gameFeedback" style="margin-bottom: 16px;"></div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        ${q.options.map((opt, idx) => `
+                            <button class="btn btn-secondary" onclick="checkFlexboxAnswer(${idx})" style="text-align: left; padding: 16px; font-family: monospace;">${escapeHtml(opt)}</button>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (currentGame.type === 'operators') {
+                html += `
+                    <div class="info-box" style="margin-bottom: 20px;">
+                        <strong>What does this evaluate to?</strong>
+                    </div>
+                    <div style="background: var(--bg-tertiary); padding: 20px; border-radius: 8px; margin-bottom: 20px; font-family: monospace; font-size: 1.2rem; text-align: center;">
+                        ${escapeHtml(q.code)}
+                    </div>
+                    <div id="gameFeedback" style="margin-bottom: 16px;"></div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        ${q.options.map((opt, idx) => `
+                            <button class="btn btn-secondary" onclick="checkOperatorAnswer(${idx})" style="padding: 20px; font-family: monospace;">${escapeHtml(opt)}</button>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (currentGame.type === 'comparison') {
+                html += `
+                    <div class="info-box" style="margin-bottom: 20px;">
+                        <strong>Is this comparison true or false?</strong>
+                    </div>
+                    <div style="background: var(--bg-tertiary); padding: 20px; border-radius: 8px; margin-bottom: 20px; font-family: monospace; font-size: 1.2rem; text-align: center;">
+                        ${escapeHtml(q.code)}
+                    </div>
+                    <div id="gameFeedback" style="margin-bottom: 16px;"></div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                        <button class="btn btn-secondary" onclick="checkComparisonAnswer(true)" style="padding: 20px; font-size: 1.1rem;">TRUE</button>
+                        <button class="btn btn-secondary" onclick="checkComparisonAnswer(false)" style="padding: 20px; font-size: 1.1rem;">FALSE</button>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('gameContent').innerHTML = html;
+        }
+
+        function showGameFeedback(isCorrect, message) {
+            const feedbackDiv = document.getElementById('gameFeedback');
+            feedbackDiv.innerHTML = `
+                <div style="padding: 16px; border-radius: 8px; background: ${isCorrect ? 'rgba(35, 134, 54, 0.2)' : 'rgba(248, 81, 73, 0.2)'}; border: 1px solid ${isCorrect ? 'var(--success-light)' : 'var(--danger)'};">
+                    <div style="font-weight: 600; margin-bottom: 4px; color: ${isCorrect ? 'var(--success-light)' : 'var(--danger)'};">
+                        ${isCorrect ? '✓ Correct!' : '✗ Not quite!'}
+                    </div>
+                    <div style="font-size: 0.95rem; color: var(--text-secondary);">${message}</div>
+                </div>
+            `;
+        }
+
+        function checkSelectorAnswer(answer) {
+            const game = games[currentGame.type];
+            const q = game.questions[currentGame.questionIndex];
+            const isCorrect = answer === q.answer;
+            
+            showGameFeedback(isCorrect, q.explanation);
+            
+            if (isCorrect) {
+                currentGame.score++;
+                setTimeout(() => {
+                    currentGame.questionIndex++;
+                    renderGameQuestion();
+                }, 2000);
+            }
+        }
+
+        function checkBoxModelAnswer() {
+            const input = document.getElementById('gameAnswer');
+            const answer = parseInt(input.value);
+            
+            if (isNaN(answer)) {
+                input.style.borderColor = 'var(--danger)';
+                return;
+            }
+            
+            const game = games[currentGame.type];
+            const q = game.questions[currentGame.questionIndex];
+            const isCorrect = answer === q.expected;
+            
+            showGameFeedback(isCorrect, q.explanation);
+            input.style.borderColor = isCorrect ? 'var(--success-light)' : 'var(--danger)';
+            
+            if (isCorrect) {
+                currentGame.score++;
+                setTimeout(() => {
+                    currentGame.questionIndex++;
+                    renderGameQuestion();
+                }, 2500);
+            }
+        }
+
+        function checkFlexboxAnswer(answerIndex) {
+            const game = games[currentGame.type];
+            const q = game.questions[currentGame.questionIndex];
+            const isCorrect = answerIndex === q.correct;
+            
+            showGameFeedback(isCorrect, q.explanation);
+            
+            if (isCorrect) {
+                currentGame.score++;
+                setTimeout(() => {
+                    currentGame.questionIndex++;
+                    renderGameQuestion();
+                }, 2500);
+            }
+        }
+
+        function checkOperatorAnswer(answerIndex) {
+            const game = games[currentGame.type];
+            const q = game.questions[currentGame.questionIndex];
+            const isCorrect = answerIndex === q.correct;
+            
+            showGameFeedback(isCorrect, q.explanation);
+            
+            if (isCorrect) {
+                currentGame.score++;
+                setTimeout(() => {
+                    currentGame.questionIndex++;
+                    renderGameQuestion();
+                }, 2500);
+            }
+        }
+
+        function checkComparisonAnswer(answer) {
+            const game = games[currentGame.type];
+            const q = game.questions[currentGame.questionIndex];
+            const isCorrect = answer === q.answer;
+            
+            showGameFeedback(isCorrect, q.explanation);
+            
+            if (isCorrect) {
+                currentGame.score++;
+                setTimeout(() => {
+                    currentGame.questionIndex++;
+                    renderGameQuestion();
+                }, 2500);
+            }
+        }
+
+        function renderGameComplete() {
+            const percentage = (currentGame.score / currentGame.totalQuestions) * 100;
+            let emoji = '🎉';
+            let message = 'Perfect score!';
+            
+            if (percentage < 100) { emoji = '👏'; message = 'Great job!'; }
+            if (percentage < 80) { emoji = '👍'; message = 'Good effort!'; }
+            if (percentage < 60) { emoji = '💪'; message = 'Keep practicing!'; }
+            
+            document.getElementById('gameContent').innerHTML = `
+                <div style="text-align: center; padding: 40px 20px;">
+                    <div style="font-size: 4rem; margin-bottom: 16px;">${emoji}</div>
+                    <h2 style="margin-bottom: 8px;">Game Complete!</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 24px;">${message}</p>
+                    <div style="background: var(--bg-tertiary); padding: 24px; border-radius: 12px; margin-bottom: 24px;">
+                        <div style="font-size: 3rem; color: var(--accent); font-weight: 700;">
+                            ${currentGame.score} / ${currentGame.totalQuestions}
+                        </div>
+                        <div style="color: var(--text-secondary); margin-top: 8px;">${percentage.toFixed(0)}% correct</div>
+                    </div>
+                    <div style="display: flex; gap: 12px; justify-content: center;">
+                        <button class="btn btn-primary" onclick="restartGame()">Play Again</button>
+                        <button class="btn btn-secondary" onclick="closeGame()">Close</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function restartGame() {
+            currentGame.questionIndex = 0;
+            currentGame.score = 0;
+            renderGameQuestion();
+        }
+
+        function closeGame() {
+            document.getElementById('gameArea').classList.add('hidden');
+            currentGame = null;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Utility
+        function copyCode(btn) {
+            const code = btn.closest('.code-block').querySelector('code').textContent;
+            navigator.clipboard.writeText(code);
+            btn.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => btn.innerHTML = '<i class="fas fa-copy"></i>', 2000);
+        }
+    </script>
+</body>
+</html>
