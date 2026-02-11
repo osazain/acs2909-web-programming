@@ -3835,7 +3835,7 @@ megaQuestionBank.push(
     explanation: "Spread syntax {...obj} copies all enumerable own properties to a new object. It's useful for: 1) Creating shallow copies, 2) Merging objects (later properties overwrite earlier), 3) Adding/overriding properties: { ...obj, newProp: value }.",
     reference: "JavaScript - Spread Syntax"
   }
-);
+];
 
 // ==========================================
 // EXPORT
