@@ -1547,14 +1547,47 @@
     <!-- Toast Container -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- External Question Bank -->
-    <script src="mega-question-bank.js"></script>
+    <!-- External Question Bank - Load synchronously before main script -->
+    <script>
+        // Inline minimal question bank as fallback
+        window.megaQuestionBank = window.megaQuestionBank || [];
+    </script>
+    <script src="mega-question-bank.js" onerror="console.error('Failed to load mega-question-bank.js from path:', window.location.pathname)" onload="console.log('Question bank loaded:', typeof megaQuestionBank !== 'undefined' ? megaQuestionBank.length : 0)"></script>
 
     <!-- JavaScript -->
     <script>
         // ==========================================
         // MAIN STUDY PLATFORM
         // ==========================================
+        
+        // Check if question bank loaded, if not create a fallback
+        if (typeof megaQuestionBank === 'undefined' || !megaQuestionBank || megaQuestionBank.length === 0) {
+            console.error('Question bank not loaded! Creating fallback with 20 sample questions...');
+            window.megaQuestionBank = [
+                {id:1,category:"internet",difficulty:"easy",question:"What does HTTP stand for?",code:null,options:["HyperText Transfer Protocol","HyperText Transmission Protocol","HighText Transfer Protocol","HyperTransfer Text Protocol"],correctAnswer:0,explanation:"HTTP stands for HyperText Transfer Protocol."},
+                {id:2,category:"internet",difficulty:"easy",question:"Which HTTP method requests data from a server?",code:null,options:["POST","GET","DELETE","PUT"],correctAnswer:1,explanation:"GET requests data from a server."},
+                {id:3,category:"html",difficulty:"easy",question:"What is the correct HTML5 doctype?",code:null,options:["<!DOCTYPE HTML5>","<!DOCTYPE html>","<doctype html>","<!doctype html5>"],correctAnswer:1,explanation:"The correct HTML5 doctype is '<!DOCTYPE html>'"},
+                {id:4,category:"html",difficulty:"easy",question:"Which tag defines the main content of a page?",code:null,options:["<content>","<main>","<body>","<article>"],correctAnswer:1,explanation:"<main> specifies the main content."},
+                {id:5,category:"css-fundamentals",difficulty:"easy",question:"Which CSS property changes text color?",code:null,options:["text-color","font-color","color","foreground"],correctAnswer:2,explanation:"The 'color' property sets text color."},
+                {id:6,category:"css-fundamentals",difficulty:"easy",question:"What is the CSS Box Model order?",code:null,options:["Margin→Border→Padding→Content","Content→Padding→Border→Margin","Padding→Content→Border→Margin","Content→Border→Padding→Margin"],correctAnswer:1,explanation:"Order: Content → Padding → Border → Margin"},
+                {id:7,category:"css-layout",difficulty:"easy",question:"What enables Flexbox?",code:null,options:["display: flex","display: flexbox","flex: enabled","display: block"],correctAnswer:0,explanation:"'display: flex' enables Flexbox."},
+                {id:8,category:"css-layout",difficulty:"easy",question:"What is the default flex-direction?",code:null,options:["column","row","row-reverse","column-reverse"],correctAnswer:1,explanation:"Default flex-direction is 'row'."},
+                {id:9,category:"js-basics",difficulty:"easy",question:"Which declares a constant?",code:null,options:["var","let","const","static"],correctAnswer:2,explanation:"const declares unchangeable variables."},
+                {id:10,category:"js-basics",difficulty:"easy",question:"What is 5 + '5'?",code:null,options:["10","'55'","25","NaN"],correctAnswer:1,explanation:"Number + string = concatenation: '55'"},
+                {id:11,category:"js-control-flow",difficulty:"easy",question:"What does === check?",code:null,options:["Only value","Value and type","Only type","Reference"],correctAnswer:1,explanation:"=== checks value AND type (strict equality)."},
+                {id:12,category:"js-control-flow",difficulty:"easy",question:"What is 5 == '5'?",code:null,options:["true","false","undefined","Error"],correctAnswer:0,explanation:"== does type coercion, so they're equal."},
+                {id:13,category:"js-functions",difficulty:"easy",question:"How to declare a function?",code:null,options:["function = myFunc()","function myFunc()","def myFunc()","func myFunc()"],correctAnswer:1,explanation:"Use 'function' keyword."},
+                {id:14,category:"js-functions",difficulty:"easy",question:"What is () => {}?",code:null,options:["Function declaration","Arrow function","Object literal","Class definition"],correctAnswer:1,explanation:"() => {} is an arrow function."},
+                {id:15,category:"js-objects",difficulty:"easy",question:"How to access obj property?",code:null,options:["obj->prop","obj.prop or obj['prop']","obj::prop","obj{prop}"],correctAnswer:1,explanation:"Use dot or bracket notation."},
+                {id:16,category:"js-objects",difficulty:"easy",question:"What does Object.keys() return?",code:null,options:["Values array","Keys array","Property count","String"],correctAnswer:1,explanation:"Object.keys() returns an array of keys."},
+                {id:17,category:"internet",difficulty:"medium",question:"What is the role of DNS?",code:null,options:["Hosts websites","Translates domain names to IP addresses","Encrypts data","Compresses files"],correctAnswer:1,explanation:"DNS translates domain names to IP addresses."},
+                {id:18,category:"css-layout",difficulty:"medium",question:"What does position: fixed do?",code:null,options:["Relative to parent","Relative to viewport","Stays in document flow","Hides the element"],correctAnswer:1,explanation:"position: fixed positions relative to viewport."},
+                {id:19,category:"js-control-flow",difficulty:"medium",question:"What does || return?",code:null,options:["Always boolean","First truthy or last value","First value","Last value"],correctAnswer:1,explanation:"|| returns first truthy or last value."},
+                {id:20,category:"js-basics",difficulty:"medium",question:"What are falsy values?",code:null,options:["true, 1, 'hello'","false, 0, '', null, undefined, NaN","Objects and arrays","All numbers"],correctAnswer:1,explanation:"Falsy: false, 0, '', null, undefined, NaN"}
+            ];
+            console.log('Fallback loaded with', window.megaQuestionBank.length, 'questions');
+        }
+        
         const StudyPlatform = {
             state: {
                 currentSection: 'lectures',
@@ -1993,10 +2026,26 @@
 
             // Quiz
             renderQuizDashboard() {
-                const container = document.getElementById('quizDashboard');
-                const hasSavedQuiz = localStorage.getItem('acs2909_saved_quiz');
-                
-                container.innerHTML = `
+                try {
+                    console.log('Rendering quiz dashboard...');
+                    const container = document.getElementById('quizDashboard');
+                    if (!container) {
+                        console.error('Quiz dashboard container not found');
+                        return;
+                    }
+                    
+                    const hasSavedQuiz = localStorage.getItem('acs2909_saved_quiz');
+                    console.log('Has saved quiz:', !!hasSavedQuiz);
+                    
+                    const usingFallback = !megaQuestionBank || megaQuestionBank.length < 50;
+                    
+                    container.innerHTML = `
+                    ${usingFallback ? `
+                        <div style="background: var(--warning); color: #000; padding: 12px 16px; border-radius: 8px; margin-bottom: 20px;">
+                            <strong>⚠️ Limited Questions Available</strong><br>
+                            <small>The full question bank (231 questions) could not be loaded. Make sure <code>mega-question-bank.js</code> is uploaded to GitHub. Using ${megaQuestionBank ? megaQuestionBank.length : 0} fallback questions.</small>
+                        </div>
+                    ` : ''}
                     ${hasSavedQuiz ? `
                         <div class="quiz-mode-card" onclick="StudyPlatform.resumeQuiz()" 
                              style="background: linear-gradient(135deg, rgba(88, 166, 255, 0.2), rgba(35, 134, 54, 0.2)); border-color: var(--accent); margin-bottom: 20px;">
@@ -2049,9 +2098,22 @@
                         </div>
                     </div>
                 `;
+                } catch (e) {
+                    console.error('Error rendering quiz dashboard:', e);
+                    container.innerHTML = `<div class="text-center" style="padding: 40px;"><h3>Error loading quiz</h3><p>Please refresh the page. If the problem persists, check that mega-question-bank.js is uploaded.</p></div>`;
+                }
             },
 
             startQuiz(mode, category = null) {
+                console.log('Starting quiz:', mode, category);
+                console.log('Question bank loaded:', megaQuestionBank ? megaQuestionBank.length : 0, 'questions');
+                
+                if (!megaQuestionBank || megaQuestionBank.length === 0) {
+                    this.showToast('Error: Question bank not loaded. Please refresh the page.', 'error');
+                    console.error('megaQuestionBank is empty or undefined');
+                    return;
+                }
+                
                 let questions = [...megaQuestionBank];
                 
                 if (mode === 'quick') {
@@ -2239,7 +2301,7 @@
                                     <div class="workflow-step ${this.state.cheatSheetWorkflow.quizzesCompleted >= 2 ? 'completed' : ''}"></div>
                                 </div>
                                 ${this.state.cheatSheetWorkflow.quizzesCompleted >= 3 ? `
-                                    <button class="btn btn-success mt-2" onclick="StudyPlatform.generateCheatSheet('personalized')">
+                                    <button class="btn btn-success mt-2" onclick="StudyPlatform.navigateTo('cheatsheet'); setTimeout(() => StudyPlatform.generateCheatSheet('personalized'), 100);">
                                         <i class="fas fa-magic"></i> Generate My Cheat Sheet
                                     </button>
                                 ` : `
@@ -2302,6 +2364,15 @@
                 this.saveProgress();
                 this.showToast('Cheat sheet workflow started!', 'success');
                 this.startQuiz('weak');
+            },
+
+            resetCheatSheetWorkflow() {
+                this.state.cheatSheetWorkflow.active = false;
+                this.state.cheatSheetWorkflow.quizzesCompleted = 0;
+                this.state.cheatSheetWorkflow.weakAreasAtStart = [];
+                this.saveProgress();
+                this.showToast('Workflow completed! You can start a new one anytime.', 'success');
+                this.renderCheatSheet();
             },
 
             // Games
@@ -2486,9 +2557,18 @@
 
             generateCheatSheet(type) {
                 const output = document.getElementById('cheatsheetOutput');
+                
+                if (!output) {
+                    console.error('Cheat sheet output container not found');
+                    this.showToast('Error: Please go to the Cheat Sheet tab first', 'error');
+                    return;
+                }
+                
                 const categories = type === 'personalized' && this.state.weakAreas.length > 0 
                     ? this.state.weakAreas 
                     : ['internet', 'html', 'css-fundamentals', 'css-layout', 'js-basics', 'js-control-flow', 'js-functions', 'js-objects'];
+                
+                console.log('Generating cheat sheet:', type, 'categories:', categories);
 
                 const cheatSheetData = {
                     'internet': {
@@ -2616,19 +2696,27 @@
                                 </div>
                             `).join('')}
                         </div>
-                        <div style="margin-top: 24px; display: flex; gap: 12px;">
+                        <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
                             <button class="btn btn-primary" onclick="window.print()">
                                 <i class="fas fa-print"></i> Print
                             </button>
                             <button class="btn btn-secondary" onclick="StudyPlatform.exportCheatSheet()">
                                 <i class="fas fa-download"></i> Save as HTML
                             </button>
+                            ${this.state.cheatSheetWorkflow.active ? `
+                                <button class="btn btn-success" onclick="StudyPlatform.resetCheatSheetWorkflow()">
+                                    <i class="fas fa-check"></i> Done - Reset Workflow
+                                </button>
+                            ` : ''}
                         </div>
                     </div>
                 `;
 
                 // Scroll to output
                 output.scrollIntoView({ behavior: 'smooth' });
+                
+                // Show success message
+                this.showToast(type === 'personalized' ? 'Personalized cheat sheet generated!' : 'Cheat sheet generated!', 'success');
             },
 
             exportCheatSheet() {
