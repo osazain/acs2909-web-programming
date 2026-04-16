@@ -1,0 +1,26 @@
+{
+  "featureId": "parse-course-timeline",
+  "reviewedAt": "2026-04-16T03:20:00Z",
+  "commitId": "48f644e",
+  "transcriptSkeletonReviewed": true,
+  "diffReviewed": true,
+  "status": "pass",
+  "codeReview": {
+    "summary": "Feature successfully parses Course Timeline HTML file and extracts all 12 weeks of topics, 3 assignments, midterm and final exam information into structured JSON format. Topics are correctly categorized by week with dates and lecture info.",
+    "issues": []
+  },
+  "sharedStateObservations": [
+    {
+      "area": "knowledge",
+      "observation": "Worker discovered that the Course Timeline content was embedded in an iframe pointing to 'Course Timeline (Thursday - 052).html' in a subfolder. This was not documented in AGENTS.md or anywhere else - the worker had to discover it via grep searching. This knowledge would help future workers if recorded.",
+      "evidence": "Transcript shows worker searched for 'iframe' pattern and found 'src=\"Course Timeline (Thursday - 052).html\"' pointing to files folder"
+    },
+    {
+      "area": "conventions",
+      "observation": "AGENTS.md states slides/ has 53 root-level HTML files and slides/New/ has 19, but actual counts are 28 and 14 respectively. The inventory correctly notes this discrepancy but the AGENTS.md source-of-truth is now inaccurate.",
+      "evidence": "AGENTS.md says '53 root-level HTML files in slides/' but inventory.json shows 'htmlFilesCount': 28"
+    }
+  ],
+  "addressesFailureFrom": null,
+  "summary": "Feature PASS - Extracts all 12 weeks from Course Timeline with correct topics, assignment dates (Feb 1, Mar 8, Mar 29), midterm (Week 6), and final exam info. Topic categories (HTML, CSS, JavaScript, Web APIs, Course Info) match the source. Worker followed proper procedure via backend-worker skill."
+}
