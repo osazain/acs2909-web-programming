@@ -1,0 +1,66 @@
+{
+  "inventory": {
+    "slides": {
+      "sourceFolder": "slides/",
+      "htmlFilesCount": 28,
+      "expectedCount": 53,
+      "files": [
+        {"filename": "Advanced Positioning Tutorial _ HTML & CSS Is Hard.html", "topicName": "Advanced Positioning Tutorial"},
+        {"filename": "Attributes and properties.html", "topicName": "Attributes and properties"},
+        {"filename": "Basic operators, maths.html", "topicName": "Basic operators, maths"},
+        {"filename": "Class basic syntax.html", "topicName": "Class basic syntax"},
+        {"filename": "Class inheritance.html", "topicName": "Class inheritance"},
+        {"filename": "Comparisons.html", "topicName": "Comparisons"},
+        {"filename": "CSS Box Model Tutorial _ HTML & CSS Is Hard.html", "topicName": "CSS Box Model Tutorial"},
+        {"filename": "CSS Selectors Tutorial _ HTML & CSS Is Hard.html", "topicName": "CSS Selectors Tutorial"},
+        {"filename": "CSS Tutorial _ HTML & CSS Is Hard.html", "topicName": "CSS Tutorial"},
+        {"filename": "Data types.html", "topicName": "Data types"},
+        {"filename": "DOM tree.html", "topicName": "DOM tree"},
+        {"filename": "Flexbox Tutorial _ HTML & CSS Is Hard.html", "topicName": "Flexbox Tutorial"},
+        {"filename": "Function expressions.html", "topicName": "Function expressions"},
+        {"filename": "Hello, world!.html", "topicName": "Hello, world!"},
+        {"filename": "Interaction_ alert, prompt, confirm.html", "topicName": "Interaction: alert, prompt, confirm"},
+        {"filename": "JSON methods, toJSON.html", "topicName": "JSON methods, toJSON"},
+        {"filename": "Links and Images Tutorial _ HTML & CSS Is Hard.html", "topicName": "Links and Images Tutorial"},
+        {"filename": "Logical operators.html", "topicName": "Logical operators"},
+        {"filename": "Methods of primitives.html", "topicName": "Methods of primitives"},
+        {"filename": "Modifying the document.html", "topicName": "Modifying the document"},
+        {"filename": "Object methods, _this_.html", "topicName": "Object methods, 'this'"},
+        {"filename": "Property getters and setters.html", "topicName": "Property getters and setters"},
+        {"filename": "Prototypal inheritance.html", "topicName": "Prototypal inheritance"},
+        {"filename": "Searching_ getElement_, querySelector_.html", "topicName": "Searching: getElement*, querySelector*"},
+        {"filename": "Styles and classes.html", "topicName": "Styles and classes"},
+        {"filename": "Type Conversions.html", "topicName": "Type Conversions"},
+        {"filename": "Variables.html", "topicName": "Variables"},
+        {"filename": "Walking the DOM.html", "topicName": "Walking the DOM"}
+      ]
+    },
+    "slides_New": {
+      "sourceFolder": "slides/New/",
+      "htmlFilesCount": 14,
+      "expectedCount": 19,
+      "files": [
+        {"filename": "Bubbling and capturing.html", "topicName": "Bubbling and capturing"},
+        {"filename": "Cookies, document.cookie.html", "topicName": "Cookies, document.cookie"},
+        {"filename": "Course Timeline - Internet Programming.html", "topicName": "Course Timeline - Internet Programming"},
+        {"filename": "Events_ change, input, cut, copy, paste.html", "topicName": "Events: change, input, cut, copy, paste"},
+        {"filename": "Form properties and methods.html", "topicName": "Form properties and methods"},
+        {"filename": "Forms_ event and method submit.html", "topicName": "Forms: event and method submit"},
+        {"filename": "HTML Forms Tutorial _ HTML & CSS Is Hard.html", "topicName": "HTML Forms Tutorial"},
+        {"filename": "HTTP request methods - HTTP _ MDN.html", "topicName": "HTTP request methods"},
+        {"filename": "HTTP response status codes - HTTP _ MDN.html", "topicName": "HTTP response status codes"},
+        {"filename": "Overview of HTTP - HTTP _ MDN.html", "topicName": "Overview of HTTP"},
+        {"filename": "Page_ DOMContentLoaded, load, beforeunload, unload.html", "topicName": "Page: DOMContentLoaded, load, beforeunload, unload"},
+        {"filename": "Responsive Design Tutorial _ HTML & CSS Is Hard.html", "topicName": "Responsive Design Tutorial"},
+        {"filename": "URL objects.html", "topicName": "URL objects"},
+        {"filename": "XMLHttpRequest.html", "topicName": "XMLHttpRequest"}
+      ]
+    },
+    "duplicates": [],
+    "notes": {
+      "slides_count_discrepancy": "Expected 53 root-level HTML files in slides/, found 28. Check if files were moved or if expectation was incorrect.",
+      "slides_New_count_discrepancy": "Expected 19 root-level HTML files in slides/New/, found 14. Check if files were moved or if expectation was incorrect.",
+      "file_naming_conventions": "Underscores (_) in filenames often represent spaces or colons when converting to topic names."
+    }
+  }
+}
