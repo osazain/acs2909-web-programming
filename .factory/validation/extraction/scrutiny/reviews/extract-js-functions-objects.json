@@ -1,0 +1,22 @@
+{
+  "featureId": "extract-js-functions-objects",
+  "reviewedAt": "2026-04-16T19:45:00.000Z",
+  "commitId": "4721d76",
+  "transcriptSkeletonReviewed": false,
+  "diffReviewed": true,
+  "status": "fail",
+  "codeReview": {
+    "summary": "Extraction covers most JS Functions and Objects topics but is missing Object.keys() which was explicitly specified in the feature's expected behavior. The content that exists is accurate and well-formatted.",
+    "issues": [
+      {
+        "file": ".factory/library/extraction-module7-8.md",
+        "line": 0,
+        "severity": "blocking",
+        "description": "Object.keys() is missing from the extraction. The feature's expectedBehavior states 'Object.keys() extracted' but the extracted content only covers Object.assign() without any mention of Object.keys(). This is a required item per VAL-CHEAT-007."
+      }
+    ]
+  },
+  "sharedStateObservations": [],
+  "addressesFailureFrom": null,
+  "summary": "The extraction is mostly complete with accurate, well-formatted content covering function declarations, expressions, arrow functions, first-class functions, object literals, property access, and Object.assign(). However, Object.keys() is completely missing from the JavaScript Objects section, which was explicitly listed in the feature's expectedBehavior and the commit message. The content quality is good (code examples, comparison tables, flash cards) but VAL-CHEAT-007 cannot be fully satisfied without adding Object.keys()."
+}

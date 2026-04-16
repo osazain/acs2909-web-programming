@@ -1,0 +1,34 @@
+{
+  "featureId": "extract-internet-html-basics",
+  "reviewedAt": "2026-04-16T19:35:07.221Z",
+  "commitId": "9c3584448e37967d065eca92882145e11ea7c75d",
+  "transcriptSkeletonReviewed": true,
+  "diffReviewed": true,
+  "status": "pass",
+  "codeReview": {
+    "summary": "Extraction of Internet Basics and HTML key concepts is complete and well-structured. All required topics from the feature description are covered with good cheatsheet formatting including code examples, tables, and flash cards. Two minor gaps identified: URL components are covered under file paths but not as a dedicated section, and HTML forms are not included in the extraction (though forms are also absent from the feature description, VAL-CHEAT-002 mentions them).",
+    "issues": [
+      {
+        "file": ".factory/library/extraction-module1-2.md",
+        "line": 1,
+        "severity": "non_blocking",
+        "description": "Internet section covers file paths thoroughly but URL anatomy (protocol, host, port, path, query, fragment) is not explicitly broken down as a separate section. This aligns with the feature description's 'file paths' but VAL-CHEAT-001 says 'URL components' which implies a more detailed URL breakdown."
+      },
+      {
+        "file": ".factory/library/extraction-module1-2.md",
+        "line": 1,
+        "severity": "non_blocking",
+        "description": "HTML Forms are not covered in the extraction. The feature description does not list forms as a required topic, but VAL-CHEAT-002 (HTML section complete) references 'forms' in its description. This appears to be a gap between the feature description and validation contract."
+      }
+    ]
+  },
+  "sharedStateObservations": [
+    {
+      "area": "conventions",
+      "observation": "The feature description and validation contract have a mismatch: the feature lists specific topics ('document HTTP protocol, DNS, file paths, URL components, document structure, semantic elements, meta tags, links, images, lists') but VAL-CHEAT-002 references 'forms' which is not in the feature description. AGENTS.md doesn't document how to handle discrepancies when feature descriptions don't match validation assertions.",
+      "evidence": "Feature description: 'document structure, semantic elements, meta tags, links, images, lists' — VAL-CHEAT-002: 'document structure, semantic elements, forms, links, images'. Forms appear only in the validation contract, not the feature description."
+    }
+  ],
+  "addressesFailureFrom": null,
+  "summary": "Extraction is well-structured with comprehensive coverage of HTTP, DNS, file paths, document structure, semantic elements, meta tags, links, images, and lists. The extraction uses good cheatsheet formatting with code examples, tables, and flash cards. Two minor gaps: URL components are embedded in file paths section rather than as a dedicated URL anatomy section, and HTML forms are not covered (forms are in VAL-CHEAT-002 but not the feature description). Overall quality is high for cheatsheet use."
+}

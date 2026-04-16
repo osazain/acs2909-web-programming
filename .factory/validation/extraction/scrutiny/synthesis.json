@@ -1,0 +1,34 @@
+{
+  "milestone": "extraction",
+  "round": 1,
+  "status": "fail",
+  "validatorsRun": {
+    "test": { "passed": true, "command": "echo No automated tests for content parity mission", "exitCode": 0 },
+    "typecheck": { "passed": true, "command": "echo No typecheck needed for content files", "exitCode": 0 },
+    "lint": { "passed": true, "command": "echo No linting needed for content files", "exitCode": 0 }
+  },
+  "reviewsSummary": {
+    "total": 7,
+    "passed": 6,
+    "failed": 1,
+    "failedFeatures": ["extract-js-functions-objects"]
+  },
+  "blockingIssues": [
+    {
+      "featureId": "extract-js-functions-objects",
+      "severity": "blocking",
+      "description": "Object.keys() is missing from the extraction. The feature's expectedBehavior states 'Object.keys() extracted' but the extracted content only covers Object.assign() without any mention of Object.keys(). This is required per VAL-CHEAT-007."
+    }
+  ],
+  "appliedUpdates": [],
+  "suggestedGuidanceUpdates": [
+    {
+      "target": "AGENTS.md",
+      "suggestion": "Add guidance on handling discrepancies when feature descriptions don't match validation assertions. Example: the feature extract-internet-html-basics lists specific topics but VAL-CHEAT-002 references 'forms' which is not in the feature description. Workers should clarify with orchestrator or add a note when assertions exceed feature scope.",
+      "evidence": "Feature extract-internet-html-basics description lists 'document structure, semantic elements, meta tags, links, images, lists' but VAL-CHEAT-002 says 'forms' is expected. Forms appear only in the validation contract, not the feature description.",
+      "isSystemic": true
+    }
+  ],
+  "rejectedObservations": [],
+  "previousRound": null
+}
