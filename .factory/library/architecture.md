@@ -6,7 +6,7 @@ The ACS-2909 Study Platform is a static HTML/CSS/JavaScript application hosted o
 
 ## Components
 
-1. **mega-question-bank.js** - Contains 231 quiz questions organized by category (internet, html, css-fundamentals, css-layout, js-basics, js-control-flow, js-functions, js-objects)
+1. **mega-question-bank.js** - Contains 309 quiz questions organized by 14 categories (internet, html, css-fundamentals, css-layout, js-basics, js-control-flow, js-functions, js-objects, js-classes, js-dom, js-events, web-apis, html-forms, css-responsive)
 
 2. **lecture-content.html** - Full-page lectures with interactive demos covering all course topics
 
