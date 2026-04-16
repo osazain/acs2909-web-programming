@@ -1239,8 +1239,24 @@
                     <a href="#js-functions" class="nav-link" data-section="js-functions">JS Functions</a>
                 </div>
                 <div class="nav-section">
-                    <div class="nav-section-title">Module 8</div>
+                    <div class="nav-section-title">Module 9</div>
                     <a href="#js-objects" class="nav-link" data-section="js-objects">JS Objects</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Module 10</div>
+                    <a href="#js-dom" class="nav-link" data-section="js-dom">JavaScript DOM</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Module 11</div>
+                    <a href="#js-events" class="nav-link" data-section="js-events">JavaScript Events</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Module 12</div>
+                    <a href="#js-classes" class="nav-link" data-section="js-classes">JavaScript Classes</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Module 13</div>
+                    <a href="#html-forms" class="nav-link" data-section="html-forms">HTML Forms</a>
                 </div>
             </div>
         </nav>
@@ -3698,6 +3714,1282 @@ dog[<span class="token-string">"cat"</span>];      <span class="token-comment">/
                 </div>
             </section>
 
+            <!-- Module 8: JS Objects -->
+            <section class="section" id="js-objects">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">
+                        <span class="section-icon">📦</span>
+                        JS Objects
+                    </h2>
+                    <button class="section-toggle">▼</button>
+                </div>
+                <div class="section-content">
+                    
+                    <!-- Object Basics -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🔑 Object Basics</h3>
+                        <div class="topic-content">
+                            <p>Objects are collections of key-value pairs, fundamental to JavaScript programming.</p>
+                            
+                            <pre><code><span class="token-comment">// Object literal syntax</span>
+<span class="token-keyword">const</span> <span class="token-attr">dog</span> <span class="token-operator">=</span> {
+  <span class="token-attr">name</span>: <span class="token-string">"Buddy"</span>,
+  <span class="token-attr">breed</span>: <span class="token-string">"Golden Retriever"</span>,
+  <span class="token-attr">age</span>: <span class="token-number">3</span>
+};</code></pre>
+
+                            <div class="highlight-box">
+                                <strong>Object keys are strings</strong> (or automatically converted to strings). Values can be any type: strings, numbers, booleans, arrays, other objects, or even functions!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property Access -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🔑 Property Access</h3>
+                        <div class="topic-content">
+                            <p>Two ways to access object properties: <strong>dot notation</strong> and <strong>bracket notation</strong>.</p>
+                            
+                            <pre><code><span class="token-keyword">const</span> <span class="token-attr">dog</span> <span class="token-operator">=</span> {
+  <span class="token-attr">name</span>: <span class="token-string">"Buddy"</span>,
+  <span class="token-attr">breed</span>: <span class="token-string">"Golden Retriever"</span>,
+  <span class="token-attr">"favorite toy"</span>: <span class="token-string">"tennis ball"</span>
+};
+
+<span class="token-comment">// Dot notation - preferred when possible</span>
+dog.name;        <span class="token-comment">// "Buddy"</span>
+dog.breed;       <span class="token-comment">// "Golden Retriever"</span>
+
+<span class="token-comment">// Bracket notation - required for special keys</span>
+dog[<span class="token-string">"name"</span>];     <span class="token-comment">// "Buddy"</span>
+dog[<span class="token-string">"favorite toy"</span>];  <span class="token-comment">// "tennis ball" (key has space)</span></code></pre>
+
+                            <table>
+                                <tr>
+                                    <th>Dot Notation</th>
+                                    <th>Bracket Notation</th>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">dog.name</code></td>
+                                    <td><code class="inline-code">dog["name"]</code></td>
+                                </tr>
+                                <tr>
+                                    <td>✓ Cleaner syntax</td>
+                                    <td>✓ Dynamic property names</td>
+                                </tr>
+                                <tr>
+                                    <td>✗ No special characters</td>
+                                    <td>✓ Keys with spaces/symbols</td>
+                                </tr>
+                                <tr>
+                                    <td>✗ No variables</td>
+                                    <td>✓ Variables as keys</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Object.assign -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🔄 Object.assign()</h3>
+                        <div class="topic-content">
+                            <p><code class="inline-code">Object.assign()</code> copies properties from source objects to a target object. Useful for cloning or merging objects.</p>
+                            
+                            <pre><code><span class="token-comment">// Syntax: Object.assign(target, ...sources)</span>
+
+<span class="token-comment">// Copying properties to a new object</span>
+<span class="token-keyword">const</span> <span class="token-attr">original</span> <span class="token-operator">=</span> { <span class="token-attr">a</span>: <span class="token-number">1</span>, <span class="token-attr">b</span>: <span class="token-number">2</span> };
+<span class="token-keyword">const</span> <span class="token-attr">copy</span> <span class="token-operator">=</span> <span class="token-function">Object</span>.<span class="token-function">assign</span>({}, original);
+<span class="token-comment">// copy is { a: 1, b: 2 }</span>
+
+<span class="token-comment">// Merging multiple objects</span>
+<span class="token-keyword">const</span> <span class="token-attr">defaults</span> <span class="token-operator">=</span> { <span class="token-attr">theme</span>: <span class="token-string">"light"</span>, <span class="token-attr">fontSize</span>: <span class="token-number">14</span> };
+<span class="token-keyword">const</span> <span class="token-attr">userPrefs</span> <span class="token-operator">=</span> { <span class="token-attr">theme</span>: <span class="token-string">"dark"</span> };
+<span class="token-keyword">const</span> <span class="token-attr">settings</span> <span class="token-operator">=</span> <span class="token-function">Object</span>.<span class="token-function">assign</span>({}, defaults, userPrefs);
+<span class="token-comment">// settings is { theme: "dark", fontSize: 14 }</span></code></pre>
+
+                            <div class="highlight-box">
+                                <strong>Note:</strong> <code class="inline-code">Object.assign()</code> does a <strong>shallow copy</strong> - nested objects are copied by reference, not duplicated.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="summary-box">
+                        <h4 class="summary-title">📝 JS Objects Summary</h4>
+                        <div class="summary-content">
+                            <div class="summary-item">
+                                <span class="summary-term">Object literal</span> - { key: value, key2: value2 }
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">Dot notation</span> - obj.property
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">Bracket notation</span> - obj["property"]
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">Use brackets for</span> - keys with spaces, variables
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">Object.assign(target, sources)</span> - Copy/modify properties
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">Shallow copy</span> - Object.assign({}, original)
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="mark-understood-btn" onclick="markUnderstood('js-objects')">
+                        <span>✓</span> Mark as Understood
+                    </button>
+                </div>
+            </section>
+
+            <!-- Module 9: JavaScript DOM -->
+            <section class="section" id="js-dom">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">
+                        <span class="section-icon">🌳</span>
+                        JavaScript DOM
+                    </h2>
+                    <button class="section-toggle">▼</button>
+                </div>
+                <div class="section-content">
+                    
+                    <!-- DOM Tree Structure -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🌳 DOM Tree Structure</h3>
+                        <div class="topic-content">
+                            <p>The <strong>Document Object Model (DOM)</strong> represents HTML as a tree structure. Every HTML tag is an object, and nested tags are "children" of the enclosing element.</p>
+                            
+                            <div class="diagram-container">
+                                <div class="client-server-diagram" style="flex-direction: column; gap: 20px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="diagram-box" style="background: var(--bg-tertiary); border-color: var(--accent);">
+                                            <h4>HTML</h4>
+                                        </div>
+                                        <span style="color: var(--text-secondary);">↓ root</span>
+                                    </div>
+                                    <div style="display: flex; gap: 30px;">
+                                        <div class="diagram-box" style="background: var(--bg-tertiary); border-color: var(--success);">
+                                            <h4>HEAD</h4>
+                                        </div>
+                                        <div class="diagram-box" style="background: var(--bg-tertiary); border-color: var(--success);">
+                                            <h4>BODY</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <pre><code><span class="token-comment">// document.body is the object representing the &lt;body&gt; tag</span>
+document.body.style.background = <span class="token-string">'red'</span>; <span class="token-comment">// make background red</span>
+
+setTimeout(() => {
+  document.body.style.background = <span class="token-string">''</span>; <span class="token-comment">// return to original</span>
+}, 3000);</code></pre>
+
+                            <div class="info-box">
+                                <strong>Node Types:</strong>
+                                <ul>
+                                    <li><strong>Element nodes</strong> (1) - HTML tags like &lt;div&gt;, &lt;p&gt;</li>
+                                    <li><strong>Text nodes</strong> (3) - text content inside elements</li>
+                                    <li><strong>Comment nodes</strong> (8) - HTML comments</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Querying Elements -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🔍 Querying Elements</h3>
+                        <div class="topic-content">
+                            <p>JavaScript provides multiple methods to find elements in the DOM.</p>
+                            
+                            <pre><code><span class="token-comment">// getElementById - find element by ID (fastest)</span>
+<span class="token-keyword">const</span> <span class="token-attr">header</span> = document.getElementById(<span class="token-string">'header'</span>);
+
+<span class="token-comment">// getElementsByClassName - find elements by class name</span>
+<span class="token-keyword">const</span> <span class="token-attr">buttons</span> = document.getElementsByClassName(<span class="token-string">'btn'</span>);
+
+<span class="token-comment">// getElementsByTagName - find elements by tag name</span>
+<span class="token-keyword">const</span> <span class="token-attr">paragraphs</span> = document.getElementsByTagName(<span class="token-string">'p'</span>);
+
+<span class="token-comment">// querySelector - find first element using CSS selector</span>
+<span class="token-keyword">const</span> <span class="token-attr">firstBtn</span> = document.querySelector(<span class="token-string">'.btn'</span>);
+
+<span class="token-comment">// querySelectorAll - find all elements using CSS selector</span>
+<span class="token-keyword">const</span> <span class="token-attr">allBtns</span> = document.querySelectorAll(<span class="token-string">'.btn'</span>);</code></pre>
+
+                            <table>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Returns</th>
+                                    <th>Best For</th>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">getElementById(id)</code></td>
+                                    <td>Single element or null</td>
+                                    <td>Unique elements</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">querySelector(selector)</code></td>
+                                    <td>First match or null</td>
+                                    <td>Single element, CSS selectors</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">querySelectorAll(selector)</code></td>
+                                    <td>NodeList (array-like)</td>
+                                    <td>Multiple elements</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Modifying Elements -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">✏️ Modifying Elements</h3>
+                        <div class="topic-content">
+                            <p>Once you have an element, you can modify its content, attributes, and styles.</p>
+                            
+                            <pre><code><span class="token-comment">// Changing text content</span>
+element.textContent = <span class="token-string">'Hello, World!'</span>;  <span class="token-comment">// Plain text only</span>
+element.innerHTML = <span class="token-string">'&lt;strong&gt;Bold&lt;/strong&gt;'</span>;  <span class="token-comment">// Parses HTML</span>
+
+<span class="token-comment">// Changing attributes</span>
+element.setAttribute(<span class="token-string">'id'</span>, <span class="token-string">'new-id'</span>);
+element.getAttribute(<span class="token-string">'id'</span>);  <span class="token-comment">// Returns 'new-id'</span>
+element.removeAttribute(<span class="token-string">'disabled'</span>);
+
+<span class="token-comment">// Direct property access for common attributes</span>
+element.id = <span class="token-string">'new-id'</span>;
+element.src = <span class="token-string">'image.jpg'</span>;
+element.href = <span class="token-string">'https://example.com'</span>;
+
+<span class="token-comment">// Creating new elements</span>
+<span class="token-keyword">const</span> <span class="token-attr">newDiv</span> = document.createElement(<span class="token-string">'div'</span>);
+newDiv.textContent = <span class="token-string">'I am new!'</span>;
+document.body.appendChild(newDiv);</code></pre>
+
+                            <div class="highlight-box">
+                                <strong>innerHTML vs textContent:</strong> Use <code class="inline-code">textContent</code> for plain text (safer, faster). Use <code class="inline-code">innerHTML</code> only when you need to insert HTML markup.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Traversing DOM -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🚶 Traversing the DOM</h3>
+                        <div class="topic-content">
+                            <p>Navigate between parent, children, and sibling elements.</p>
+                            
+                            <pre><code><span class="token-comment">// Parent and children</span>
+element.parentElement;        <span class="token-comment">// Parent element</span>
+element.children;             <span class="token-comment">// Collection of child elements</span>
+element.firstElementChild;     <span class="token-comment">// First child element</span>
+element.lastElementChild;      <span class="token-comment">// Last child element</span>
+element.childNodes;            <span class="token-comment">// All child nodes (including text)</span>
+
+<span class="token-comment">// Siblings</span>
+element.previousElementSibling;  <span class="token-comment">// Previous sibling</span>
+element.nextElementSibling;      <span class="token-comment">// Next sibling</span>
+
+<span class="token-comment">// Example: Highlight all list items</span>
+<span class="token-keyword">const</span> <span class="token-attr">items</span> = document.querySelectorAll(<span class="token-string">'li'</span>);
+items.forEach(item => {
+  item.style.backgroundColor = <span class="token-string">'yellow'</span>;
+});</code></pre>
+
+                            <div class="quick-ref">
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">parentElement</div>
+                                    <div class="quick-ref-desc">Go up one level</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">children</div>
+                                    <div class="quick-ref-desc">All child elements</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">firstElementChild</div>
+                                    <div class="quick-ref-desc">First child only</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">nextElementSibling</div>
+                                    <div class="quick-ref-desc">Next sibling</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Styles and Classes -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🎨 Styles and Classes</h3>
+                        <div class="topic-content">
+                            <p>Manipulate CSS styles and class names on elements.</p>
+                            
+                            <pre><code><span class="token-comment">// Direct style manipulation</span>
+element.style.color = <span class="token-string">'blue'</span>;
+element.style.fontSize = <span class="token-string">'16px'</span>;
+element.style.backgroundColor = <span class="token-string">'#f0f0f0'</span>;
+
+<span class="token-comment">// classList for managing classes (recommended)</span>
+element.classList.add(<span class="token-string">'active'</span>);      <span class="token-comment">// Add class</span>
+element.classList.remove(<span class="token-string">'hidden'</span>);   <span class="token-comment">// Remove class</span>
+element.classList.toggle(<span class="token-string">'active'</span>);    <span class="token-comment">// Toggle class on/off</span>
+element.classList.contains(<span class="token-string">'active'</span>);   <span class="token-comment">// Check if has class</span>
+
+<span class="token-comment">// Checkbox example: toggle done state</span>
+checkbox.addEventListener(<span class="token-string">'change'</span>, function() {
+  <span class="token-keyword">if</span> (<span class="token-keyword">this</span>.checked) {
+    <span class="token-keyword">this</span>.parentElement.classList.add(<span class="token-string">'done'</span>);
+  } <span class="token-keyword">else</span> {
+    <span class="token-keyword">this</span>.parentElement.classList.remove(<span class="token-string">'done'</span>);
+  }
+});</code></pre>
+
+                            <div class="info-box">
+                                <strong>Style Note:</strong> Hyphenated CSS properties become camelCase in JavaScript. 
+                                <code class="inline-code">background-color</code> → <code class="inline-code">style.backgroundColor</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Demo: DOM Manipulation -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🎮 Interactive Demo: DOM Explorer</h3>
+                        <div class="topic-content">
+                            <div class="interactive-demo">
+                                <div class="demo-title">🔍 DOM Navigation Demo</div>
+                                <div id="domDemo" style="padding: 20px; background: var(--bg-tertiary); border-radius: 8px; margin-bottom: 15px;">
+                                    <div style="padding: 10px; background: var(--accent); color: var(--bg-primary); border-radius: 4px; margin-bottom: 10px;">
+                                        Container (parent)
+                                        <div style="padding: 10px; background: var(--success); color: white; border-radius: 4px; margin-left: 20px;" id="child1">
+                                            Child 1 (click me!)
+                                        </div>
+                                        <div style="padding: 10px; background: var(--warning); color: var(--bg-primary); border-radius: 4px; margin-left: 20px;" id="child2">
+                                            Child 2
+                                        </div>
+                                    </div>
+                                </div>
+                                <button onclick="demoDomTraversal()" style="background: var(--accent); color: var(--bg-primary); border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-right: 10px;">Traverse DOM</button>
+                                <button onclick="demoChangeStyle()" style="background: var(--success); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-right: 10px;">Change Style</button>
+                                <button onclick="demoResetDom()" style="background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border); padding: 10px 20px; border-radius: 6px; cursor: pointer;">Reset</button>
+                                <p id="domOutput" style="margin-top: 15px; font-family: monospace; color: var(--text-secondary);"></p>
+                            </div>
+                            <pre><code><span class="token-comment">// Click "Traverse DOM" to see DOM traversal in action</span>
+<span class="token-keyword">const</span> <span class="token-attr">child1</span> = document.getElementById(<span class="token-string">'child1'</span>);
+console.log(child1.parentElement.id);     <span class="token-comment">// "domDemo"</span>
+console.log(child1.nextElementSibling.id); <span class="token-comment">// "child2"</span></code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="summary-box">
+                        <h4 class="summary-title">📝 JavaScript DOM Summary</h4>
+                        <div class="summary-content">
+                            <div class="summary-item">
+                                <span class="summary-term">DOM tree</span> - Tree representation of HTML
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">querySelector()</span> - Find first match
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">querySelectorAll()</span> - Find all matches
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">textContent</span> - Plain text only
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">innerHTML</span> - HTML content
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">classList</span> - Manage CSS classes
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">style.property</span> - Inline styles
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">createElement()</span> - Create new element
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="mark-understood-btn" onclick="markUnderstood('js-dom')">
+                        <span>✓</span> Mark as Understood
+                    </button>
+                </div>
+            </section>
+
+            <!-- Module 10: JavaScript Events -->
+            <section class="section" id="js-events">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">
+                        <span class="section-icon">⚡</span>
+                        JavaScript Events
+                    </h2>
+                    <button class="section-toggle">▼</button>
+                </div>
+                <div class="section-content">
+                    
+                    <!-- Introduction to Events -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">⚡ Introduction to Events</h3>
+                        <div class="topic-content">
+                            <p><strong>Events</strong> are actions that happen in the browser, such as clicks, key presses, or page loading. JavaScript can respond to these events.</p>
+                            
+                            <pre><code><span class="token-comment">// Inline event handler (not recommended)</span>
+<span class="token-tag">&lt;button</span> <span class="token-attr">onclick</span>=<span class="token-string">"alert('Clicked!')"</span><span class="token-tag">&gt;</span>Click Me<span class="token-tag">&lt;/button&gt;</span>
+
+<span class="token-comment">// Using addEventListener (recommended)</span>
+<span class="token-keyword">const</span> <span class="token-attr">button</span> = document.querySelector(<span class="token-string">'button'</span>);
+button.addEventListener(<span class="token-string">'click'</span>, function(event) {
+  alert(<span class="token-string">'Button was clicked!'</span>);
+});</code></pre>
+
+                            <div class="info-box">
+                                <strong>addEventListener vs onEvent:</strong> 
+                                <ul>
+                                    <li><code class="inline-code">addEventListener</code> allows multiple handlers for the same event</li>
+                                    <li><code class="inline-code">onclick</code> property overwrites previous handlers</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- The Event Object -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📋 The Event Object</h3>
+                        <div class="topic-content">
+                            <p>When an event occurs, the browser passes an <strong>event object</strong> to the handler function. This object contains useful information about the event.</p>
+                            
+                            <pre><code><span class="token-comment">// Event object properties</span>
+element.addEventListener(<span class="token-string">'click'</span>, function(event) {
+  console.log(event.type);        <span class="token-comment">// "click"</span>
+  console.log(event.target);      <span class="token-comment">// Element that triggered event</span>
+  console.log(event.currentTarget); <span class="token-comment">// Element handler is attached to</span>
+  console.log(event.clientX);     <span class="token-comment">// Mouse X position</span>
+  console.log(event.clientY);     <span class="token-comment">// Mouse Y position</span>
+});
+
+<span class="token-comment">// Common event object properties for keyboard</span>
+document.addEventListener(<span class="token-string">'keydown'</span>, function(event) {
+  console.log(event.key);         <span class="token-comment">// The key pressed</span>
+  console.log(event.code);        <span class="token-comment">// Physical key code</span>
+  console.log(event.ctrlKey);     <span class="token-comment">// Was Ctrl held?</span>
+});</code></pre>
+
+                            <table>
+                                <tr>
+                                    <th>Property</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">event.target</code></td>
+                                    <td>Element that originated the event</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">event.currentTarget</code></td>
+                                    <td>Element the handler is attached to</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">event.type</code></td>
+                                    <td>Type of event (click, keydown, etc.)</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">event.preventDefault()</code></td>
+                                    <td>Cancel default behavior</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Event Bubbling and Capturing -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🫧 Event Bubbling and Capturing</h3>
+                        <div class="topic-content">
+                            <p>When an event happens on an element, it first runs on that element, then "bubbles up" to parent elements. This is called <strong>event bubbling</strong>.</p>
+                            
+                            <div class="diagram-container">
+                                <div style="text-align: center; padding: 20px; background: var(--bg-tertiary); border-radius: 8px;">
+                                    <div style="display: inline-block; padding: 20px; border: 2px solid var(--accent); border-radius: 8px; margin: 5px;">
+                                        FORM
+                                        <div style="display: inline-block; padding: 20px; border: 2px dashed var(--success); border-radius: 8px; margin: 5px;">
+                                            DIV
+                                            <div style="display: inline-block; padding: 15px; background: var(--warning); border-radius: 4px; margin: 5px;">
+                                                P (clicked)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p style="color: var(--text-secondary); margin-top: 10px;">Click on P → alert order: P → DIV → FORM</p>
+                                </div>
+                            </div>
+
+                            <pre><code><span class="token-comment">// Bubbling: event goes from target up to parents</span>
+form.addEventListener(<span class="token-string">'click'</span>, function() {
+  alert(<span class="token-string">'form clicked'</span>);
+});
+div.addEventListener(<span class="token-string">'click'</span>, function() {
+  alert(<span class="token-string">'div clicked'</span>);
+});
+p.addEventListener(<span class="token-string">'click'</span>, function() {
+  alert(<span class="token-string">'p clicked'</span>);
+});
+<span class="token-comment">// Clicking P shows: "p clicked" → "div clicked" → "form clicked"</span></code></pre>
+
+                            <div class="highlight-box">
+                                <strong>Capturing phase:</strong> Events can also travel DOWN from root to target using capture: 
+                                <code class="inline-code">addEventListener('click', handler, true)</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stopping Propagation -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🛑 Stopping Event Propagation</h3>
+                        <div class="topic-content">
+                            <p>Use <code class="inline-code">event.stopPropagation()</code> to prevent an event from bubbling up to parent elements.</p>
+                            
+                            <pre><code><span class="token-comment">// Prevent event from bubbling up</span>
+p.addEventListener(<span class="token-string">'click'</span>, function(event) {
+  event.stopPropagation();  <span class="token-comment">// Stop bubbling</span>
+  alert(<span class="token-string">'Paragraph clicked only'</span>);
+});
+
+<span class="token-comment">// event.target vs this (currentTarget)</span>
+form.addEventListener(<span class="token-string">'click'</span>, function(event) {
+  <span class="token-comment">// event.target = the element actually clicked</span>
+  <span class="token-comment">// this = the element this handler is attached to (form)</span>
+  console.log(<span class="token-string">"Clicked:"</span>, event.target.tagName);
+  console.log(<span class="token-string">"Handler on:"</span>, <span class="token-keyword">this</span>.tagName);
+});</code></pre>
+
+                            <div class="info-box">
+                                <strong>event.stopImmediatePropagation():</strong> Stops the event and prevents other handlers on the same element from running.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Common Events -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🖱️ Common Events</h3>
+                        <div class="topic-content">
+                            <p>Different types of events you can listen for:</p>
+                            
+                            <div class="quick-ref">
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">click</div>
+                                    <div class="quick-ref-desc">Mouse click</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">dblclick</div>
+                                    <div class="quick-ref-desc">Double click</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">mouseenter</div>
+                                    <div class="quick-ref-desc">Mouse enters element</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">mouseleave</div>
+                                    <div class="quick-ref-desc">Mouse leaves element</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">keydown</div>
+                                    <div class="quick-ref-desc">Key pressed down</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">keyup</div>
+                                    <div class="quick-ref-desc">Key released</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">submit</div>
+                                    <div class="quick-ref-desc">Form submitted</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">change</div>
+                                    <div class="quick-ref-desc">Input value changed</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">input</div>
+                                    <div class="quick-ref-desc">Real-time input</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">focus</div>
+                                    <div class="quick-ref-desc">Element focused</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">blur</div>
+                                    <div class="quick-ref-desc">Element lost focus</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">load</div>
+                                    <div class="quick-ref-desc">Page/resource loaded</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- preventDefault -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🚫 Preventing Default Behavior</h3>
+                        <div class="topic-content">
+                            <p>Use <code class="inline-code">event.preventDefault()</code> to cancel the browser's default action.</p>
+                            
+                            <pre><code><span class="token-comment">// Prevent link from navigating</span>
+link.addEventListener(<span class="token-string">'click'</span>, function(event) {
+  event.preventDefault();  <span class="token-comment">// Cancel navigation</span>
+  console.log(<span class="token-string">'Link clicked but not navigating'</span>);
+});
+
+<span class="token-comment">// Prevent form submission</span>
+form.addEventListener(<span class="token-string">'submit'</span>, function(event) {
+  event.preventDefault();
+  <span class="token-comment">// Custom form handling logic here</span>
+  validateForm();
+});
+
+<span class="token-comment">// Prevent checkbox from being checked</span>
+checkbox.addEventListener(<span class="token-string">'click'</span>, function(event) {
+  event.preventDefault();
+  console.log(<span class="token-string">'Checkbox click prevented!'</span>);
+});</code></pre>
+
+                            <div class="highlight-box">
+                                <strong>Note:</strong> <code class="inline-code">preventDefault()</code> does NOT stop event propagation. Use <code class="inline-code">stopPropagation()</code> for that.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Demo: Event Handling -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🎮 Interactive Demo: Event Handling</h3>
+                        <div class="topic-content">
+                            <div class="interactive-demo">
+                                <div class="demo-title">⚡ Event Demo</div>
+                                <div id="eventDemoArea" style="padding: 30px; background: var(--bg-tertiary); border-radius: 8px; text-align: center; margin-bottom: 15px;">
+                                    <div id="eventTarget" style="display: inline-block; padding: 20px 40px; background: var(--accent); color: var(--bg-primary); border-radius: 8px; cursor: pointer; font-weight: 600;">
+                                        Click Me
+                                    </div>
+                                </div>
+                                <div id="eventLog" style="font-family: monospace; font-size: 0.85rem; color: var(--text-secondary); max-height: 100px; overflow-y: auto;"></div>
+                            </div>
+                            <button onclick="resetEventDemo()" style="background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border); padding: 10px 20px; border-radius: 6px; cursor: pointer;">Clear Log</button>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="summary-box">
+                        <h4 class="summary-title">📝 JavaScript Events Summary</h4>
+                        <div class="summary-content">
+                            <div class="summary-item">
+                                <span class="summary-term">addEventListener()</span> - Attach event handler
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">event.target</span> - Element that triggered event
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">event.preventDefault()</span> - Cancel default action
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">event.stopPropagation()</span> - Stop bubbling
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">Bubbling</span> - Events bubble up to parents
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">Capturing</span> - Events travel down to target
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="mark-understood-btn" onclick="markUnderstood('js-events')">
+                        <span>✓</span> Mark as Understood
+                    </button>
+                </div>
+            </section>
+
+            <!-- Module 11: JavaScript Classes -->
+            <section class="section" id="js-classes">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">
+                        <span class="section-icon">🎓</span>
+                        JavaScript Classes
+                    </h2>
+                    <button class="section-toggle">▼</button>
+                </div>
+                <div class="section-content">
+                    
+                    <!-- Class Declaration -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📝 Class Declaration</h3>
+                        <div class="topic-content">
+                            <p>ES6 introduced the <code class="inline-code">class</code> keyword for creating object blueprints. Classes provide cleaner syntax for constructor functions and prototypes.</p>
+                            
+                            <pre><code><span class="token-comment">// Basic class declaration</span>
+<span class="token-keyword">class</span> <span class="token-class-name">User</span> <span class="token-punctuation">{</span>
+  <span class="token-comment">// Constructor - called when creating new instance</span>
+  <span class="token-function">constructor</span><span class="token-punctuation">(</span><span class="token-parameter">name</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">this</span><span class="token-punctuation">.</span>name <span class="token-operator">=</span> name<span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+
+  <span class="token-comment">// Instance method</span>
+  <span class="token-function">sayHi</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span><span class="token-string">`Hi, I'm </span><span class="token-interpolation"><span class="token-template-punctuation">${</span><span class="token-keyword">this</span><span class="token-punctuation">.</span>name<span class="token-template-punctuation">}</span></span><span class="token-string">`</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">// Creating instances</span>
+<span class="token-keyword">const</span> <span class="token-attr">user1</span> <span class="token-operator">=</span> <span class="token-keyword">new</span> <span class="token-class-name">User</span><span class="token-punctuation">(</span><span class="token-string">"Alice"</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+<span class="token-keyword">const</span> <span class="token-attr">user2</span> <span class="token-operator">=</span> <span class="token-keyword">new</span> <span class="token-class-name">User</span><span class="token-punctuation">(</span><span class="token-string">"Bob"</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+
+user1<span class="token-punctuation">.</span><span class="token-function">sayHi</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>  <span class="token-comment">// "Hi, I'm Alice"</span>
+user2<span class="token-punctuation">.</span><span class="token-function">sayHi</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>  <span class="token-comment">// "Hi, I'm Bob"</span></code></pre>
+
+                            <div class="highlight-box">
+                                <strong>Important:</strong> Classes always use strict mode. No commas between methods!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Class is a Function -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🔍 Class Under the Hood</h3>
+                        <div class="topic-content">
+                            <p>A class is essentially a special type of function. Understanding this helps clarify how JavaScript implements classes.</p>
+                            
+                            <pre><code><span class="token-keyword">class</span> <span class="token-class-name">User</span> <span class="token-punctuation">{</span>
+  <span class="token-function">constructor</span><span class="token-punctuation">(</span><span class="token-parameter">name</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">this</span><span class="token-punctuation">.</span>name <span class="token-operator">=</span> name<span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+  <span class="token-function">sayHi</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span><span class="token-keyword">this</span><span class="token-punctuation">.</span>name<span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">// class is a function</span>
+console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span><span class="token-keyword">typeof</span> User<span class="token-punctuation">)</span><span class="token-punctuation">;</span>  <span class="token-comment">// "function"</span>
+
+<span class="token-comment">// constructor is in prototype</span>
+console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span>User <span class="token-operator">===</span> User<span class="token-punctuation">.</span>prototype<span class="token-punctuation">.</span>constructor<span class="token-punctuation">)</span><span class="token-punctuation">;</span>  <span class="token-comment">// true</span>
+
+<span class="token-comment">// Methods are in User.prototype</span>
+console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span>User<span class="token-punctuation">.</span>prototype<span class="token-punctuation">.</span>sayHi<span class="token-punctuation">)</span><span class="token-punctuation">;</span>  <span class="token-comment">// [Function: sayHi]</span></code></pre>
+
+                            <div class="diagram-container">
+                                <div style="text-align: center; padding: 20px; background: var(--bg-tertiary); border-radius: 8px;">
+                                    <div style="display: inline-block; padding: 15px; background: var(--accent); color: var(--bg-primary); border-radius: 4px; margin: 5px;">
+                                        User (function)
+                                    </div>
+                                    <div style="margin: 10px 0;">↓ prototype</div>
+                                    <div style="display: inline-block; padding: 15px; background: var(--success); color: white; border-radius: 4px; margin: 5px;">
+                                        User.prototype
+                                        <div style="font-size: 0.85rem; margin-top: 5px;">constructor, sayHi
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Getters and Setters -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📍 Getters and Setters</h3>
+                        <div class="topic-content">
+                            <p>Classes can have getter and setter methods for computed properties.</p>
+                            
+                            <pre><code><span class="token-keyword">class</span> <span class="token-class-name">User</span> <span class="token-punctuation">{</span>
+  <span class="token-function">constructor</span><span class="token-punctuation">(</span><span class="token-parameter">name</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-comment">// This invokes the setter</span>
+    <span class="token-keyword">this</span><span class="token-punctuation">.</span>name <span class="token-operator">=</span> name<span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+
+  <span class="token-keyword">get</span> <span class="token-function">name</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">return</span> <span class="token-keyword">this</span><span class="token-punctuation">.</span>_name<span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+
+  <span class="token-keyword">set</span> <span class="token-function">name</span><span class="token-punctuation">(</span><span class="token-parameter">value</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">if</span> <span class="token-punctuation">(</span>value<span class="token-punctuation">.</span>length <span class="token-operator">&lt;</span> <span class="token-number">4</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+      console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span><span class="token-string">"Name too short!"</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+      <span class="token-keyword">return</span><span class="token-punctuation">;</span>
+    <span class="token-punctuation">}</span>
+    <span class="token-keyword">this</span><span class="token-punctuation">.</span>_name <span class="token-operator">=</span> value<span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-keyword">const</span> <span class="token-attr">user</span> <span class="token-operator">=</span> <span class="token-keyword">new</span> <span class="token-class-name">User</span><span class="token-punctuation">(</span><span class="token-string">"Alice"</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span>user<span class="token-punctuation">.</span>name<span class="token-punctuation">)</span><span class="token-punctuation">;</span>  <span class="token-comment">// "Alice"</span>
+user<span class="token-punctuation">.</span>name <span class="token-operator">=</span> <span class="token-string">"Bo"</span><span class="token-punctuation">;</span>   <span class="token-comment">// "Name too short!"</span></code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Class Inheritance -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🧬 Class Inheritance with extends</h3>
+                        <div class="topic-content">
+                            <p>Use the <code class="inline-code">extends</code> keyword to create a class that inherits from another class.</p>
+                            
+                            <pre><code><span class="token-comment">// Parent class</span>
+<span class="token-keyword">class</span> <span class="token-class-name">Animal</span> <span class="token-punctuation">{</span>
+  <span class="token-function">constructor</span><span class="token-punctuation">(</span><span class="token-parameter">name</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">this</span><span class="token-punctuation">.</span>name <span class="token-operator">=</span> name<span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+  
+  <span class="token-function">speak</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span><span class="token-string">`</span><span class="token-interpolation"><span class="token-template-punctuation">${</span><span class="token-keyword">this</span><span class="token-punctuation">.</span>name<span class="token-template-punctuation">}</span></span><span class="token-string"> makes a sound`</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">// Child class inherits from Animal</span>
+<span class="token-keyword">class</span> <span class="token-class-name">Dog</span> <span class="token-keyword">extends</span> <span class="token-class-name">Animal</span> <span class="token-punctuation">{</span>
+  <span class="token-function">constructor</span><span class="token-punctuation">(</span><span class="token-parameter">name</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">super</span><span class="token-punctuation">(</span>name<span class="token-punctuation">)</span><span class="token-punctuation">;</span>  <span class="token-comment">// Call parent constructor</span>
+  <span class="token-punctuation">}</span>
+
+  <span class="token-function">speak</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span><span class="token-string">`</span><span class="token-interpolation"><span class="token-template-punctuation">${</span><span class="token-keyword">this</span><span class="token-punctuation">.</span>name<span class="token-template-punctuation">}</span></span><span class="token-string"> barks!`</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-keyword">const</span> <span class="token-attr">dog</span> <span class="token-operator">=</span> <span class="token-keyword">new</span> <span class="token-class-name">Dog</span><span class="token-punctuation">(</span><span class="token-string">"Buddy"</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+dog<span class="token-punctuation">.</span><span class="token-function">speak</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>  <span class="token-comment">// "Buddy barks!"</span>
+
+<span class="token-comment">// instanceof check</span>
+console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span>dog <span class="token-keyword">instanceof</span> Dog<span class="token-punctuation">)</span><span class="token-punctuation">;</span>       <span class="token-comment">// true</span>
+console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span>dog <span class="token-keyword">instanceof</span> Animal<span class="token-punctuation">)</span><span class="token-punctuation">;</span>    <span class="token-comment">// true</span></code></pre>
+
+                            <div class="highlight-box">
+                                <strong>super keyword:</strong> Must call <code class="inline-code">super()</code> in constructor before accessing <code class="inline-code">this</code> in a subclass.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Static Methods -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🔧 Static Methods</h3>
+                        <div class="topic-content">
+                            <p>Static methods belong to the class itself, not to instances. Use the <code class="inline-code">static</code> keyword.</p>
+                            
+                            <pre><code><span class="token-keyword">class</span> <span class="token-class-name">MathHelper</span> <span class="token-punctuation">{</span>
+  <span class="token-comment">// Static method - called on class, not instance</span>
+  <span class="token-keyword">static</span> <span class="token-function">add</span><span class="token-punctuation">(</span><span class="token-parameter">a</span><span class="token-punctuation">,</span> <span class="token-parameter">b</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">return</span> a <span class="token-operator">+</span> b<span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+
+  <span class="token-keyword">static</span> <span class="token-function">multiply</span><span class="token-punctuation">(</span><span class="token-parameter">a</span><span class="token-punctuation">,</span> <span class="token-parameter">b</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">return</span> a <span class="token-operator">*</span> b<span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">// Call static method on the class</span>
+console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span>MathHelper<span class="token-punctuation">.</span><span class="token-function">add</span><span class="token-punctuation">(</span><span class="token-number">5</span><span class="token-punctuation">,</span> <span class="token-number">3</span><span class="token-punctuation">)</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>        <span class="token-comment">// 8</span>
+console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span>MathHelper<span class="token-punctuation">.</span><span class="token-function">multiply</span><span class="token-punctuation">(</span><span class="token-number">4</span><span class="token-punctuation">,</span> <span class="token-number">2</span><span class="token-punctuation">)</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>     <span class="token-comment">// 8</span>
+
+<span class="token-keyword">const</span> <span class="token-attr">instance</span> <span class="token-operator">=</span> <span class="token-keyword">new</span> <span class="token-class-name">MathHelper</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+<span class="token-comment">// instance.add(1, 2);  // Error! Static methods aren't on instances</span></code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Class Expression -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📋 Class Expressions</h3>
+                        <div class="topic-content">
+                            <p>Classes can be defined as expressions, assigned to variables, passed as arguments, etc.</p>
+                            
+                            <pre><code><span class="token-comment">// Named class expression</span>
+<span class="token-keyword">let</span> <span class="token-attr">User</span> <span class="token-operator">=</span> <span class="token-keyword">class</span> <span class="token-class-name">MyClass</span> <span class="token-punctuation">{</span>
+  <span class="token-function">sayHi</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    console<span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span>MyClass<span class="token-punctuation">)</span><span class="token-punctuation">;</span>  <span class="token-comment">// Name visible inside class</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span><span class="token-punctuation">;</span>
+
+<span class="token-keyword">new</span> <span class="token-class-name">User</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span><span class="token-punctuation">.</span><span class="token-function">sayHi</span><span class="token-punctuation">(</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>  <span class="token-comment">// Works</span>
+
+<span class="token-comment">// Anonymous class expression</span>
+<span class="token-keyword">let</span> <span class="token-attr">Animal</span> <span class="token-operator">=</span> <span class="token-keyword">class</span> <span class="token-punctuation">{</span>
+  <span class="token-function">constructor</span><span class="token-punctuation">(</span><span class="token-parameter">name</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">this</span><span class="token-punctuation">.</span>name <span class="token-operator">=</span> name<span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span><span class="token-punctuation">;</span></code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Demo: Class Inheritance -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🎮 Interactive Demo: Class Inheritance</h3>
+                        <div class="topic-content">
+                            <div class="interactive-demo">
+                                <div class="demo-title">🎓 Class Demo</div>
+                                <div id="classDemo" style="padding: 20px; background: var(--bg-tertiary); border-radius: 8px; margin-bottom: 15px;">
+                                    <p style="margin-bottom: 15px;">Click buttons to create instances and test inheritance:</p>
+                                    <button onclick="demoCreateAnimal()" style="background: var(--accent); color: var(--bg-primary); border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-right: 10px;">Create Animal</button>
+                                    <button onclick="demoCreateDog()" style="background: var(--success); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; margin-right: 10px;">Create Dog</button>
+                                    <button onclick="demoClassInheritance()" style="background: var(--warning); color: var(--bg-primary); border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Test instanceof</button>
+                                </div>
+                                <p id="classOutput" style="font-family: monospace; color: var(--text-secondary);"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="summary-box">
+                        <h4 class="summary-title">📝 JavaScript Classes Summary</h4>
+                        <div class="summary-content">
+                            <div class="summary-item">
+                                <span class="summary-term">class User { }</span> - Class declaration
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">constructor()</span> - Initialize instance
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">Instance methods</span> - Methods on prototype
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">extends</span> - Inheritance from parent class
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">super()</span> - Call parent constructor
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">static</span> - Methods on class, not instance
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">get/set</span> - Computed properties
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="mark-understood-btn" onclick="markUnderstood('js-classes')">
+                        <span>✓</span> Mark as Understood
+                    </button>
+                </div>
+            </section>
+
+            <!-- Module 12: HTML Forms -->
+            <section class="section" id="html-forms">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">
+                        <span class="section-icon">📋</span>
+                        HTML Forms
+                    </h2>
+                    <button class="section-toggle">▼</button>
+                </div>
+                <div class="section-content">
+                    
+                    <!-- Form Basics -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📝 Form Basics</h3>
+                        <div class="topic-content">
+                            <p>HTML forms collect user input. Every form starts with the <code class="inline-code">&lt;form&gt;</code> element and contains various input controls.</p>
+                            
+                            <pre><code><span class="token-comment">// Basic form structure</span>
+<span class="token-tag">&lt;form</span> <span class="token-attr">action</span>=<span class="token-string">"/submit"</span> <span class="token-attr">method</span>=<span class="token-string">"post"</span><span class="token-tag">&gt;</span>
+  <span class="token-comment">&lt;!-- Form controls go here --&gt;</span>
+  <span class="token-tag">&lt;label</span> <span class="token-attr">for</span>=<span class="token-string">"email"</span><span class="token-tag">&gt;</span>Email:<span class="token-tag">&lt;/label&gt;</span>
+  <span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"email"</span> <span class="token-attr">id</span>=<span class="token-string">"email"</span> <span class="token-attr">name</span>=<span class="token-string">"email"</span><span class="token-tag">&gt;</span>
+  <span class="token-tag">&lt;button</span> <span class="token-attr">type</span>=<span class="token-string">"submit"</span><span class="token-tag">&gt;</span>Submit<span class="token-tag">&lt;/button&gt;</span>
+<span class="token-tag">&lt;/form&gt;</span></code></pre>
+
+                            <table>
+                                <tr>
+                                    <th>Attribute</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">action</code></td>
+                                    <td>URL to send form data to</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">method</code></td>
+                                    <td>"get" or "post" HTTP method</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">name</code></td>
+                                    <td>Name of form (for identification)</td>
+                                </tr>
+                            </table>
+
+                            <div class="info-box">
+                                <strong>GET vs POST:</strong> Use GET for retrieving data (form data in URL). Use POST for modifying data on server.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Elements -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🖼️ Form Elements</h3>
+                        <div class="topic-content">
+                            <p>Common form input elements and their usage:</p>
+                            
+                            <pre><code><span class="token-comment">// Text input</span>
+<span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"text"</span> <span class="token-attr">id</span>=<span class="token-string">"name"</span> <span class="token-attr">name</span>=<span class="token-string">"name"</span> <span class="token-attr">placeholder</span>=<span class="token-string">"Enter your name"</span><span class="token-tag">&gt;</span>
+
+<span class="token-comment">// Email input (with built-in validation)</span>
+<span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"email"</span> <span class="token-attr">id</span>=<span class="token-string">"email"</span> <span class="token-attr">name</span>=<span class="token-string">"email"</span> <span class="token-attr">placeholder</span>=<span class="token-string">"joe@example.com"</span><span class="token-tag">&gt;</span>
+
+<span class="token-comment">// Password (dots out characters)</span>
+<span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"password"</span> <span class="token-attr">id</span>=<span class="token-string">"pwd"</span> <span class="token-attr">name</span>=<span class="token-string">"password"</span><span class="token-tag">&gt;</span>
+
+<span class="token-comment">// Number input</span>
+<span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"number"</span> <span class="token-attr">id</span>=<span class="token-string">"age"</span> <span class="token-attr">name</span>=<span class="token-string">"age"</span> <span class="token-attr">min</span>=<span class="token-string">"0"</span> <span class="token-attr">max</span>=<span class="token-string">"120"</span><span class="token-tag">&gt;</span>
+
+<span class="token-comment">// Textarea (multi-line)</span>
+<span class="token-tag">&lt;textarea</span> <span class="token-attr">id</span>=<span class="token-string">"bio"</span> <span class="token-attr">name</span>=<span class="token-string">"bio"</span> <span class="token-attr">rows</span>=<span class="token-string">"4"</span><span class="token-tag">&gt;</span><span class="token-tag">&lt;/textarea&gt;</span>
+
+<span class="token-comment">// Select dropdown</span>
+<span class="token-tag">&lt;select</span> <span class="token-attr">id</span>=<span class="token-string">"country"</span> <span class="token-attr">name</span>=<span class="token-string">"country"</span><span class="token-tag">&gt;</span>
+  <span class="token-tag">&lt;option</span> <span class="token-attr">value</span>=<span class="token-string">"usa"</span><span class="token-tag">&gt;</span>USA<span class="token-tag">&lt;/option&gt;</span>
+  <span class="token-tag">&lt;option</span> <span class="token-attr">value</span>=<span class="token-string">"canada"</span><span class="token-tag">&gt;</span>Canada<span class="token-tag">&lt;/option&gt;</span>
+<span class="token-tag">&lt;/select&gt;</span></code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Input Types -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">⌨️ Input Types Reference</h3>
+                        <div class="topic-content">
+                            <div class="quick-ref">
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="text"</div>
+                                    <div class="quick-ref-desc">Plain text</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="email"</div>
+                                    <div class="quick-ref-desc">Email format</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="password"</div>
+                                    <div class="quick-ref-desc">Hidden characters</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="number"</div>
+                                    <div class="quick-ref-desc">Numeric input</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="tel"</div>
+                                    <div class="quick-ref-desc">Phone keyboard</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="url"</div>
+                                    <div class="quick-ref-desc">URL format</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="search"</div>
+                                    <div class="quick-ref-desc">Search field</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="date"</div>
+                                    <div class="quick-ref-desc">Date picker</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="color"</div>
+                                    <div class="quick-ref-desc">Color picker</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="range"</div>
+                                    <div class="quick-ref-desc">Slider control</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="checkbox"</div>
+                                    <div class="quick-ref-desc">On/off toggle</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="radio"</div>
+                                    <div class="quick-ref-desc">Single selection</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="file"</div>
+                                    <div class="quick-ref-desc">File upload</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">type="hidden"</div>
+                                    <div class="quick-ref-desc">Hidden value</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Radio Buttons and Checkboxes -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">☑️ Radio Buttons and Checkboxes</h3>
+                        <div class="topic-content">
+                            <pre><code><span class="token-comment">// Radio buttons (single selection) - must share name</span>
+<span class="token-tag">&lt;fieldset&gt;</span>
+  <span class="token-tag">&lt;legend&gt;</span>Choose your level:<span class="token-tag">&lt;/legend&gt;</span>
+  <span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"radio"</span> <span class="token-attr">name</span>=<span class="token-string">"level"</span> <span class="token-attr">value</span>=<span class="token-string">"beginner"</span> <span class="token-attr">id</span>=<span class="token-string">"beginner"</span><span class="token-tag">&gt;</span>
+  <span class="token-tag">&lt;label</span> <span class="token-attr">for</span>=<span class="token-string">"beginner"</span><span class="token-tag">&gt;</span>Beginner<span class="token-tag">&lt;/label&gt;</span>
+  
+  <span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"radio"</span> <span class="token-attr">name</span>=<span class="token-string">"level"</span> <span class="token-attr">value</span>=<span class="token-string">"advanced"</span> <span class="token-attr">id</span>=<span class="token-string">"advanced"</span><span class="token-tag">&gt;</span>
+  <span class="token-tag">&lt;label</span> <span class="token-attr">for</span>=<span class="token-string">"advanced"</span><span class="token-tag">&gt;</span>Advanced<span class="token-tag">&lt;/label&gt;</span>
+<span class="token-tag">&lt;/fieldset&gt;</span>
+
+<span class="token-comment">// Checkboxes (multiple selection)</span>
+<span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"checkbox"</span> <span class="token-attr">id</span>=<span class="token-string">"subscribe"</span> <span class="token-attr">name</span>=<span class="token-string">"subscribe"</span><span class="token-tag">&gt;</span>
+<span class="token-tag">&lt;label</span> <span class="token-attr">for</span>=<span class="token-string">"subscribe"</span><span class="token-tag">&gt;</span>Subscribe to newsletter<span class="token-tag">&lt;/label&gt;</span>
+
+<span class="token-comment">// Checked by default</span>
+<span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"checkbox"</span> <span class="token-attr">checked</span><span class="token-tag">&gt;</span></code></pre>
+
+                            <div class="highlight-box">
+                                <strong>Radio buttons:</strong> Same <code class="inline-code">name</code> attribute groups them (only one can be selected). Each needs unique <code class="inline-code">value</code>.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Validation -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">✅ Form Validation</h3>
+                        <div class="topic-content">
+                            <p>HTML5 provides built-in form validation attributes:</p>
+                            
+                            <pre><code><span class="token-comment">// Required field</span>
+<span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"text"</span> <span class="token-attr">required</span><span class="token-tag">&gt;</span>
+
+<span class="token-comment">// Minimum length</span>
+<span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"password"</span> <span class="token-attr">minlength</span>=<span class="token-string">"8"</span><span class="token-tag">&gt;</span>
+
+<span class="token-comment">// Maximum length</span>
+<span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"text"</span> <span class="token-attr">maxlength</span>=<span class="token-string">"50"</span><span class="token-tag">&gt;</span>
+
+<span class="token-comment">// Pattern (regex)</span>
+<span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"tel"</span> <span class="token-attr">pattern</span>=<span class="token-string">"[0-9]{3}-[0-9]{3}-[0-9]{4}"</span> <span class="token-attr">placeholder</span>=<span class="token-string">"123-456-7890"</span><span class="token-tag">&gt;</span>
+
+<span class="token-comment">// CSS pseudo-classes for styling</span>
+input:valid { border: 2px solid green; }
+input:invalid { border: 2px solid red; }
+input:focus:invalid { border: 2px solid red; }</code></pre>
+
+                            <div class="info-box">
+                                <strong>Styling validation:</strong> Use <code class="inline-code">:valid</code> and <code class="inline-code">:invalid</code> CSS pseudo-classes to style inputs based on their validation state.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Submission Handling -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📤 Form Submission Handling</h3>
+                        <div class="topic-content">
+                            <p>Handle form submissions with JavaScript using the submit event:</p>
+                            
+                            <pre><code><span class="token-comment">// Prevent default submission and handle with JS</span>
+<span class="token-keyword">const</span> <span class="token-attr">form</span> = document.querySelector(<span class="token-string">'form'</span>);
+
+form.addEventListener(<span class="token-string">'submit'</span>, function(event) {
+  event.preventDefault();  <span class="token-comment">// Stop page reload</span>
+  
+  <span class="token-comment">// Get form data</span>
+  <span class="token-keyword">const</span> <span class="token-attr">formData</span> = <span class="token-keyword">new</span> FormData(form);
+  <span class="token-keyword">const</span> <span class="token-attr">email</span> = formData.get(<span class="token-string">'email'</span>);
+  
+  <span class="token-comment">// Or get individual values</span>
+  <span class="token-keyword">const</span> <span class="token-attr">name</span> = document.getElementById(<span class="token-string">'name'</span>).value;
+  
+  <span class="token-comment">// Validate before submission</span>
+  <span class="token-keyword">if</span> (name.length <span class="token-operator">&lt;</span> <span class="token-number">2</span>) {
+    alert(<span class="token-string">'Name must be at least 2 characters'</span>);
+    <span class="token-keyword">return</span>;
+  }
+  
+  <span class="token-comment">// Submit the form (or send via AJAX)</span>
+  console.log(<span class="token-string">`Submitting: </span><span class="token-interpolation"><span class="token-template-punctuation">${</span>name<span class="token-template-punctuation">}</span></span><span class="token-string">, </span><span class="token-interpolation"><span class="token-template-punctuation">${</span>email<span class="token-template-punctuation">}</span></span><span class="token-string">`</span><span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+});</code></pre>
+
+                            <div class="highlight-box">
+                                <strong>form.name vs form.elements:</strong> Form elements can be accessed via <code class="inline-code">form.nameAttribute</code> or <code class="inline-code">form.elements['nameAttribute']</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Labels and Accessibility -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">♿ Labels and Accessibility</h3>
+                        <div class="topic-content">
+                            <p>Always associate labels with form controls for accessibility:</p>
+                            
+                            <pre><code><span class="token-comment">// Explicit association (recommended)</span>
+<span class="token-tag">&lt;label</span> <span class="token-attr">for</span>=<span class="token-string">"email"</span><span class="token-tag">&gt;</span>Email:<span class="token-tag">&lt;/label&gt;</span>
+<span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"email"</span> <span class="token-attr">id</span>=<span class="token-string">"email"</span><span class="token-tag">&gt;</span>
+
+<span class="token-comment">// Implicit association (wrapping)</span>
+<span class="token-tag">&lt;label&gt;</span>
+  Name:
+  <span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"text"</span><span class="token-tag">&gt;</span>
+<span class="token-tag">&lt;/label&gt;</span>
+
+<span class="token-comment">// Clickable label focuses the input</span>
+<span class="token-comment">// Good for checkboxes and radio buttons</span>
+<span class="token-tag">&lt;label</span> <span class="token-attr">for</span>=<span class="token-string">"remember"</span><span class="token-tag">&gt;</span>
+  <span class="token-tag">&lt;input</span> <span class="token-attr">type</span>=<span class="token-string">"checkbox"</span> <span class="token-attr">id</span>=<span class="token-string">"remember"</span><span class="token-tag">&gt;</span>
+  Remember me
+<span class="token-tag">&lt;/label&gt;</span></code></pre>
+
+                            <div class="info-box">
+                                <strong>Benefits of proper labels:</strong>
+                                <ul>
+                                    <li>Clicking label focuses the input</li>
+                                    <li>Screen readers announce the label</li>
+                                    <li>Improves touch target size on mobile</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Demo: Form Handling -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🎮 Interactive Demo: Form Validation</h3>
+                        <div class="topic-content">
+                            <div class="interactive-demo">
+                                <div class="demo-title">📋 Form Demo</div>
+                                <form id="demoForm" style="max-width: 400px;">
+                                    <div style="margin-bottom: 15px;">
+                                        <label for="demoName" style="display: block; margin-bottom: 5px;">Name (required, min 2 chars):</label>
+                                        <input type="text" id="demoName" name="name" required minlength="2" style="width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 4px;">
+                                    </div>
+                                    <div style="margin-bottom: 15px;">
+                                        <label for="demoEmail" style="display: block; margin-bottom: 5px;">Email (required):</label>
+                                        <input type="email" id="demoEmail" name="email" required style="width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 4px;">
+                                    </div>
+                                    <button type="submit" style="background: var(--accent); color: var(--bg-primary); border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Submit Form</button>
+                                </form>
+                                <p id="formOutput" style="margin-top: 15px; font-family: monospace; color: var(--text-secondary);"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="summary-box">
+                        <h4 class="summary-title">📝 HTML Forms Summary</h4>
+                        <div class="summary-content">
+                            <div class="summary-item">
+                                <span class="summary-term">&lt;form&gt;</span> - Container for form elements
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">&lt;input&gt;</span> - Various input types
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">&lt;label for=""&gt;</span> - Accessibility association
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">required</span> - Required field validation
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">minlength/maxlength</span> - Text length validation
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">pattern</span> - Regex validation
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">submit event</span> - Form submission handling
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">preventDefault()</span> - Stop form from submitting
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="mark-understood-btn" onclick="markUnderstood('html-forms')">
+                        <span>✓</span> Mark as Understood
+                    </button>
+                </div>
+            </section>
+
             <!-- Footer -->
             <footer style="text-align: center; padding: 40px 0; color: var(--text-secondary); border-top: 1px solid var(--border); margin-top: 50px;">
                 <p>🎓 Web Programming Course - Complete Lecture Content</p>
@@ -3708,7 +5000,7 @@ dog[<span class="token-string">"cat"</span>];      <span class="token-comment">/
 
     <script>
         // ============ Navigation & Progress ============
-        const sections = ['internet-basics', 'html', 'css-fundamentals', 'css-layout', 'js-basics', 'js-control', 'js-functions', 'js-objects'];
+        const sections = ['internet-basics', 'html', 'css-fundamentals', 'css-layout', 'js-basics', 'js-control', 'js-functions', 'js-objects', 'js-dom', 'js-events', 'js-classes', 'html-forms'];
         let understoodSections = JSON.parse(localStorage.getItem('understoodSections') || '[]');
 
         function updateProgress() {
@@ -4005,6 +5297,7 @@ dog[<span class="token-string">"cat"</span>];      <span class="token-comment">/
             initButtons();
             updateBoxModel();
             updateFlexbox();
+            initFormDemo();
         });
 
         // Active nav link on scroll
@@ -4027,6 +5320,111 @@ dog[<span class="token-string">"cat"</span>];      <span class="token-comment">/
                 }
             });
         });
+
+        // ============ DOM Demo ============
+        function demoDomTraversal() {
+            const child1 = document.getElementById('child1');
+            const child2 = document.getElementById('child2');
+            const output = document.getElementById('domOutput');
+            
+            output.innerHTML = 
+                'child1.parentElement.id: ' + child1.parentElement.id + '<br>' +
+                'child1.nextElementSibling.id: ' + child1.nextElementSibling.id + '<br>' +
+                'child2.previousElementSibling.id: ' + child2.previousElementSibling.id + '<br>' +
+                'child1.parentElement.children.length: ' + child1.parentElement.children.length;
+        }
+
+        function demoChangeStyle() {
+            const child1 = document.getElementById('child1');
+            const child2 = document.getElementById('child2');
+            child1.style.backgroundColor = '#3fb950';
+            child1.style.color = '#0d1117';
+            child2.style.backgroundColor = '#58a6ff';
+        }
+
+        function demoResetDom() {
+            const child1 = document.getElementById('child1');
+            const child2 = document.getElementById('child2');
+            const output = document.getElementById('domOutput');
+            child1.style.backgroundColor = '';
+            child1.style.color = '';
+            child2.style.backgroundColor = '';
+            output.innerHTML = '';
+        }
+
+        // ============ Event Demo ============
+        function initEventDemo() {
+            const target = document.getElementById('eventTarget');
+            const log = document.getElementById('eventLog');
+            
+            if (target && log) {
+                target.addEventListener('click', function(e) {
+                    log.innerHTML = 'click event on ' + e.target.tagName + '<br>' + log.innerHTML;
+                });
+                
+                target.addEventListener('mouseenter', function(e) {
+                    log.innerHTML = 'mouseenter event<br>' + log.innerHTML;
+                });
+            }
+        }
+
+        function resetEventDemo() {
+            document.getElementById('eventLog').innerHTML = '';
+        }
+
+        // ============ Class Demo ============
+        class Animal {
+            constructor(name) {
+                this.name = name;
+            }
+            speak() {
+                return this.name + ' makes a sound';
+            }
+        }
+
+        class Dog extends Animal {
+            speak() {
+                return this.name + ' barks';
+            }
+        }
+
+        function demoCreateAnimal() {
+            const animal = new Animal('Generic Animal');
+            document.getElementById('classOutput').innerHTML = 
+                'Created: ' + animal.speak();
+        }
+
+        function demoCreateDog() {
+            const dog = new Dog('Buddy');
+            document.getElementById('classOutput').innerHTML = 
+                'Created: ' + dog.speak() + '<br>Name: ' + dog.name;
+        }
+
+        function demoClassInheritance() {
+            const dog = new Dog('Rex');
+            document.getElementById('classOutput').innerHTML = 
+                'dog instanceof Dog: ' + (dog instanceof Dog) + '<br>' +
+                'dog instanceof Animal: ' + (dog instanceof Animal) + '<br>' +
+                'dog instanceof Object: ' + (dog instanceof Object);
+        }
+
+        // ============ Form Demo ============
+        function initFormDemo() {
+            const form = document.getElementById('demoForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+                    document.getElementById('formOutput').innerHTML = 
+                        'Form submitted!<br>' +
+                        'Name: ' + formData.get('name') + '<br>' +
+                        'Email: ' + formData.get('email');
+                });
+            }
+        }
+
+        // Initialize event demo on load
+        initEventDemo();
     </script>
 </body>
 </html>
