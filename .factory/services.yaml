@@ -1,0 +1,21 @@
+commands:
+  test: echo "No automated tests for content parity mission"
+  typecheck: echo "No typecheck needed for content files"
+  lint: echo "No linting needed for content files"
+  build: echo "No build step needed"
+  install: echo "No dependencies to install"
+
+services:
+  github:
+    start: echo "GitHub Actions handles deployment"
+    stop: echo "N/A"
+    healthcheck: echo "N/A"
+    port: 443
+    depends_on: []
+
+  git-remote:
+    start: git clone https://github.com/oszain/acs2909-web-programming.git
+    stop: N/A
+    healthcheck: git ls-remote https://github.com/oszain/acs2909-web-programming
+    port: 443
+    depends_on: []
