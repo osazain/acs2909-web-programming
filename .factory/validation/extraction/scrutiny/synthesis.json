@@ -1,6 +1,6 @@
 {
   "milestone": "extraction",
-  "round": 2,
+  "round": 3,
   "status": "fail",
   "validatorsRun": {
     "test": { "passed": true, "command": "echo No automated tests for content parity mission", "exitCode": 0 },
@@ -31,5 +31,5 @@
   ],
   "rejectedObservations": [],
   "previousRound": ".factory/validation/extraction/scrutiny/synthesis.json",
-  "reRunNote": "Fix feature fix-js-objects-extraction was created after round 1 but remains pending. The blocking issue persists. No new reviews spawned since fix is not yet complete."
+  "reRunNote": "Round 3 - fix feature fix-js-objects-extraction remains pending (no workerSessionIds, status still 'pending'). The blocking issue persists. No new reviews spawned since fix is not yet complete."
 }
