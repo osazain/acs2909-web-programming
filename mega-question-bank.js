@@ -1,7 +1,7 @@
 /**
  * Web Programming Course - Mega Question Bank
  * =====================================================
- * Total Questions: 309
+ * Total Questions: 349
  * 
  * CATEGORY BREAKDOWN:
  * - Internet Basics: 25 questions
@@ -9,7 +9,7 @@
  * - HTML Forms: 10 questions
  * - CSS Fundamentals: 34 questions
  * - CSS Layout: 29 questions
- * - CSS Responsive: 8 questions
+ * - CSS Responsive: 18 questions
  * - JavaScript Basics: 35 questions
  * - JavaScript Control Flow: 22 questions
  * - JavaScript Functions: 22 questions
@@ -17,15 +17,15 @@
  * - JavaScript Classes: 14 questions
  * - JavaScript DOM: 18 questions
  * - JavaScript Events: 16 questions
- * - Web APIs (XHR, Cookies, Storage, Geolocation, Web Workers): 12 questions
+ * - Web APIs (XHR, Cookies, Storage, Geolocation, Web Workers): 22 questions
  *
  * DIFFICULTY DISTRIBUTION:
- * - Easy: ~117 questions (~38%)
- * - Medium: ~113 questions (~37%)
- * - Hard: ~79 questions (~25%)
+ * - Easy: ~127 questions (~36%)
+ * - Medium: ~133 questions (~38%)
+ * - Hard: ~89 questions (~26%)
  *
  * Each question object contains:
- * - id: unique number (1-309)
+ * - id: unique number (1-349)
  * - category: topic category
  * - difficulty: 'easy' | 'medium' | 'hard'
  * - question: the question text
@@ -4846,6 +4846,168 @@ megaQuestionBank.push(
     reference: "Web APIs - localStorage Limitations"
   },
 
+  // Web APIs - Additional Questions (10 new questions)
+  {
+    id: 320,
+    category: "web-apis",
+    difficulty: "easy",
+    question: "What does localStorage allow?",
+    code: null,
+    options: [
+      "Server-side data storage",
+      "Storing key-value pairs in the browser that persist after page refresh",
+      "Temporary session storage that clears when browser closes",
+      "Database operations"
+    ],
+    correctAnswer: 1,
+    explanation: "localStorage provides persistent key-value storage in the browser. Data survives page refresh and browser close. Storage limit is ~5-10MB. Use sessionStorage for session-only data (cleared when tab closes). localStorage is synchronous and only stores strings.",
+    reference: "Web APIs - localStorage"
+  },
+  {
+    id: 321,
+    category: "web-apis",
+    difficulty: "easy",
+    question: "How do you set a value in localStorage?",
+    code: null,
+    options: [
+      "storage['key'] = 'value'",
+      "localStorage.setItem('key', 'value')",
+      "localStorage.store('key', 'value')",
+      "localStorage[key] = 'value'"
+    ],
+    correctAnswer: 1,
+    explanation: "localStorage uses setItem(key, value) and getItem(key). You can also use bracket notation: localStorage['key'] = 'value'. Both work, but setItem/getItem are the standard methods. Objects are auto-converted to strings (use JSON.stringify/parse for objects).",
+    reference: "Web APIs - localStorage Methods"
+  },
+  {
+    id: 322,
+    category: "web-apis",
+    difficulty: "easy",
+    question: "What are cookies in web development?",
+    code: null,
+    options: [
+      "Delicious treats",
+      "Small pieces of data stored in the browser and sent with HTTP requests",
+      "A type of web storage",
+      "JavaScript variables"
+    ],
+    correctAnswer: 1,
+    explanation: "Cookies are small text files (max 4KB) stored in the browser and automatically sent with HTTP requests to the same domain. Used for: session management (login), tracking, preferences. Set via document.cookie or Set-Cookie header. Less storage than localStorage.",
+    reference: "Web APIs - Cookies"
+  },
+  {
+    id: 323,
+    category: "web-apis",
+    difficulty: "medium",
+    question: "What is the difference between localStorage and sessionStorage?",
+    code: null,
+    options: [
+      "localStorage is encrypted; sessionStorage is not",
+      "localStorage persists until manually cleared; sessionStorage clears when tab/window closes",
+      "sessionStorage has more storage space",
+      "They are identical"
+    ],
+    correctAnswer: 1,
+    explanation: "localStorage persists indefinitely (until cleared by user or code). sessionStorage lasts only for the duration of the page session (same tab/window). Closing the tab/window clears sessionStorage. Both have ~5-10MB storage. Neither is sent to the server automatically.",
+    reference: "Web APIs - Storage Comparison"
+  },
+  {
+    id: 324,
+    category: "web-apis",
+    difficulty: "medium",
+    question: "What is the basic pattern for an XMLHttpRequest GET request?",
+    code: "const xhr = new XMLHttpRequest();\nxhr.open('GET', 'https://api.example.com/data');\nxhr.onload = () => console.log(xhr.response);\nxhr.send();",
+    options: [
+      "xhr.get() then xhr.send()",
+      "xhr.open() then xhr.send() - no onload needed",
+      "xhr.open(), set headers, xhr.send()",
+      "xhr.request() with config object"
+    ],
+    correctAnswer: 2,
+    explanation: "XMLHttpRequest pattern: 1) Create new XMLHttpRequest(), 2) open(method, url), 3) Optionally setRequestHeader(), 4) Optionally set onload/onerror handlers, 5) send(). For GET, send() can be called immediately. POST sends data in send(body).",
+    reference: "Web APIs - XHR GET Request"
+  },
+  {
+    id: 325,
+    category: "web-apis",
+    difficulty: "medium",
+    question: "How do you read a cookie value in JavaScript?",
+    code: null,
+    options: [
+      "cookie.get('name')",
+      "document.cookie (returns 'name1=value1; name2=value2')",
+      "localStorage.getCookie('name')",
+      "window.cookies['name']"
+    ],
+    correctAnswer: 1,
+    explanation: "document.cookie returns all cookies as a single string: 'name=value; age=25'. There's no built-in method to get a specific cookie - you must parse the string. Writing to document.cookie adds a cookie without overwriting existing ones: document.cookie = 'name=value'.",
+    reference: "Web APIs - Reading Cookies"
+  },
+  {
+    id: 326,
+    category: "web-apis",
+    difficulty: "medium",
+    question: "What is the same-origin policy?",
+    code: null,
+    options: [
+      "Websites can only load resources from their own domain",
+      "Cookies are shared between all websites",
+      "XHR requests always work",
+      "localStorage is shared"
+    ],
+    correctAnswer: 0,
+    explanation: "Same-origin policy is a security mechanism that restricts web pages from making requests to a different origin (domain, protocol, port). This prevents malicious sites from accessing sensitive data. CORS (Cross-Origin Resource Sharing) allows servers to explicitly permit cross-origin requests via headers.",
+    reference: "Web APIs - Same-Origin Policy"
+  },
+  {
+    id: 327,
+    category: "web-apis",
+    difficulty: "hard",
+    question: "What is the difference between cookies, localStorage, and sessionStorage?",
+    code: null,
+    options: [
+      "They are all identical",
+      "Cookies sent with HTTP requests (4KB limit); localStorage/sessionStorage are client-only (5-10MB)",
+      "localStorage is safest because it's encrypted",
+      "sessionStorage has no size limit"
+    ],
+    correctAnswer: 1,
+    explanation: "Cookies: auto-sent with HTTP requests, 4KB limit, can be httpOnly (server-only). localStorage/sessionStorage: client-only, 5-10MB, not sent automatically. Cookies are for server-client communication (sessions). Web storage is for client-only persistence. httpOnly cookies cannot be accessed by JavaScript.",
+    reference: "Web APIs - Storage Comparison"
+  },
+  {
+    id: 328,
+    category: "web-apis",
+    difficulty: "hard",
+    question: "How do you properly store and retrieve an object in localStorage?",
+    code: null,
+    options: [
+      "setItem('obj', obj) and getItem('obj')",
+      "setItem('obj', JSON.stringify(obj)) and JSON.parse(getItem('obj'))",
+      "localStorage doesn't support objects",
+      "Use localStorage.storeObject() instead"
+    ],
+    correctAnswer: 1,
+    explanation: "localStorage stores everything as strings. Objects are converted via toString(), resulting in '[object Object]'. To store objects, use JSON.stringify(obj) when saving and JSON.parse(str) when retrieving: setItem('obj', JSON.stringify({x:1})) then JSON.parse(getItem('obj')).",
+    reference: "Web APIs - localStorage Objects"
+  },
+  {
+    id: 329,
+    category: "web-apis",
+    difficulty: "hard",
+    question: "What does the onload handler receive in XMLHttpRequest?",
+    code: "xhr.onload = function() {\n  console.log(xhr.status);\n  console.log(xhr.response);\n}",
+    options: [
+      "The raw network bytes",
+      "The JavaScript object parsed from response",
+      "An event object, with status and response properties",
+      "Nothing, it doesn't use event pattern"
+    ],
+    correctAnswer: 2,
+    explanation: "XMLHttpRequest's onload receives an event object. Inside the handler, you access xhr.status (HTTP status code like 200) and xhr.response (response body as string/JSON). Use onerror for error handling. Modern code often uses fetch() instead.",
+    reference: "Web APIs - XHR Response"
+  },
+
 
   // ==========================================
   // HTML FORMS (10 questions)
@@ -5154,6 +5316,168 @@ megaQuestionBank.push(
     correctAnswer: 1,
     explanation: "Container queries (@container) apply styles based on the size of a specific container element, not the viewport. This enables truly reusable components that adapt based on where they're placed, not just viewport size. You must set container-type on the container element first.",
     reference: "CSS Responsive - Container Queries"
+  },
+
+  // CSS Responsive - Additional Questions (10 new questions)
+  {
+    id: 310,
+    category: "css-responsive",
+    difficulty: "easy",
+    question: "What is the purpose of the viewport meta tag?",
+    code: '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+    options: [
+      "To set the page background color",
+      "To control how the page is displayed on mobile devices",
+      "To improve SEO rankings",
+      "To add animations to the page"
+    ],
+    correctAnswer: 1,
+    explanation: "The viewport meta tag tells mobile browsers how to control the page's dimensions and scaling. 'width=device-width' makes the page width match the device width, and 'initial-scale=1.0' sets the initial zoom level to 100%, enabling responsive design.",
+    reference: "CSS Responsive - Viewport Meta Tag"
+  },
+  {
+    id: 311,
+    category: "css-responsive",
+    difficulty: "easy",
+    question: "What is the difference between min-width and max-width media queries?",
+    code: null,
+    options: [
+      "min-width targets mobile; max-width targets desktop",
+      "min-width applies at/above breakpoint; max-width applies at/below breakpoint",
+      "They are identical in functionality",
+      "min-width is only for print styles"
+    ],
+    correctAnswer: 1,
+    explanation: "min-width: 768px means 'when viewport is 768px or wider'. max-width: 768px means 'when viewport is 768px or narrower'. Mobile-first uses min-width (base styles for mobile, add for larger). Desktop-first uses max-width (base for desktop, reduce for smaller).",
+    reference: "CSS Responsive - Media Queries"
+  },
+  {
+    id: 312,
+    category: "css-responsive",
+    difficulty: "easy",
+    question: "In mobile-first responsive design, where are the base styles written?",
+    code: null,
+    options: [
+      "Inside a max-width media query",
+      "Outside of any media query (default styles)",
+      "Inside a print media query",
+      "Base styles don't exist in mobile-first"
+    ],
+    correctAnswer: 1,
+    explanation: "In mobile-first, base styles for mobile are written outside of any media query. Then min-width media queries add styles for progressively larger screens. This approach forces content-first design and avoids loading unnecessary desktop styles on mobile.",
+    reference: "CSS Responsive - Mobile First"
+  },
+  {
+    id: 313,
+    category: "css-responsive",
+    difficulty: "medium",
+    question: "What CSS property makes images responsive (scale to fit container)?",
+    code: null,
+    options: [
+      "image-size: 100%",
+      "max-width: 100% with height: auto",
+      "resize: responsive",
+      "scale: fit"
+    ],
+    correctAnswer: 1,
+    explanation: "Setting img { max-width: 100%; height: auto; } makes images scale down to fit their container while maintaining aspect ratio. max-width: 100% prevents the image from exceeding its original size.",
+    reference: "CSS Responsive - Responsive Images"
+  },
+  {
+    id: 314,
+    category: "css-responsive",
+    difficulty: "medium",
+    question: "What does the rem unit represent in CSS?",
+    code: null,
+    options: [
+      "Pixels (absolute unit)",
+      "Root element's font size",
+      "Current element's font size",
+      "Percentage of viewport width"
+    ],
+    correctAnswer: 1,
+    explanation: "rem (root em) is relative to the root element's (<html>) font-size. If html { font-size: 16px; }, then 1rem = 16px everywhere. This makes it easy to scale everything proportionally by changing the root font-size, useful for responsive typography.",
+    reference: "CSS Responsive - Units"
+  },
+  {
+    id: 315,
+    category: "css-responsive",
+    difficulty: "medium",
+    question: "What is the purpose of aspect-ratio property in CSS?",
+    code: ".video { aspect-ratio: 16 / 9; }",
+    options: [
+      "Sets the element's width/height ratio, preventing layout shift when media loads",
+      "Is ignored by modern browsers",
+      "Only works on images",
+      "Changes the screen orientation"
+    ],
+    correctAnswer: 0,
+    explanation: "aspect-ratio: 16/9 reserves space for videos/images before they load, preventing Cumulative Layout Shift (CLS). Without it, the page jumps when media loads. It's better than the old padding-hack because it's a first-class CSS property.",
+    reference: "CSS Responsive - Aspect Ratio"
+  },
+  {
+    id: 316,
+    category: "css-responsive",
+    difficulty: "medium",
+    question: "What is the srcset attribute in HTML used for?",
+    code: '<img srcset="img-400.jpg 400w, img-800.jpg 800w" sizes="(max-width: 600px) 400px, 800px" src="img-800.jpg" alt="Photo">',
+    options: [
+      "Creating animations for images",
+      "Providing multiple image sizes for different viewports",
+      "Setting image borders",
+      "Converting images to different formats"
+    ],
+    correctAnswer: 1,
+    explanation: "srcset provides multiple image sources with their intrinsic widths (400w, 800w). sizes tells the browser how wide the image will be at different breakpoints. The browser picks the most appropriate image based on device pixel ratio and viewport, improving performance.",
+    reference: "CSS Responsive - Responsive Images"
+  },
+  {
+    id: 317,
+    category: "css-responsive",
+    difficulty: "hard",
+    question: "How do container queries differ from media queries?",
+    code: "@container (max-width: 500px) { .card { flex-direction: column; } }",
+    options: [
+      "Container queries are faster than media queries",
+      "Container queries style based on parent container size; media queries based on viewport",
+      "They are identical in every way",
+      "Media queries are deprecated in favor of container queries"
+    ],
+    correctAnswer: 1,
+    explanation: "Container queries (@container) apply styles based on the size of a specific container element, not the viewport. This enables truly reusable components that adapt based on where they're placed, not just viewport size. You must set container-type on the container element first.",
+    reference: "CSS Responsive - Container Queries"
+  },
+  {
+    id: 318,
+    category: "css-responsive",
+    difficulty: "hard",
+    question: "What common breakpoint values are used for tablet devices?",
+    code: null,
+    options: [
+      "max-width: 320px",
+      "min-width: 576px or min-width: 768px",
+      "min-width: 1920px",
+      "breakpoints don't apply to tablets"
+    ],
+    correctAnswer: 1,
+    explanation: "Common breakpoints: 576px for small tablets/large phones, 768px for tablets in portrait, 992px for tablets in landscape/small laptops. These vary by framework (Bootstrap uses 576/768/992/1200px).",
+    reference: "CSS Responsive - Breakpoints"
+  },
+  {
+    id: 319,
+    category: "css-responsive",
+    difficulty: "hard",
+    question: "What is the 'content' attribute in the viewport meta tag composed of?",
+    code: '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+    options: [
+      "A single value for page width",
+      "Comma-separated values controlling width, zoom level, and other properties",
+      "Only CSS properties",
+      "JavaScript function calls"
+    ],
+    correctAnswer: 1,
+    explanation: "The viewport content attribute is comma-separated: 'width=device-width' sets page width to device width, 'initial-scale=1.0' sets zoom level, 'maximum-scale=1.0' limits zoom, 'user-scalable=no' disables pinch-zoom. These control mobile rendering behavior.",
+    reference: "CSS Responsive - Viewport Meta Tag"
   }
 ];
 

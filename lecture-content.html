@@ -1258,6 +1258,14 @@
                     <div class="nav-section-title">Module 13</div>
                     <a href="#html-forms" class="nav-link" data-section="html-forms">HTML Forms</a>
                 </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Module 14</div>
+                    <a href="#css-responsive" class="nav-link" data-section="css-responsive">CSS Responsive</a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Module 15</div>
+                    <a href="#web-apis" class="nav-link" data-section="web-apis">Web APIs</a>
+                </div>
             </div>
         </nav>
 
@@ -4990,6 +4998,584 @@ form.addEventListener(<span class="token-string">'submit'</span>, function(event
                 </div>
             </section>
 
+            <!-- Module 14: CSS Responsive Design -->
+            <section class="section" id="css-responsive">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">
+                        <span class="section-icon">📱</span>
+                        CSS Responsive Design
+                    </h2>
+                    <button class="section-toggle">▼</button>
+                </div>
+                <div class="section-content">
+                    
+                    <!-- Introduction to Responsive Design -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📐 Introduction to Responsive Design</h3>
+                        <div class="topic-content">
+                            <p><strong>Responsive web design</strong> is an approach where layouts automatically adapt to different screen sizes and devices (desktop, tablet, mobile). It uses fluid grids, flexible images, and media queries to provide optimal viewing experience.</p>
+                            
+                            <div class="diagram-container">
+                                <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                                    <div style="text-align: center;">
+                                        <div style="width: 80px; height: 100px; border: 2px solid var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                                            <span style="font-size: 2rem;">📱</span>
+                                        </div>
+                                        <p style="color: var(--text-secondary);">Mobile<br>&lt; 576px</p>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="width: 120px; height: 100px; border: 2px solid var(--success); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                                            <span style="font-size: 2rem;">📱</span>
+                                        </div>
+                                        <p style="color: var(--text-secondary);">Tablet<br>576-992px</p>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <div style="width: 160px; height: 100px; border: 2px solid var(--warning); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">
+                                            <span style="font-size: 2rem;">🖥️</span>
+                                        </div>
+                                        <p style="color: var(--text-secondary);">Desktop<br>&gt; 992px</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <strong>Key Principle:</strong> The same HTML is served to all devices, but CSS rules change the layout based on screen size.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Viewport Meta Tag -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">👁️ Viewport Meta Tag</h3>
+                        <div class="topic-content">
+                            <p>The viewport meta tag is <strong>essential</strong> for responsive design. It controls how the page is displayed on mobile devices.</p>
+                            
+                            <pre><code><span class="token-comment">// Essential for responsive design - put in &lt;head&gt;</span>
+<span class="token-tag">&lt;meta</span> <span class="token-attr">name</span>=<span class="token-string">"viewport"</span> <span class="token-attr">content</span>=<span class="token-string">"width=device-width, initial-scale=1.0"</span><span class="token-tag">&gt;</span></code></pre>
+
+                            <table>
+                                <tr>
+                                    <th>Value</th>
+                                    <th>Effect</th>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">width=device-width</code></td>
+                                    <td>Page width matches device screen width</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">initial-scale=1.0</code></td>
+                                    <td>No zoom - page displays at actual size</td>
+                                </tr>
+                            </table>
+
+                            <div class="info-box">
+                                <strong>Without viewport tag:</strong> Mobile browsers zoom out to fit the entire desktop-width page, making text small and unreadable.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Media Queries -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📺 Media Queries</h3>
+                        <div class="topic-content">
+                            <p>Media queries apply CSS conditionally based on device characteristics like screen width, height, and orientation.</p>
+                            
+                            <pre><code><span class="token-comment">// Basic media query syntax</span>
+<span class="token-keyword">@media</span> <span class="token-punctuation">(</span><span class="token-property">media-feature</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+  <span class="token-comment">/* CSS rules here */</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">// Example: Apply styles when viewport is 768px or narrower</span>
+<span class="token-keyword">@media</span> <span class="token-punctuation">(</span><span class="token-property">max-width</span><span class="token-punctuation">:</span> <span class="token-number">768px</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+  <span class="token-attr">.container</span> <span class="token-punctuation">{</span>
+    <span class="token-property">flex-direction</span><span class="token-punctuation">:</span> <span class="token-value">column</span><span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">// Example: Apply styles when viewport is 768px or wider</span>
+<span class="token-keyword">@media</span> <span class="token-punctuation">(</span><span class="token-property">min-width</span><span class="token-punctuation">:</span> <span class="token-number">768px</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+  <span class="token-attr">.container</span> <span class="token-punctuation">{</span>
+    <span class="token-property">flex-direction</span><span class="token-punctuation">:</span> <span class="token-value">row</span><span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span></code></pre>
+
+                            <table>
+                                <tr>
+                                    <th>Media Feature</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">min-width</code></td>
+                                    <td>Applies at/above the specified width</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">max-width</code></td>
+                                    <td>Applies at/below the specified width</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">min-height</code></td>
+                                    <td>Applies at/above the specified height</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="inline-code">orientation</code></td>
+                                    <td>portrait or landscape</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Mobile-First Approach -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📱 Mobile-First Approach</h3>
+                        <div class="topic-content">
+                            <p><strong>Mobile-first</strong> means writing base styles for mobile, then using <code class="inline-code">min-width</code> media queries to add styles for larger screens.</p>
+                            
+                            <pre><code><span class="token-comment">/* Base styles (for mobile) - no media query */</span>
+<span class="token-attr">.container</span> <span class="token-punctuation">{</span>
+  <span class="token-property">flex-direction</span><span class="token-punctuation">:</span> <span class="token-value">column</span><span class="token-punctuation">;</span>
+  <span class="token-property">padding</span><span class="token-punctuation">:</span> <span class="token-number">10px</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">/* Larger screens (tablet) */</span>
+<span class="token-keyword">@media</span> <span class="token-punctuation">(</span><span class="token-property">min-width</span><span class="token-punctuation">:</span> <span class="token-number">576px</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+  <span class="token-attr">.container</span> <span class="token-punctuation">{</span>
+    <span class="token-property">padding</span><span class="token-punctuation">:</span> <span class="token-number">20px</span><span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">/* Even larger screens (desktop) */</span>
+<span class="token-keyword">@media</span> <span class="token-punctuation">(</span><span class="token-property">min-width</span><span class="token-punctuation">:</span> <span class="token-number">992px</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+  <span class="token-attr">.container</span> <span class="token-punctuation">{</span>
+    <span class="token-property">flex-direction</span><span class="token-punctuation">:</span> <span class="token-value">row</span><span class="token-punctuation">;</span>
+    <span class="token-property">padding</span><span class="token-punctuation">:</span> <span class="token-number">40px</span><span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span></code></pre>
+
+                            <div class="highlight-box">
+                                <strong>Benefits of Mobile-First:</strong>
+                                <ul style="margin-top: 10px;">
+                                    <li>Forces content-first design</li>
+                                    <li>Mobile CSS is simpler (less overriding)</li>
+                                    <li>Better performance (no loading desktop styles for mobile)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Common Breakpoints -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📏 Common Breakpoints</h3>
+                        <div class="topic-content">
+                            <p>While breakpoints should be based on your content, these are commonly used:</p>
+                            
+                            <pre><code><span class="token-comment">/* Extra small devices (phones) */</span>
+<span class="token-keyword">@media</span> <span class="token-punctuation">(</span><span class="token-property">max-width</span><span class="token-punctuation">:</span> <span class="token-number">575px</span><span class="token-punctuation">)</span> <span class="token-punctuation">{ ... }</span>
+
+<span class="token-comment">/* Small devices (landscape phones, tablets) */</span>
+<span class="token-keyword">@media</span> <span class="token-punctuation">(</span><span class="token-property">min-width</span><span class="token-punctuation">:</span> <span class="token-number">576px</span><span class="token-punctuation">)</span> <span class="token-punctuation">{ ... }</span>
+
+<span class="token-comment">/* Medium devices (tablets) */</span>
+<span class="token-keyword">@media</span> <span class="token-punctuation">(</span><span class="token-property">min-width</span><span class="token-punctuation">:</span> <span class="token-number">768px</span><span class="token-punctuation">)</span> <span class="token-punctuation">{ ... }</span>
+
+<span class="token-comment">/* Large devices (desktops) */</span>
+<span class="token-keyword">@media</span> <span class="token-punctuation">(</span><span class="token-property">min-width</span><span class="token-punctuation">:</span> <span class="token-number">992px</span><span class="token-punctuation">)</span> <span class="token-punctuation">{ ... }</span>
+
+<span class="token-comment">/* Extra large devices (large desktops) */</span>
+<span class="token-keyword">@media</span> <span class="token-punctuation">(</span><span class="token-property">min-width</span><span class="token-punctuation">:</span> <span class="token-number">1200px</span><span class="token-punctuation">)</span> <span class="token-punctuation">{ ... }</span></code></pre>
+
+                            <div class="info-box">
+                                <strong>Content-Based Breakpoints:</strong> Instead of targeting specific devices, create breakpoints when your content "breaks" - when elements need to reflow.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Responsive Images -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🖼️ Responsive Images</h3>
+                        <div class="topic-content">
+                            <p>Images should scale appropriately for different screen sizes using <code class="inline-code">max-width</code> and <code class="inline-code">srcset</code>.</p>
+                            
+                            <pre><code><span class="token-comment">/* CSS: Make images responsive */</span>
+<span class="token-attr">img</span> <span class="token-punctuation">{</span>
+  <span class="token-property">max-width</span><span class="token-punctuation">:</span> <span class="token-number">100%</span><span class="token-punctuation">;</span>
+  <span class="token-property">height</span><span class="token-punctuation">:</span> <span class="token-value">auto</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">/* HTML: srcset for multiple image sizes */</span>
+<span class="token-tag">&lt;img</span> 
+  <span class="token-attr">srcset</span>=<span class="token-string">"small.jpg 400w, medium.jpg 800w, large.jpg 1200w"</span>
+  <span class="token-attr">sizes</span>=<span class="token-string">"(max-width: 600px) 400px, 800px"</span>
+  <span class="token-attr">src</span>=<span class="token-string">"medium.jpg"</span> 
+  <span class="token-attr">alt</span>=<span class="token-string">"Responsive image"</span><span class="token-tag">&gt;</span></code></pre>
+
+                            <div class="quick-ref">
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">max-width: 100%</div>
+                                    <div class="quick-ref-desc">Image never exceeds container</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">height: auto</div>
+                                    <div class="quick-ref-desc">Maintains aspect ratio</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">srcset</div>
+                                    <div class="quick-ref-desc">Multiple image sources</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- rem Units for Responsive Typography -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🔤 Responsive Typography with rem</h3>
+                        <div class="topic-content">
+                            <p><code class="inline-code">rem</code> (root em) is relative to the root element's font size, making it easy to scale typography proportionally.</p>
+                            
+                            <pre><code><span class="token-comment">/* Base font size on root */</span>
+<span class="token-tag">html</span> <span class="token-punctuation">{</span>
+  <span class="token-property">font-size</span><span class="token-punctuation">:</span> <span class="token-number">16px</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">/* Use rem for all typography */</span>
+<span class="token-attr">body</span> <span class="token-punctuation">{</span>
+  <span class="token-property">font-size</span><span class="token-punctuation">:</span> <span class="token-number">1rem</span><span class="token-punctuation">;</span>  <span class="token-comment">/* 16px */</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-attr">h1</span> <span class="token-punctuation">{</span>
+  <span class="token-property">font-size</span><span class="token-punctuation">:</span> <span class="token-number">2.5rem</span><span class="token-punctuation">;</span>  <span class="token-comment">/* 40px */</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-attr">p</span> <span class="token-punctuation">{</span>
+  <span class="token-property">font-size</span><span class="token-punctuation">:</span> <span class="token-number">1rem</span><span class="token-punctuation">;</span>  <span class="token-comment">/* 16px */</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">/* Scale up on larger screens */</span>
+<span class="token-keyword">@media</span> <span class="token-punctuation">(</span><span class="token-property">min-width</span><span class="token-punctuation">:</span> <span class="token-number">992px</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+  <span class="token-tag">html</span> <span class="token-punctuation">{</span>
+    <span class="token-property">font-size</span><span class="token-punctuation">:</span> <span class="token-number">18px</span><span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span></code></pre>
+
+                            <div class="highlight-box">
+                                <strong>Why rem?</strong> Change one value (root font-size) and all typography scales proportionally. Easier than em which compounds.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aspect Ratio -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📐 Aspect Ratio</h3>
+                        <div class="topic-content">
+                            <p>The <code class="inline-code">aspect-ratio</code> property reserves space for media before they load, preventing Cumulative Layout Shift (CLS).</p>
+                            
+                            <pre><code><span class="token-comment">/* Reserve space for videos/images */</span>
+<span class="token-attr">.video-container</span> <span class="token-punctuation">{</span>
+  <span class="token-property">aspect-ratio</span><span class="token-punctuation">:</span> <span class="token-number">16</span> <span class="token-operator">/</span> <span class="token-number">9</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span>
+
+<span class="token-comment">/* Square */</span>
+<span class="token-attr">.square</span> <span class="token-punctuation">{</span>
+  <span class="token-property">aspect-ratio</span><span class="token-punctuation">:</span> <span class="token-number">1</span> <span class="token-operator">/</span> <span class="token-number">1</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span></code></pre>
+
+                            <div class="info-box">
+                                <strong>CLS (Cumulative Layout Shift):</strong> When media loads and causes content to jump. aspect-ratio reserves the space upfront.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="summary-box">
+                        <h4 class="summary-title">📝 CSS Responsive Summary</h4>
+                        <div class="summary-content">
+                            <div class="summary-item">
+                                <span class="summary-term">Viewport meta tag</span> - Essential for mobile
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">@media</span> - Conditional CSS rules
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">min-width</span> - Mobile-first breakpoints
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">max-width</span> - Desktop-first breakpoints
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">Mobile-first</span> - Base styles for mobile, add for larger
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">rem units</span> - Responsive typography
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">aspect-ratio</span> - Prevent layout shift
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="mark-understood-btn" onclick="markUnderstood('css-responsive')">
+                        <span>✓</span> Mark as Understood
+                    </button>
+                </div>
+            </section>
+
+            <!-- Module 15: Web APIs -->
+            <section class="section" id="web-apis">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <h2 class="section-title">
+                        <span class="section-icon">🔌</span>
+                        Web APIs
+                    </h2>
+                    <button class="section-toggle">▼</button>
+                </div>
+                <div class="section-content">
+                    
+                    <!-- Introduction to Web APIs -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🔌 Introduction to Web APIs</h3>
+                        <div class="topic-content">
+                            <p><strong>Web APIs</strong> are JavaScript interfaces that allow web applications to interact with the browser and server. They provide functionality like storing data, making HTTP requests, and accessing device features.</p>
+                            
+                            <div class="quick-ref">
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">localStorage</div>
+                                    <div class="quick-ref-desc">Persistent key-value storage</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">sessionStorage</div>
+                                    <div class="quick-ref-desc">Session-only storage</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">XMLHttpRequest</div>
+                                    <div class="quick-ref-desc">HTTP requests (AJAX)</div>
+                                </div>
+                                <div class="quick-ref-item">
+                                    <div class="quick-ref-code">document.cookie</div>
+                                    <div class="quick-ref-desc">Cookie management</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- localStorage -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">💾 localStorage</h3>
+                        <div class="topic-content">
+                            <p><code class="inline-code">localStorage</code> provides persistent key-value storage in the browser. Data survives page refresh and browser close.</p>
+                            
+                            <pre><code><span class="token-comment">// Store data (always converts to string!)</span>
+<span class="token-property">localStorage</span>.<span class="token-function">setItem</span><span class="token-punctuation">(</span><span class="token-string">'username'</span><span class="token-punctuation">,</span> <span class="token-string">'Alice'</span><span class="token-punctuation">);</span>
+<span class="token-property">localStorage</span>.<span class="token-function">setItem</span><span class="token-punctuation">(</span><span class="token-string">'age'</span><span class="token-punctuation">,</span> <span class="token-number">25</span><span class="token-punctuation">);</span>
+
+<span class="token-comment">// Retrieve data</span>
+<span class="token-keyword">const</span> <span class="token-attr">username</span> <span class="token-operator">=</span> <span class="token-property">localStorage</span>.<span class="token-function">getItem</span><span class="token-punctuation">(</span><span class="token-string">'username'</span><span class="token-punctuation">);</span>
+<span class="token-comment">// Returns: "Alice"</span>
+
+<span class="token-comment">// Remove data</span>
+<span class="token-property">localStorage</span>.<span class="token-function">removeItem</span><span class="token-punctuation">(</span><span class="token-string">'username'</span><span class="token-punctuation">);</span>
+
+<span class="token-comment">// Clear all data</span>
+<span class="token-property">localStorage</span>.<span class="token-function">clear</span><span class="token-punctuation">();</span></code></pre>
+
+                            <div class="highlight-box">
+                                <strong>Important:</strong> localStorage stores everything as strings! Numbers become "25". Objects become "[object Object]". Use JSON.stringify/parse for objects.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Storing Objects in localStorage -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">📦 Storing Objects</h3>
+                        <div class="topic-content">
+                            <p>To store objects in localStorage, use <code class="inline-code">JSON.stringify</code> when saving and <code class="inline-code">JSON.parse</code> when retrieving.</p>
+                            
+                            <pre><code><span class="token-comment">// Store an object</span>
+<span class="token-keyword">const</span> <span class="token-attr">user</span> <span class="token-operator">=</span> <span class="token-punctuation">{</span> <span class="token-attr">name</span><span class="token-punctuation">:</span> <span class="token-string">'Alice'</span><span class="token-punctuation">,</span> <span class="token-attr">age</span><span class="token-punctuation">:</span> <span class="token-number">25</span> <span class="token-punctuation">}</span><span class="token-punctuation">;</span>
+<span class="token-property">localStorage</span>.<span class="token-function">setItem</span><span class="token-punctuation">(</span><span class="token-string">'user'</span><span class="token-punctuation">,</span> <span class="token-function">JSON</span>.<span class="token-function">stringify</span><span class="token-punctuation">(</span>user<span class="token-punctuation">)</span><span class="token-punctuation">);</span>
+<span class="token-comment">// Stores: '{"name":"Alice","age":25}'</span>
+
+<span class="token-comment">// Retrieve and parse</span>
+<span class="token-keyword">const</span> <span class="token-attr">storedUser</span> <span class="token-operator">=</span> <span class="token-function">JSON</span>.<span class="token-function">parse</span><span class="token-punctuation">(</span><span class="token-property">localStorage</span>.<span class="token-function">getItem</span><span class="token-punctuation">(</span><span class="token-string">'user'</span><span class="token-punctuation">)</span><span class="token-punctuation">);</span>
+console.<span class="token-function">log</span><span class="token-punctuation">(</span>storedUser<span class="token-punctuation">.</span>name<span class="token-punctuation">)</span><span class="token-punctuation">;</span>  <span class="token-comment">// "Alice"</span></code></pre>
+
+                            <div class="info-box">
+                                <strong>Wrong way:</strong> localStorage.setItem('obj', {x: 1}) → getItem returns "[object Object]"
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- sessionStorage -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🗃️ sessionStorage</h3>
+                        <div class="topic-content">
+                            <p><code class="inline-code">sessionStorage</code> works like localStorage but lasts only for the duration of the page session. Closing the tab/window clears it.</p>
+                            
+                            <pre><code><span class="token-comment">// Same API as localStorage</span>
+<span class="token-property">sessionStorage</span>.<span class="token-function">setItem</span><span class="token-punctuation">(</span><span class="token-string">'tempData'</span><span class="token-punctuation">,</span> <span class="token-string">'value'</span><span class="token-punctuation">);</span>
+<span class="token-keyword">const</span> <span class="token-attr">data</span> <span class="token-operator">=</span> <span class="token-property">sessionStorage</span>.<span class="token-function">getItem</span><span class="token-punctuation">(</span><span class="token-string">'tempData'</span><span class="token-punctuation">);</span>
+
+<span class="token-comment">// Automatically cleared when tab closes</span></code></pre>
+
+                            <table>
+                                <tr>
+                                    <th></th>
+                                    <th>localStorage</th>
+                                    <th>sessionStorage</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Persistence</strong></td>
+                                    <td>Until manually cleared</td>
+                                    <td>Until tab closes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Capacity</strong></td>
+                                    <td>~5-10MB</td>
+                                    <td>~5-10MB</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sent to server</strong></td>
+                                    <td>No</td>
+                                    <td>No</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- XMLHttpRequest -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🌐 XMLHttpRequest (XHR)</h3>
+                        <div class="topic-content">
+                            <p><strong>XMLHttpRequest</strong> is a browser API for making HTTP requests from JavaScript without page reload. It's the foundation of AJAX.</p>
+                            
+                            <pre><code><span class="token-comment">// Basic GET request pattern</span>
+<span class="token-keyword">const</span> <span class="token-attr">xhr</span> <span class="token-operator">=</span> <span class="token-keyword">new</span> <span class="token-class-name">XMLHttpRequest</span><span class="token-punctuation">();</span>
+xhr.<span class="token-function">open</span><span class="token-punctuation">(</span><span class="token-string">'GET'</span><span class="token-punctuation">,</span> <span class="token-string">'https://api.example.com/data'</span><span class="token-punctuation">);</span>
+
+xhr.<span class="token-property">onload</span> <span class="token-operator">=</span> <span class="token-punctuation">()</span> <span class="token-operator">=&gt;</span> <span class="token-punctuation">{</span>
+  <span class="token-keyword">if</span> <span class="token-punctuation">(</span>xhr.<span class="token-property">status</span> <span class="token-operator">===</span> <span class="token-number">200</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    console.<span class="token-function">log</span><span class="token-punctuation">(</span><span class="token-string">'Response:'</span><span class="token-punctuation">,</span> xhr.<span class="token-property">response</span><span class="token-punctuation">);</span>
+  <span class="token-punctuation">}</span>
+<span class="token-punctuation">}</span><span class="token-punctuation">;</span>
+
+xhr.<span class="token-function">send</span><span class="token-punctuation">();</span>
+
+<span class="token-comment">// POST request with data</span>
+<span class="token-keyword">const</span> <span class="token-attr">xhrPost</span> <span class="token-operator">=</span> <span class="token-keyword">new</span> <span class="token-class-name">XMLHttpRequest</span><span class="token-punctuation">();</span>
+xhrPost.<span class="token-function">open</span><span class="token-punctuation">(</span><span class="token-string">'POST'</span><span class="token-punctuation">,</span> <span class="token-string">'https://api.example.com/submit'</span><span class="token-punctuation">);</span>
+xhrPost.<span class="token-function">setRequestHeader</span><span class="token-punctuation">(</span><span class="token-string">'Content-Type'</span><span class="token-punctuation">,</span> <span class="token-string">'application/json'</span><span class="token-punctuation">);</span>
+xhrPost.<span class="token-property">onload</span> <span class="token-operator">=</span> <span class="token-punctuation">()</span> <span class="token-operator">=&gt;</span> <span class="token-function">console</span><span class="token-punctuation">.</span><span class="token-function">log</span><span class="token-punctuation">(</span>xhrPost.<span class="token-property">response</span><span class="token-punctuation">);</span>
+xhrPost.<span class="token-function">send</span><span class="token-punctuation">(</span><span class="token-function">JSON</span>.<span class="token-function">stringify</span><span class="token-punctuation">({</span> <span class="token-attr">name</span><span class="token-punctuation">:</span> <span class="token-string">'Alice'</span> <span class="token-punctuation">}));</span></code></pre>
+
+                            <div class="info-box">
+                                <strong>Note:</strong> Despite its name, XMLHttpRequest works with any data format (JSON, HTML, plain text), not just XML.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cookies -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🍪 Cookies</h3>
+                        <div class="topic-content">
+                            <p><strong>Cookies</strong> are small pieces of data (max 4KB) stored in the browser and automatically sent with HTTP requests to the same domain.</p>
+                            
+                            <pre><code><span class="token-comment">// Read all cookies (returns "name=value; age=25")</span>
+<span class="token-keyword">const</span> <span class="token-attr">allCookies</span> <span class="token-operator">=</span> document.<span class="token-property">cookie</span><span class="token-punctuation">;</span>
+
+<span class="token-comment">// Write a cookie (adds without overwriting)</span>
+document.<span class="token-property">cookie</span> <span class="token-operator">=</span> <span class="token-string">'username=Alice; path=/'</span><span class="token-punctuation">;</span>
+document.<span class="token-property">cookie</span> <span class="token-operator">=</span> <span class="token-string">'theme=dark; path=/'</span><span class="token-punctuation">;</span>
+
+<span class="token-comment">// Parse a specific cookie value</span>
+<span class="token-keyword">function</span> <span class="token-function">getCookie</span><span class="token-punctuation">(</span><span class="token-parameter">name</span><span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+  <span class="token-keyword">const</span> <span class="token-attr">cookies</span> <span class="token-operator">=</span> document.<span class="token-property">cookie</span>.<span class="token-function">split</span><span class="token-punctuation">(</span><span class="token-string">'; '</span><span class="token-punctuation">);</span>
+  <span class="token-keyword">for</span> <span class="token-punctuation">(</span><span class="token-keyword">let</span> <span class="token-attr">cookie</span> <span class="token-keyword">of</span> cookies<span class="token-punctuation">)</span> <span class="token-punctuation">{</span>
+    <span class="token-keyword">const</span> <span class="token-punctuation">[</span><span class="token-attr">key</span><span class="token-punctuation">,</span> <span class="token-attr">value</span><span class="token-punctuation">]</span> <span class="token-operator">=</span> cookie.<span class="token-function">split</span><span class="token-punctuation">(</span><span class="token-string">'='</span><span class="token-punctuation">);</span>
+    <span class="token-keyword">if</span> <span class="token-punctuation">(</span>key <span class="token-operator">===</span> name<span class="token-punctuation">)</span> <span class="token-keyword">return</span> <span class="token-function">decodeURIComponent</span><span class="token-punctuation">(</span>value<span class="token-punctuation">)</span><span class="token-punctuation">;</span>
+  <span class="token-punctuation">}</span>
+  <span class="token-keyword">return</span> <span class="token-keyword">null</span><span class="token-punctuation">;</span>
+<span class="token-punctuation">}</span></code></pre>
+
+                            <table>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Cookies</th>
+                                    <th>localStorage</th>
+                                </tr>
+                                <tr>
+                                    <td><strong>Size limit</strong></td>
+                                    <td>4KB</td>
+                                    <td>5-10MB</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sent to server</strong></td>
+                                    <td>Automatic with requests</td>
+                                    <td>Never</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Expiration</strong></td>
+                                    <td>Can be set</td>
+                                    <td>Until manually cleared</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Same-Origin Policy -->
+                    <div class="topic-card">
+                        <h3 class="topic-title">🔒 Same-Origin Policy</h3>
+                        <div class="topic-content">
+                            <p>The <strong>same-origin policy</strong> is a security mechanism that restricts web pages from making requests to a different origin (domain, protocol, port).</p>
+                            
+                            <div class="highlight-box">
+                                <strong>Why?</strong> Without same-origin policy, a malicious website could make requests to your bank, email, or other sensitive services using your stored credentials.
+                            </div>
+
+                            <p><strong>CORS (Cross-Origin Resource Sharing)</strong> allows servers to explicitly permit cross-origin requests via headers:</p>
+                            
+                            <pre><code><span class="token-comment">// Server response headers for CORS</span>
+<span class="token-comment">// Access-Control-Allow-Origin: https://trusted-site.com</span>
+<span class="token-comment">// Access-Control-Allow-Methods: GET, POST, PUT</span>
+<span class="token-comment">// Access-Control-Allow-Headers: Content-Type</span></code></pre>
+
+                            <div class="info-box">
+                                <strong>httpOnly cookies:</strong> Cookies with httpOnly flag cannot be accessed by JavaScript, providing protection against XSS attacks.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="summary-box">
+                        <h4 class="summary-title">📝 Web APIs Summary</h4>
+                        <div class="summary-content">
+                            <div class="summary-item">
+                                <span class="summary-term">localStorage.setItem(key, value)</span> - Store string data
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">localStorage.getItem(key)</span> - Retrieve data
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">JSON.stringify/parse</span> - Store objects
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">sessionStorage</span> - Cleared when tab closes
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">XMLHttpRequest</span> - Make HTTP requests
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">document.cookie</span> - Read/write cookies
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-term">Same-origin policy</span> - Security restriction
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="mark-understood-btn" onclick="markUnderstood('web-apis')">
+                        <span>✓</span> Mark as Understood
+                    </button>
+                </div>
+            </section>
+
             <!-- Footer -->
             <footer style="text-align: center; padding: 40px 0; color: var(--text-secondary); border-top: 1px solid var(--border); margin-top: 50px;">
                 <p>🎓 Web Programming Course - Complete Lecture Content</p>
@@ -5000,7 +5586,7 @@ form.addEventListener(<span class="token-string">'submit'</span>, function(event
 
     <script>
         // ============ Navigation & Progress ============
-        const sections = ['internet-basics', 'html', 'css-fundamentals', 'css-layout', 'js-basics', 'js-control', 'js-functions', 'js-objects', 'js-dom', 'js-events', 'js-classes', 'html-forms'];
+        const sections = ['internet-basics', 'html', 'css-fundamentals', 'css-layout', 'js-basics', 'js-control', 'js-functions', 'js-objects', 'js-dom', 'js-events', 'js-classes', 'html-forms', 'css-responsive', 'web-apis'];
         let understoodSections = JSON.parse(localStorage.getItem('understoodSections') || '[]');
 
         function updateProgress() {
