@@ -1,25 +1,31 @@
 /**
  * Web Programming Course - Mega Question Bank
  * =====================================================
- * Total Questions: 231
+ * Total Questions: 309
  * 
  * CATEGORY BREAKDOWN:
  * - Internet Basics: 25 questions
  * - HTML: 33 questions  
+ * - HTML Forms: 10 questions
  * - CSS Fundamentals: 34 questions
  * - CSS Layout: 29 questions
+ * - CSS Responsive: 8 questions
  * - JavaScript Basics: 35 questions
  * - JavaScript Control Flow: 22 questions
  * - JavaScript Functions: 22 questions
  * - JavaScript Objects: 31 questions
+ * - JavaScript Classes: 14 questions
+ * - JavaScript DOM: 18 questions
+ * - JavaScript Events: 16 questions
+ * - Web APIs (XHR, Cookies, Storage, Geolocation, Web Workers): 12 questions
  *
  * DIFFICULTY DISTRIBUTION:
- * - Easy: 90 questions (~39%)
- * - Medium: 89 questions (~38%)
- * - Hard: 52 questions (~23%)
+ * - Easy: ~117 questions (~38%)
+ * - Medium: ~113 questions (~37%)
+ * - Hard: ~79 questions (~25%)
  *
  * Each question object contains:
- * - id: unique number (1-231)
+ * - id: unique number (1-309)
  * - category: topic category
  * - difficulty: 'easy' | 'medium' | 'hard'
  * - question: the question text
@@ -33,7 +39,7 @@
 // Usage:
 // const { megaQuestionBank } = require('./mega-question-bank.js');
 // OR in browser: <script src="mega-question-bank.js"></script>
-// console.log(megaQuestionBank.length); // 231
+// console.log(megaQuestionBank.length); // 309
 
 const megaQuestionBank = [
   // ==========================================
@@ -3834,6 +3840,1320 @@ megaQuestionBank.push(
     correctAnswer: 1,
     explanation: "Spread syntax {...obj} copies all enumerable own properties to a new object. It's useful for: 1) Creating shallow copies, 2) Merging objects (later properties overwrite earlier), 3) Adding/overriding properties: { ...obj, newProp: value }.",
     reference: "JavaScript - Spread Syntax"
+  },
+
+
+  // ==========================================
+  // JAVASCRIPT CLASSES - ES6 (14 questions)
+  // ==========================================
+
+  // JavaScript Classes - Easy (5 questions)
+  {
+    id: 232,
+    category: "js-classes",
+    difficulty: "easy",
+    question: "What is the correct syntax to declare a class in JavaScript?",
+    code: null,
+    options: [
+      "class = Person { }",
+      "function class Person { }",
+      "class Person { }",
+      "new class Person { }"
+    ],
+    correctAnswer: 2,
+    explanation: "ES6 introduced the 'class' keyword for declaring classes. The syntax is 'class Person { }'. This is syntactic sugar over JavaScript's prototypal inheritance.",
+    reference: "JavaScript - Classes"
+  },
+  {
+    id: 233,
+    category: "js-classes",
+    difficulty: "easy",
+    question: "What is a constructor method in a JavaScript class?",
+    code: "class Person {\n  constructor(name) {\n    this.name = name;\n  }\n}",
+    options: [
+      "A method that destroys the class instance",
+      "A method that creates and initializes an instance of the class",
+      "A method that inherits from another class",
+      "A static method that doesn't need an instance"
+    ],
+    correctAnswer: 1,
+    explanation: "The constructor method is called when you create a new instance of a class with 'new'. It's used to initialize the object's properties. If you don't define a constructor, JavaScript provides a default empty constructor.",
+    reference: "JavaScript - Classes"
+  },
+  {
+    id: 234,
+    category: "js-classes",
+    difficulty: "easy",
+    question: "How do you create an instance of a class in JavaScript?",
+    code: "class Dog { }\nlet myDog = ???;",
+    options: [
+      "Dog myDog = new Dog();",
+      "let myDog = new Dog();",
+      "let myDog = Dog.create();",
+      "let myDog = this.Dog();"
+    ],
+    correctAnswer: 1,
+    explanation: "To create an instance, use the 'new' keyword followed by the class name and parentheses: 'let myDog = new Dog();'. This calls the constructor and returns a new object instance.",
+    reference: "JavaScript - Classes"
+  },
+  {
+    id: 235,
+    category: "js-classes",
+    difficulty: "easy",
+    question: "What is the purpose of the 'extends' keyword in class declaration?",
+    code: "class Student extends Person { }",
+    options: [
+      "To import a module",
+      "To create a subclass that inherits from another class",
+      "To add a new method to a class",
+      "To create multiple instances"
+    ],
+    correctAnswer: 1,
+    explanation: "The 'extends' keyword creates a subclass (Student) that inherits from a parent class (Person). The subclass gets all the parent's methods and can add or override them.",
+    reference: "JavaScript - Class Inheritance"
+  },
+  {
+    id: 236,
+    category: "js-classes",
+    difficulty: "easy",
+    question: "What is a static method in a JavaScript class?",
+    code: "class MathHelper {\n  static add(a, b) {\n    return a + b;\n  }\n}",
+    options: [
+      "A method that cannot be modified",
+      "A method that belongs to the class itself, not instances",
+      "A method that runs automatically on page load",
+      "A hidden method only accessible inside the class"
+    ],
+    correctAnswer: 1,
+    explanation: "Static methods belong to the class itself, not to instances. You call them directly on the class: MathHelper.add(2, 3). They're often used for utility functions. Instances cannot call static methods directly.",
+    reference: "JavaScript - Static Methods"
+  },
+
+  // JavaScript Classes - Medium (5 questions)
+  {
+    id: 237,
+    category: "js-classes",
+    difficulty: "medium",
+    question: "What is the output of this code?",
+    code: "class Animal {\n  constructor(name) {\n    this.name = name;\n  }\n  speak() {\n    return `${this.name} makes a sound`;\n  }\n}\nclass Dog extends Animal {\n  speak() {\n    return `${this.name} barks`;\n  }\n}\nlet dog = new Dog('Buddy');\nconsole.log(dog.speak());",
+    options: [
+      "Buddy makes a sound",
+      "Buddy barks",
+      "undefined barks",
+      "Error"
+    ],
+    correctAnswer: 1,
+    explanation: "Dog extends Animal, so Dog inherits speak() but overrides it with its own implementation. When calling dog.speak(), JavaScript finds the method in Dog class first, so it returns 'Buddy barks'.",
+    reference: "JavaScript - Class Inheritance"
+  },
+  {
+    id: 238,
+    category: "js-classes",
+    difficulty: "medium",
+    question: "What does the 'super' keyword do in a subclass?",
+    code: "class Child extends Parent {\n  constructor(name, age) {\n    super(name);\n    this.age = age;\n  }\n}",
+    options: [
+      "It creates a new parent instance",
+      "It calls the parent class constructor or methods",
+      "It prevents inheritance",
+      "It destroys the parent class"
+    ],
+    correctAnswer: 1,
+    explanation: "'super' calls the parent class's constructor (super()) or methods (super.methodName()). When overriding a constructor, you must call super() before using 'this'. It's necessary to properly initialize the parent part of the object.",
+    reference: "JavaScript - super keyword"
+  },
+  {
+    id: 239,
+    category: "js-classes",
+    difficulty: "medium",
+    question: "What is the difference between classical inheritance and prototypal inheritance in JavaScript?",
+    code: null,
+    options: [
+      "There is no difference",
+      "Classical uses class syntax; prototypal uses prototypes chain directly",
+      "Prototypal is faster; classical is slower",
+      "Classical only works in ES5; prototypal in ES6"
+    ],
+    correctAnswer: 1,
+    explanation: "JavaScript originally used prototypal inheritance where objects inherit directly from other objects via the prototype chain. ES6 introduced class syntax as syntactic sugar over prototypes. Both ultimately use the prototype chain, but class syntax is more familiar to developers from classical languages.",
+    reference: "JavaScript - Prototypal vs Classical"
+  },
+  {
+    id: 240,
+    category: "js-classes",
+    difficulty: "medium",
+    question: "What is getter and setter syntax in ES6 classes?",
+    code: "class Person {\n  constructor(name) {\n    this._name = name;\n  }\n  get name() { return this._name; }\n  set name(value) { this._name = value; }\n}",
+    options: [
+      "Special syntax to make properties private",
+      "Methods that are called when getting/setting a property",
+      "A way to define computed properties",
+      "Both B and C are correct"
+    ],
+    correctAnswer: 3,
+    explanation: "Getters and setters look like properties but execute methods. get name() is called when reading person.name, set name(value) when assigning. They're useful for computed properties, validation, and encapsulation without true private fields (which came later in JS).",
+    reference: "JavaScript - Getters/Setters in Classes"
+  },
+  {
+    id: 241,
+    category: "js-classes",
+    difficulty: "medium",
+    question: "Can a class expression be anonymous and assigned to a variable?",
+    code: "let Rectangle = class { };\nlet rect = new Rectangle();",
+    options: [
+      "No, class always needs a name",
+      "Yes, the variable name becomes the class name",
+      "Yes, but the class has no name",
+      "No, this causes an error"
+    ],
+    correctAnswer: 1,
+    explanation: "Class expressions can be anonymous (like function expressions). If you assign a class expression to a variable, the variable name becomes the class's name property. You can also name a class expression: 'class Rectangle { }' or 'let Rectangle = class MyClass { }'.",
+    reference: "JavaScript - Class Expressions"
+  },
+
+  // JavaScript Classes - Hard (4 questions)
+  {
+    id: 242,
+    category: "js-classes",
+    difficulty: "hard",
+    question: "What is method overriding and how does super help?",
+    code: "class Parent {\n  greet() { return 'Hello'; }\n}\nclass Child extends Parent {\n  greet() { return super.greet() + ', World'; }\n}",
+    options: [
+      "Overriding replaces parent methods; super() calls the parent's version",
+      "super only works with constructors",
+      "Overriding destroys the parent method",
+      "super is only for static methods"
+    ],
+    correctAnswer: 0,
+    explanation: "Method overriding occurs when a subclass defines the same method as its parent. super.methodName() allows calling the parent's version. In the example, super.greet() calls Parent's greet() and appends to it. This is called the composite pattern.",
+    reference: "JavaScript - super in Methods"
+  },
+  {
+    id: 243,
+    category: "js-classes",
+    difficulty: "hard",
+    question: "What is the output of this code?",
+    code: "class A {\n  constructor() { this.x = 1; }\n  method() { return this.x; }\n}\nclass B extends A {\n  constructor() { super(); this.x = 2; }\n}\nlet b = new B();\nconsole.log(b.method());",
+    options: [
+      "1",
+      "2",
+      "undefined",
+      "Error: cannot override this.x before super()"
+    ],
+    correctAnswer: 1,
+    explanation: "B's constructor calls super() first (required), which creates the object with x=1, then B sets x=2. When b.method() is called, it uses this.x which is 2. The prototype chain is preserved - b is instance of B, A, and Object.",
+    reference: "JavaScript - Constructor and super"
+  },
+  {
+    id: 244,
+    category: "js-classes",
+    difficulty: "hard",
+    question: "What are private class fields and how are they denoted?",
+    code: "class Counter {\n  #count = 0;\n  increment() { this.#count++; }\n}",
+    options: [
+      "Private fields use 'private' keyword",
+      "Private fields use '#' prefix and cannot be accessed outside the class",
+      "Private fields are defined with underscore prefix",
+      "JavaScript doesn't support private fields"
+    ],
+    correctAnswer: 1,
+    explanation: "ES2022 introduced true private fields using '#' prefix (#count). They cannot be accessed or modified outside the class, not even by subclasses. This is different from convention (underscore prefix) which is just a warning to developers.",
+    reference: "JavaScript - Private Fields"
+  },
+  {
+    id: 245,
+    category: "js-classes",
+    difficulty: "hard",
+    question: "What is the output and why?",
+    code: "class Parent {\n  static staticProp = 'parent';\n  constructor() { this.instanceProp = 'parent'; }\n}\nclass Child extends Parent {\n  static staticProp = 'child';\n  constructor() { super(); this.instanceProp = 'child'; }\n}\nconsole.log(Child.staticProp);\nlet c = new Child();\nconsole.log(c.instanceProp);",
+    options: [
+      "parent, parent",
+      "child, child",
+      "parent, child",
+      "child, parent"
+    ],
+    correctAnswer: 1,
+    explanation: "Static properties belong to the class itself, not instances. Child.staticProp='child' overrides Parent's staticProp. Instance properties are set in constructors - Child's constructor calls super() (getting parent's instanceProp='parent') then overrides to 'child'. Both output 'child'.",
+    reference: "JavaScript - Static vs Instance"
+  },
+
+
+  // ==========================================
+  // JAVASCRIPT DOM (18 questions)
+  // ==========================================
+
+  // JavaScript DOM - Easy (6 questions)
+  {
+    id: 246,
+    category: "js-dom",
+    difficulty: "easy",
+    question: "What does DOM stand for?",
+    code: null,
+    options: [
+      "Document Object Model",
+      "Data Object Model",
+      "Document Orientation Model",
+      "Dynamic Object Model"
+    ],
+    correctAnswer: 0,
+    explanation: "DOM stands for Document Object Model. It's a programming interface that represents the structure of an HTML/XML document as objects that can be manipulated with JavaScript.",
+    reference: "JavaScript DOM - Introduction"
+  },
+  {
+    id: 247,
+    category: "js-dom",
+    difficulty: "easy",
+    question: "Which method selects an element by its ID?",
+    code: null,
+    options: [
+      "document.getElementByClassName('myId')",
+      "document.getElementById('myId')",
+      "document.querySelector('#myId')",
+      "Both B and C are correct"
+    ],
+    correctAnswer: 3,
+    explanation: "Both document.getElementById('myId') and document.querySelector('#myId') can select an element by ID. getElementById is older and faster for ID selection. querySelector is more flexible but slightly slower.",
+    reference: "JavaScript DOM - Selecting Elements"
+  },
+  {
+    id: 248,
+    category: "js-dom",
+    difficulty: "easy",
+    question: "What does document.querySelectorAll() return?",
+    code: null,
+    options: [
+      "A single element",
+      "An array of elements",
+      "A NodeList of matching elements",
+      "A boolean"
+    ],
+    correctAnswer: 2,
+    explanation: "querySelectorAll() returns a static NodeList of all elements matching the CSS selector. Unlike HTMLCollection, NodeList doesn't update when the DOM changes. You can iterate over it with forEach or convert to array.",
+    reference: "JavaScript DOM - Query Selectors"
+  },
+  {
+    id: 249,
+    category: "js-dom",
+    difficulty: "easy",
+    question: "How do you change the text content of an element?",
+    code: null,
+    options: [
+      "element.innerHTML = 'new text'",
+      "element.textContent = 'new text'",
+      "element.value = 'new text'",
+      "Both A and B are correct for text"
+    ],
+    correctAnswer: 3,
+    explanation: "Both innerHTML and textContent can set text. innerHTML parses HTML tags (security risk if unsanitized input). textContent treats everything as plain text (safer for user content). For just text without HTML, textContent is preferred.",
+    reference: "JavaScript DOM - Modifying Content"
+  },
+  {
+    id: 250,
+    category: "js-dom",
+    difficulty: "easy",
+    question: "What is the correct way to add a class to an element?",
+    code: null,
+    options: [
+      "element.class = 'active'",
+      "element.className = 'active'",
+      "element.classList.add('active')",
+      "Both B and C are correct"
+    ],
+    correctAnswer: 3,
+    explanation: "Both className (sets entire class attribute) and classList.add() (adds a class) work. className overwrites existing classes. classList.add() is preferred for adding classes as it doesn't affect other classes and has useful methods like remove(), toggle(), contains().",
+    reference: "JavaScript DOM - Modifying Classes"
+  },
+  {
+    id: 251,
+    category: "js-dom",
+    difficulty: "easy",
+    question: "Which property sets the HTML content of an element?",
+    code: null,
+    options: [
+      "element.text",
+      "element.innerText",
+      "element.innerHTML",
+      "element.html"
+    ],
+    correctAnswer: 2,
+    explanation: "innerHTML sets or gets the HTML markup inside an element. While powerful, be careful with user input to prevent XSS attacks. innerText is similar but aware of CSS styling (doesn't return hidden text), and textContent returns all text including script tags.",
+    reference: "JavaScript DOM - innerHTML"
+  },
+
+  // JavaScript DOM - Medium (6 questions)
+  {
+    id: 252,
+    category: "js-dom",
+    difficulty: "medium",
+    question: "What is the difference between getElementsByClassName and querySelectorAll?",
+    code: null,
+    options: [
+      "They return the same thing",
+      "getElementsByClassName returns live HTMLCollection; querySelectorAll returns static NodeList",
+      "querySelectorAll is faster",
+      "getElementsByClassName is deprecated"
+    ],
+    correctAnswer: 1,
+    explanation: "getElementsByClassName returns a live HTMLCollection that auto-updates when DOM changes. querySelectorAll returns a static NodeList that doesn't update. For most cases, querySelectorAll is preferred due to CSS selector flexibility and non-live behavior.",
+    reference: "JavaScript DOM - Live Collections"
+  },
+  {
+    id: 253,
+    category: "js-dom",
+    difficulty: "medium",
+    question: "How do you create a new DOM element programmatically?",
+    code: null,
+    options: [
+      "document.createElement('div')",
+      "document.newElement('div')",
+      "document.addElement('div')",
+      "document.appendChild('div')"
+    ],
+    correctAnswer: 0,
+    explanation: "document.createElement('tagName') creates a new element node. It exists in memory until you append it to the DOM with appendChild(), insertBefore(), or other DOM manipulation methods.",
+    reference: "JavaScript DOM - Creating Elements"
+  },
+  {
+    id: 254,
+    category: "js-dom",
+    difficulty: "medium",
+    question: "What is the difference between appendChild and insertBefore?",
+    code: null,
+    options: [
+      "appendChild adds to end; insertBefore adds before a specified element",
+      "They are identical",
+      "insertBefore is faster",
+      "appendChild only works on body"
+    ],
+    correctAnswer: 0,
+    explanation: "appendChild(node) adds the node as the last child of the parent. insertBefore(node, referenceNode) inserts node before referenceNode. If referenceNode is null, insertBefore acts like appendChild.",
+    reference: "JavaScript DOM - Insertion Methods"
+  },
+  {
+    id: 255,
+    category: "js-dom",
+    difficulty: "medium",
+    question: "How do you remove an element from the DOM?",
+    code: null,
+    options: [
+      "element.remove()",
+      "element.parentNode.removeChild(element)",
+      "element.delete()",
+      "Both A and B are correct"
+    ],
+    correctAnswer: 3,
+    explanation: "Modern browsers support element.remove() directly. For older browser support, use element.parentNode.removeChild(element). Both remove the element from the DOM tree. The element still exists in memory if you have a reference to it.",
+    reference: "JavaScript DOM - Removing Elements"
+  },
+  {
+    id: 256,
+    category: "js-dom",
+    difficulty: "medium",
+    question: "What does element.style.propertyName access?",
+    code: null,
+    options: [
+      "Computed styles including CSS files",
+      "Only inline styles set via JavaScript or HTML",
+      "All CSS styles",
+      "The style attribute only from HTML"
+    ],
+    correctAnswer: 1,
+    explanation: "element.style accesses only inline styles (set via HTML style attribute or JavaScript style property). To get computed styles including CSS file styles, use getComputedStyle(element). Style property names use camelCase: backgroundColor, not background-color.",
+    reference: "JavaScript DOM - Styling"
+  },
+  {
+    id: 257,
+    category: "js-dom",
+    difficulty: "medium",
+    question: "What is the difference between children and childNodes?",
+    code: null,
+    options: [
+      "They return the same thing",
+      "children returns element nodes only; childNodes includes text/comment nodes",
+      "childNodes returns elements; children returns all nodes",
+      "children is deprecated"
+    ],
+    correctAnswer: 1,
+    explanation: "children is a HTMLCollection of only element nodes. childNodes is a NodeList that includes all nodes: elements, text (whitespace counts!), comments, etc. Use children when you only want element nodes.",
+    reference: "JavaScript DOM - Navigation"
+  },
+
+  // JavaScript DOM - Hard (6 questions)
+  {
+    id: 258,
+    category: "js-dom",
+    difficulty: "hard",
+    question: "What is a DocumentFragment and when should you use it?",
+    code: "let fragment = document.createDocumentFragment();\nfor (let i = 0; i < 100; i++) {\n  fragment.appendChild(document.createElement('div'));\n}\ndocument.body.appendChild(fragment);",
+    options: [
+      "A hidden element for temporary storage",
+      "A lightweight container for multiple DOM nodes that causes single reflow when appended",
+      "A backup of the document",
+      "A way to delete multiple elements"
+    ],
+    correctAnswer: 1,
+    explanation: "DocumentFragment is a minimal document object that can hold DOM nodes. When you append it to the DOM, only its children are inserted (not the fragment itself). This is efficient when adding many elements at once - it causes only one reflow/repaint instead of one per element.",
+    reference: "JavaScript DOM - DocumentFragment"
+  },
+  {
+    id: 259,
+    category: "js-dom",
+    difficulty: "hard",
+    question: "What does getComputedStyle(element) return?",
+    code: null,
+    options: [
+      "Only inline styles",
+      "The final computed styles including CSS file and inline styles",
+      "The stylesheet object",
+      "Nothing useful"
+    ],
+    correctAnswer: 1,
+    explanation: "getComputedStyle(element) returns the computed style object containing all CSS properties and their values after CSS cascade, inheritance, and default styles are applied. This is read-only. element.style only accesses inline styles.",
+    reference: "JavaScript DOM - Computed Styles"
+  },
+  {
+    id: 260,
+    category: "js-dom",
+    difficulty: "hard",
+    question: "What is the difference between cloneNode(true) and cloneNode(false)?",
+    code: null,
+    options: [
+      "true clones with events; false without",
+      "true does deep clone (including children); false does shallow clone",
+      "There is no difference",
+      "true is deprecated"
+    ],
+    correctAnswer: 1,
+    explanation: "cloneNode(true) performs a deep clone - copies the element and all its descendants with their content. cloneNode(false) is shallow - copies only the element itself without children. Event listeners are not copied in either case (only the cloned nodes get events if you re-add them).",
+    reference: "JavaScript DOM - Cloning Nodes"
+  },
+  {
+    id: 261,
+    category: "js-dom",
+    difficulty: "hard",
+    question: "What is event delegation and why is it useful?",
+    code: null,
+    options: [
+      "A way to delete events",
+      "A technique where a parent handles events for children, useful for dynamic content",
+      "A method to increase event priority",
+      "Only works with click events"
+    ],
+    correctAnswer: 1,
+    explanation: "Event delegation uses the fact that events bubble up. Instead of adding listeners to each child, add one listener to the parent and check event.target. This is useful for: 1) handling dynamic elements, 2) reducing memory usage, 3) not needing to re-add listeners when elements are added/removed.",
+    reference: "JavaScript DOM - Event Delegation"
+  },
+  {
+    id: 262,
+    category: "js-dom",
+    difficulty: "hard",
+    question: "What is the difference between dataset and getAttribute('data-*')?",
+    code: null,
+    options: [
+      "They are identical",
+      "dataset returns a DOMStringMap with camelCase names; getAttribute returns exact string",
+      "getAttribute is faster",
+      "dataset only works with numbers"
+    ],
+    correctAnswer: 1,
+    explanation: "dataset provides convenient access to data-* attributes as properties (element.dataset.foo maps to data-foo). Names with hyphens are camelCased (data-first-name becomes dataset.firstName). getAttribute('data-first-name') returns the exact string. Both access the same underlying data.",
+    reference: "JavaScript DOM - Data Attributes"
+  },
+  {
+    id: 263,
+    category: "js-dom",
+    difficulty: "hard",
+    question: "What does the following code demonstrate?",
+    code: "let rect = element.getBoundingClientRect();\nconsole.log(rect.top, rect.left);",
+    options: [
+      "Gets CSS styles of the element",
+      "Gets the position relative to the nearest positioned ancestor",
+      "Gets the position relative to the viewport",
+      "Gets the scroll position"
+    ],
+    correctAnswer: 2,
+    explanation: "getBoundingClientRect() returns the size and position of the element relative to the viewport (window). It provides top, left, bottom, right, x, y, width, height. The values change on scroll. For document-relative position, add window.scrollX/Y to the coordinates.",
+    reference: "JavaScript DOM - Element Position"
+  },
+
+
+  // ==========================================
+  // JAVASCRIPT EVENTS (16 questions)
+  // ==========================================
+
+  // JavaScript Events - Easy (5 questions)
+  {
+    id: 264,
+    category: "js-events",
+    difficulty: "easy",
+    question: "What is event bubbling in JavaScript?",
+    code: null,
+    options: [
+      "When an event disappears",
+      "When an event propagates up from child to parent elements",
+      "When an element expands",
+      "When events are repeated"
+    ],
+    correctAnswer: 1,
+    explanation: "Event bubbling is the default behavior where an event on a child element 'bubbles up' through its ancestors to the root (document). If you click a button inside a div, both the button and div receive the click event (in that order going up).",
+    reference: "JavaScript Events - Bubbling"
+  },
+  {
+    id: 265,
+    category: "js-events",
+    difficulty: "easy",
+    question: "What is the correct way to add a click event listener?",
+    code: null,
+    options: [
+      "element.onclick = function() { }",
+      "element.addEventListener('click', function() { })",
+      "element.click(handler)",
+      "Both A and B are correct"
+    ],
+    correctAnswer: 3,
+    explanation: "Both element.onclick = handler and element.addEventListener('click', handler) work. addEventListener allows multiple handlers and lets you specify capture phase. onclick overwrites previous handlers. addEventListener is preferred for modern code.",
+    reference: "JavaScript Events - addEventListener"
+  },
+  {
+    id: 266,
+    category: "js-events",
+    difficulty: "easy",
+    question: "What does event.preventDefault() do?",
+    code: null,
+    options: [
+      "Stops event propagation",
+      "Prevents the browser's default action for that event",
+      "Removes the event listener",
+      "Prevents the event from firing"
+    ],
+    correctAnswer: 1,
+    explanation: "preventDefault() cancels the browser's default action. Examples: prevents a link from navigating, a form from submitting, a checkbox from being checked. The event still fires and bubbles. Use stopPropagation() to stop bubbling.",
+    reference: "JavaScript Events - preventDefault"
+  },
+  {
+    id: 267,
+    category: "js-events",
+    difficulty: "easy",
+    question: "What is the target property of an event object?",
+    code: null,
+    options: [
+      "The element the event listener is attached to",
+      "The element that originally triggered the event",
+      "The document",
+      "The window"
+    ],
+    correctAnswer: 1,
+    explanation: "event.target is the element that originally triggered the event (the deepest element). event.currentTarget (or 'this' in handler) is the element the listener is attached to. These differ when using event delegation.",
+    reference: "JavaScript Events - target vs currentTarget"
+  },
+  {
+    id: 268,
+    category: "js-events",
+    difficulty: "easy",
+    question: "What is the DOMContentLoaded event?",
+    code: null,
+    options: [
+      "Fires when all images are loaded",
+      "Fires when HTML is parsed and DOM is built, before images/scripts",
+      "Fires when the page is fully loaded",
+      "Fires when user clicks anywhere"
+    ],
+    correctAnswer: 1,
+    explanation: "DOMContentLoaded fires when the initial HTML document has been completely parsed and DOM tree is built, but external resources (images, CSS) may still be loading. This is the ideal time to run scripts that manipulate DOM.",
+    reference: "JavaScript Events - Page Load"
+  },
+
+  // JavaScript Events - Medium (6 questions)
+  {
+    id: 269,
+    category: "js-events",
+    difficulty: "medium",
+    question: "What is the difference between event.stopPropagation() and event.stopImmediatePropagation()?",
+    code: null,
+    options: [
+      "They are identical",
+      "stopPropagation stops bubbling up; stopImmediatePropagation also stops other handlers on same element",
+      "stopPropagation only works on click events",
+      "stopImmediatePropagation is deprecated"
+    ],
+    correctAnswer: 1,
+    explanation: "stopPropagation() prevents the event from bubbling/capturing to parent elements. stopImmediatePropagation() does this AND prevents other event listeners on the same element from firing. Use stopImmediatePropagation() when you need to guarantee no other handlers run.",
+    reference: "JavaScript Events - Stop Propagation"
+  },
+  {
+    id: 270,
+    category: "js-events",
+    difficulty: "medium",
+    question: "What is event capturing in JavaScript?",
+    code: null,
+    options: [
+      "When an event happens inside an element",
+      "When an event propagates down from root to target (opposite of bubbling)",
+      "When an element is clicked repeatedly",
+      "A way to increase event priority"
+    ],
+    correctAnswer: 1,
+    explanation: "Event capturing is the third phase of event propagation (after target). Events flow: 1) Capturing (window to target), 2) Target phase, 3) Bubbling (target to window). addEventListener's third parameter (useCapture) when true listens during capturing phase, not the default bubbling phase.",
+    reference: "JavaScript Events - Capturing"
+  },
+  {
+    id: 271,
+    category: "js-events",
+    difficulty: "medium",
+    question: "What does the 'load' event fire on vs DOMContentLoaded?",
+    code: null,
+    options: [
+      "load fires earlier than DOMContentLoaded",
+      "load fires after all resources (images, stylesheets) are fully loaded",
+      "DOMContentLoaded fires after images load",
+      "They are identical"
+    ],
+    correctAnswer: 1,
+    explanation: "DOMContentLoaded fires when HTML is parsed (DOM ready). load fires later when all resources including images, stylesheets, and frames are fully loaded. Use DOMContentLoaded for DOM manipulation, load for things that need image dimensions.",
+    reference: "JavaScript Events - Page Load Events"
+  },
+  {
+    id: 272,
+    category: "js-events",
+    difficulty: "medium",
+    question: "What is the purpose of the beforeunload event?",
+    code: null,
+    options: [
+      "To delete items before they load",
+      "To warn users before they leave a page with unsaved changes",
+      "To preload content",
+      "To speed up page navigation"
+    ],
+    correctAnswer: 1,
+    explanation: "The beforeunload event fires when the window, document, or resource is about to be unloaded. You can attach a handler that returns a string, which prompts the user with a confirmation dialog. Used to prevent accidental navigation away from forms with unsaved data.",
+    reference: "JavaScript Events - beforeunload"
+  },
+  {
+    id: 273,
+    category: "js-events",
+    difficulty: "medium",
+    question: "What is the difference between focus and focusin events?",
+    code: null,
+    options: [
+      "They are identical",
+      "focusin bubbles; focus does not",
+      "focus is for keyboard; focusin for mouse",
+      "focusin is deprecated"
+    ],
+    correctAnswer: 1,
+    explanation: "The focus and blur events (and focusin/focusout in IE) work the same way - they fire when an element gains/loses focus. The key difference is that focusin and focusout bubble, while focus and blur do not. Use focusin/focusout for event delegation with focus.",
+    reference: "JavaScript Events - Focus Events"
+  },
+  {
+    id: 274,
+    category: "js-events",
+    difficulty: "medium",
+    question: "What event fires when a form is submitted?",
+    code: null,
+    options: [
+      "form.click",
+      "form.submit",
+      "form.action",
+      "form.send"
+    ],
+    correctAnswer: 1,
+    explanation: "The submit event fires on a form when it's submitted (via button or pressing Enter). It's often used with event.preventDefault() to handle form submission via JavaScript (AJAX) instead of traditional page reload. Listen on the form element, not the button.",
+    reference: "JavaScript Events - Form Events"
+  },
+
+  // JavaScript Events - Hard (5 questions)
+  {
+    id: 275,
+    category: "js-events",
+    difficulty: "hard",
+    question: "What is the event loop in JavaScript?",
+    code: null,
+    options: [
+      "A loop through all event listeners",
+      "A mechanism that handles asynchronous callbacks, executing them when the call stack is empty",
+      "A way to create custom events",
+      "A loop that fires every frame"
+    ],
+    correctAnswer: 1,
+    explanation: "JavaScript is single-threaded with an event loop. The call stack executes synchronous code. When async operations complete (setTimeout, promises, events), their callbacks go to the task queue. The event loop constantly checks if the stack is empty, then processes the queue. This enables non-blocking async code.",
+    reference: "JavaScript Events - Event Loop"
+  },
+  {
+    id: 276,
+    category: "js-events",
+    difficulty: "hard",
+    question: "What is the difference between the input, change, and blur events on form fields?",
+    code: null,
+    options: [
+      "They all fire at the same time",
+      "input fires on every keystroke; change fires on blur with value change; blur fires when leaving",
+      "change fires on every keystroke; input on blur",
+      "They are identical"
+    ],
+    correctAnswer: 1,
+    explanation: "input fires immediately when the value changes (keystroke for text, selection for select). change fires after value changes AND the field loses focus (or on selection for some inputs). blur fires whenever the field loses focus regardless of value change. Use input for live feedback, change for final validation.",
+    reference: "JavaScript Events - Form Input Events"
+  },
+  {
+    id: 277,
+    category: "js-events",
+    difficulty: "hard",
+    question: "What is a CustomEvent and how do you create one?",
+    code: "element.addEventListener('myEvent', (e) => console.log(e.detail));\nelement.dispatchEvent(new CustomEvent('myEvent', { detail: { data: 42 } }));",
+    options: [
+      "A built-in browser event",
+      "A user-defined event that can pass custom data",
+      "An event that overrides existing events",
+      "An event that only fires once"
+    ],
+    correctAnswer: 1,
+    explanation: "CustomEvent creates a user-defined event with optional custom data in the detail property. Syntax: new CustomEvent('eventName', { detail: data }). Use dispatchEvent() to fire it. Custom events bubble by default and can be captured with addEventListener like native events.",
+    reference: "JavaScript Events - Custom Events"
+  },
+  {
+    id: 278,
+    category: "js-events",
+    difficulty: "hard",
+    question: "What is the difference between mouseenter/mouseleave and mouseover/mouseout?",
+    code: null,
+    options: [
+      "They are identical",
+      "mouseenter/mouseleave don't bubble; mouseover/mouseout do",
+      "mouseover/mouseleave are deprecated",
+      "mouseenter is faster"
+    ],
+    correctAnswer: 1,
+    explanation: "mouseenter/mouseleave only fire when entering/leaving the element itself (no bubbling). mouseover/mouseout fire when moving between the element and its children (bubbling). mouseenter/mouseleave are simpler for hover effects. mouseover/mouseout are needed for delegation or when you need to track child element transitions.",
+    reference: "JavaScript Events - Mouse Events"
+  },
+  {
+    id: 279,
+    category: "js-events",
+    difficulty: "hard",
+    question: "What does the following code demonstrate?",
+    code: "document.addEventListener('keydown', (e) => {\n  if (e.ctrlKey && e.key === 's') {\n    e.preventDefault();\n    saveDocument();\n  }\n});",
+    options: [
+      "Click event delegation",
+      "Keyboard shortcut detection with modifier keys",
+      "Form validation",
+      "Animation triggering"
+    ],
+    correctAnswer: 1,
+    explanation: "Keyboard events provide key (string) and code (physical key). Modifier keys like ctrlKey, shiftKey, altKey, metaKey indicate if they were pressed. This pattern detects Ctrl+S for save, Ctrl+C/V for copy/paste, etc. preventDefault() stops the browser's default (like Save Page dialog).",
+    reference: "JavaScript Events - Keyboard Events"
+  },
+
+
+  // ==========================================
+  // WEB APIs - XHR, COOKIES, STORAGE (12 questions)
+  // ==========================================
+
+  // Web APIs - Easy (4 questions)
+  {
+    id: 280,
+    category: "web-apis",
+    difficulty: "easy",
+    question: "What is XMLHttpRequest (XHR) used for?",
+    code: null,
+    options: [
+      "To create XML documents",
+      "To make HTTP requests from JavaScript (AJAX)",
+      "To parse HTML",
+      "To store data locally"
+    ],
+    correctAnswer: 1,
+    explanation: "XMLHttpRequest (XHR) is a browser API for making HTTP requests from JavaScript without page reload. It's the foundation of AJAX, enabling dynamic content updates. Despite its name, it works with any data format (JSON, HTML, plain text), not just XML.",
+    reference: "Web APIs - XMLHttpRequest"
+  },
+  {
+    id: 281,
+    category: "web-apis",
+    difficulty: "easy",
+    question: "What does localStorage allow?",
+    code: null,
+    options: [
+      "Server-side data storage",
+      "Storing key-value pairs in the browser that persist after page refresh",
+      "Temporary session storage",
+      "Database operations"
+    ],
+    correctAnswer: 1,
+    explanation: "localStorage provides persistent key-value storage in the browser. Data survives page refresh and browser close. Storage limit is ~5-10MB. Use sessionStorage for session-only data (cleared when tab closes). localStorage is synchronous and only stores strings.",
+    reference: "Web APIs - localStorage"
+  },
+  {
+    id: 282,
+    category: "web-apis",
+    difficulty: "easy",
+    question: "How do you set a value in localStorage?",
+    code: null,
+    options: [
+      "storage['key'] = 'value'",
+      "localStorage.setItem('key', 'value')",
+      "localStorage.store('key', 'value')",
+      "localStorage[key] = 'value'"
+    ],
+    correctAnswer: 1,
+    explanation: "localStorage uses setItem(key, value) and getItem(key). You can also use bracket notation: localStorage['key'] = 'value'. Both work, but setItem/getItem are the standard methods. Objects are auto-converted to strings (use JSON.stringify/parse for objects).",
+    reference: "Web APIs - localStorage Methods"
+  },
+  {
+    id: 283,
+    category: "web-apis",
+    difficulty: "easy",
+    question: "What are cookies in web development?",
+    code: null,
+    options: [
+      "Delicious treats",
+      "Small pieces of data stored in the browser and sent with HTTP requests",
+      "A type of web storage",
+      "JavaScript variables"
+    ],
+    correctAnswer: 1,
+    explanation: "Cookies are small text files (max 4KB) stored in the browser and automatically sent with HTTP requests to the same domain. Used for: session management (login), tracking, preferences. Set via document.cookie or Set-Cookie header. Less storage than localStorage.",
+    reference: "Web APIs - Cookies"
+  },
+
+  // Web APIs - Medium (5 questions)
+  {
+    id: 284,
+    category: "web-apis",
+    difficulty: "medium",
+    question: "What is the difference between localStorage and sessionStorage?",
+    code: null,
+    options: [
+      "localStorage is encrypted; sessionStorage is not",
+      "localStorage persists until manually cleared; sessionStorage clears when tab/window closes",
+      "sessionStorage has more storage space",
+      "They are identical"
+    ],
+    correctAnswer: 1,
+    explanation: "localStorage persists indefinitely (until cleared by user or code). sessionStorage lasts only for the duration of the page session (same tab/window). Closing the tab/window clears sessionStorage. Both have ~5-10MB storage. Neither is sent to the server automatically.",
+    reference: "Web APIs - Storage Comparison"
+  },
+  {
+    id: 285,
+    category: "web-apis",
+    difficulty: "medium",
+    question: "What is the basic pattern for an XMLHttpRequest GET request?",
+    code: "const xhr = new XMLHttpRequest();\nxhr.open('GET', 'https://api.example.com/data');\nxhr.onload = () => console.log(xhr.response);\nxhr.send();",
+    options: [
+      "xhr.get() then xhr.send()",
+      "xhr.open() then xhr.send() - no onload needed",
+      "xhr.open(), set headers, xhr.send()",
+      "xhr.request() with config object"
+    ],
+    correctAnswer: 2,
+    explanation: "XMLHttpRequest pattern: 1) Create new XMLHttpRequest(), 2) open(method, url), 3) Optionally setRequestHeader(), 4) Optionally set onload/onerror handlers, 5) send(). For GET, send() can be called immediately. POST sends data in send(body).",
+    reference: "Web APIs - XHR GET Request"
+  },
+  {
+    id: 286,
+    category: "web-apis",
+    difficulty: "medium",
+    question: "How do you read a cookie value in JavaScript?",
+    code: null,
+    options: [
+      "cookie.get('name')",
+      "document.cookie (returns 'name1=value1; name2=value2')",
+      "localStorage.getCookie('name')",
+      "window.cookies['name']"
+    ],
+    correctAnswer: 1,
+    explanation: "document.cookie returns all cookies as a single string: 'name=value; age=25'. There's no built-in method to get a specific cookie - you must parse the string. Writing to document.cookie adds a cookie without overwriting existing ones: document.cookie = 'name=value'.",
+    reference: "Web APIs - Reading Cookies"
+  },
+  {
+    id: 287,
+    category: "web-apis",
+    difficulty: "medium",
+    question: "What is the same-origin policy?",
+    code: null,
+    options: [
+      "Websites can only load resources from their own domain",
+      "Cookies are shared between all websites",
+      "XHR requests always work",
+      "localStorage is shared"
+    ],
+    correctAnswer: 0,
+    explanation: "Same-origin policy is a security mechanism that restricts web pages from making requests to a different origin (domain, protocol, port). This prevents malicious sites from accessing sensitive data. CORS (Cross-Origin Resource Sharing) allows servers to explicitly permit cross-origin requests via headers.",
+    reference: "Web APIs - Same-Origin Policy"
+  },
+  {
+    id: 288,
+    category: "web-apis",
+    difficulty: "medium",
+    question: "What does the following code do?",
+    code: "if (navigator.geolocation) {\n  navigator.geolocation.getCurrentPosition(\n    (pos) => console.log(pos.coords.latitude),\n    (err) => console.error(err)\n  );\n}",
+    options: [
+      "Requests camera access",
+      "Requests user's geographic location",
+      "Gets the user's IP address",
+      "Checks if user is online"
+    ],
+    correctAnswer: 1,
+    explanation: "Geolocation API provides user's location via getCurrentPosition(). It returns coordinates (latitude, longitude), accuracy, altitude, speed, and heading. It prompts the user for permission. There's also watchPosition() for continuous updates. Works only over HTTPS in modern browsers.",
+    reference: "Web APIs - Geolocation"
+  },
+
+  // Web APIs - Hard (3 questions)
+  {
+    id: 289,
+    category: "web-apis",
+    difficulty: "hard",
+    question: "What is the difference between cookies, localStorage, and sessionStorage?",
+    code: null,
+    options: [
+      "They are all identical",
+      "Cookies sent with HTTP requests (4KB limit); localStorage/sessionStorage are client-only (5-10MB)",
+      "localStorage is safest because it's encrypted",
+      "sessionStorage has no size limit"
+    ],
+    correctAnswer: 1,
+    explanation: "Cookies: auto-sent with HTTP requests, 4KB limit, can be httpOnly (server-only). localStorage/sessionStorage: client-only, 5-10MB, not sent automatically. Cookies are for server-client communication (sessions). Web storage is for client-only persistence. httpOnly cookies cannot be accessed by JavaScript.",
+    reference: "Web APIs - Storage Comparison"
+  },
+  {
+    id: 290,
+    category: "web-apis",
+    difficulty: "hard",
+    question: "What is a Web Worker and when would you use one?",
+    code: null,
+    options: [
+      "A service worker for offline support",
+      "A background thread for CPU-intensive tasks without blocking the main thread",
+      "A way to access browser features",
+      "A type of API endpoint"
+    ],
+    correctAnswer: 1,
+    explanation: "Web Workers run JavaScript in a background thread, separate from the main UI thread. Use them for: heavy calculations, data processing, parsing large files. They can't access DOM directly but can use postMessage to communicate. They don't block the UI thread.",
+    reference: "Web APIs - Web Workers"
+  },
+  {
+    id: 291,
+    category: "web-apis",
+    difficulty: "hard",
+    question: "What is the output of this code and why?",
+    code: "localStorage.setItem('obj', { x: 1 });\nconsole.log(localStorage.getItem('obj').x);",
+    options: [
+      "1 - objects are stored correctly",
+      "undefined - objects are converted to strings '[object Object]'",
+      "Error - cannot store objects",
+      "null - localStorage failed"
+    ],
+    correctAnswer: 1,
+    explanation: "localStorage stores everything as strings. Objects are converted via toString(), resulting in '[object Object]'. To store objects, use JSON.stringify(obj) when saving and JSON.parse(str) when retrieving: setItem('obj', JSON.stringify({x:1})) then JSON.parse(getItem('obj')).",
+    reference: "Web APIs - localStorage Limitations"
+  },
+
+
+  // ==========================================
+  // HTML FORMS (10 questions)
+  // ==========================================
+
+  // HTML Forms - Easy (4 questions)
+  {
+    id: 292,
+    category: "html-forms",
+    difficulty: "easy",
+    question: "What HTML element creates a form?",
+    code: null,
+    options: [
+      "<input>",
+      "<form>",
+      "<fieldset>",
+      "<submit>"
+    ],
+    correctAnswer: 1,
+    explanation: "The <form> element creates a form container. It has attributes like action (URL to send data), method (GET/POST), and enctype. Inside the form you place inputs, buttons, and other form elements.",
+    reference: "HTML Forms - Basics"
+  },
+  {
+    id: 293,
+    category: "html-forms",
+    difficulty: "easy",
+    question: "What is the purpose of the name attribute in form inputs?",
+    code: null,
+    options: [
+      "To style the input with CSS",
+      "To identify the field in the form data when submitted",
+      "To set a placeholder",
+      "To make the input required"
+    ],
+    correctAnswer: 1,
+    explanation: "The name attribute identifies each input in the form data. When the form is submitted, data is sent as name=value pairs. The name is what the server uses to retrieve each field's value. Without a name, the input's value is not included in form submission.",
+    reference: "HTML Forms - Input Names"
+  },
+  {
+    id: 294,
+    category: "html-forms",
+    difficulty: "easy",
+    question: "What type of input creates a checkbox?",
+    code: null,
+    options: [
+      "<input type=\"text\">",
+      "<input type=\"checkbox\">",
+      "<input type=\"check\">",
+      "<input type=\"toggle\">"
+    ],
+    correctAnswer: 1,
+    explanation: "<input type=\"checkbox\"> creates a checkbox. Unlike radio buttons, checkboxes can be checked/unchecked independently (multiple selections allowed). Use the same name attribute for checkbox groups when you want multiple related options.",
+    reference: "HTML Forms - Checkboxes"
+  },
+  {
+    id: 295,
+    category: "html-forms",
+    difficulty: "easy",
+    question: "What does the placeholder attribute do?",
+    code: '<input type="text" placeholder="Enter your name">',
+    options: [
+      "Sets the initial value",
+      "Shows example text that disappears when typing",
+      "Makes the field required",
+      "Validates the input format"
+    ],
+    correctAnswer: 1,
+    explanation: "placeholder displays example text that disappears when the user types. It's purely visual hint/text, not a label - users can't click it to focus. For accessibility, always use <label> elements alongside placeholder (placeholder shouldn't replace labels).",
+    reference: "HTML Forms - Placeholder"
+  },
+
+  // HTML Forms - Medium (4 questions)
+  {
+    id: 296,
+    category: "html-forms",
+    difficulty: "medium",
+    question: "What is the difference between GET and POST form submission?",
+    code: null,
+    options: [
+      "GET is faster; POST is slower",
+      "GET appends data to URL (visible); POST sends in request body (hidden)",
+      "POST is for text; GET is for files",
+      "They are identical"
+    ],
+    correctAnswer: 1,
+    explanation: "GET sends form data as URL parameters (?name=value&...), visible in the address bar, limited size, good for bookmarks. POST sends data in the HTTP request body, not visible, no theoretical size limit, required for sensitive data and file uploads.",
+    reference: "HTML Forms - GET vs POST"
+  },
+  {
+    id: 297,
+    category: "html-forms",
+    difficulty: "medium",
+    question: "What does the required attribute do?",
+    code: null,
+    options: [
+      "Makes the field read-only",
+      "Prevents form submission if the field is empty",
+      "Auto-focuses the field",
+      "Sets a default value"
+    ],
+    correctAnswer: 1,
+    explanation: "The required attribute makes browser-level validation - form won't submit if the field is empty. It works on text, email, number, checkbox, radio, select, and file inputs. The browser shows a default error message. JavaScript can check validity with element.checkValidity().",
+    reference: "HTML Forms - Validation"
+  },
+  {
+    id: 298,
+    category: "html-forms",
+    difficulty: "medium",
+    question: "What HTML5 input type is for email addresses?",
+    code: null,
+    options: [
+      "<input type=\"text\">",
+      "<input type=\"email\">",
+      "<input type=\"mail\">",
+      "<input type=\"address\">"
+    ],
+    correctAnswer: 1,
+    explanation: "<input type=\"email\"> provides email-specific keyboard on mobile and browser validation (must be valid email format). The value is available as normal text. Use type='email' instead of type='text' for better UX (appropriate keyboard) and built-in validation.",
+    reference: "HTML Forms - Input Types"
+  },
+  {
+    id: 299,
+    category: "html-forms",
+    difficulty: "medium",
+    question: "What is the purpose of the <label> element's for attribute?",
+    code: '<label for="username">Username:</label>\n<input type="text" id="username" name="username">',
+    options: [
+      "To style the label",
+      "To associate the label with a specific input by ID",
+      "To set the label text",
+      "To make the label clickable"
+    ],
+    correctAnswer: 1,
+    explanation: "The for attribute (or matching id on input) associates a label with its input. Clicking the label focuses/activates the input. This is especially important for checkboxes and radio buttons (makes the entire text clickable). It's also crucial for accessibility - screen readers announce the label.",
+    reference: "HTML Forms - Labels"
+  },
+
+  // HTML Forms - Hard (2 questions)
+  {
+    id: 300,
+    category: "html-forms",
+    difficulty: "hard",
+    question: "What is the output of this form handling pattern?",
+    code: "document.querySelector('form').addEventListener('submit', (e) => {\n  e.preventDefault();\n  const formData = new FormData(e.target);\n  console.log(formData.get('username'));\n});",
+    options: [
+      "Prevents submission and logs the username field value",
+      "Submits the form normally",
+      "Deletes the username field",
+      "Creates a new form"
+    ],
+    correctAnswer: 0,
+    explanation: "e.preventDefault() stops the default form submission (page reload). new FormData(e.target) creates a FormData object from the form element. formData.get('username') retrieves the value of the username field. This is the modern way to handle forms with JavaScript (AJAX-style without page reload).",
+    reference: "HTML Forms - JavaScript Handling"
+  },
+  {
+    id: 301,
+    category: "html-forms",
+    difficulty: "hard",
+    question: "What is the pattern for checking form validity in JavaScript?",
+    code: "const input = document.querySelector('input');\nif (input.checkValidity()) {\n  console.log('Valid!');\n} else {\n  console.log(input.validationMessage);\n}",
+    options: [
+      "checkValidity() returns true if valid; validationMessage has the error text",
+      "Validation must be done with regular expressions only",
+      "You can only validate on the server",
+      "validity is a string property"
+    ],
+    correctAnswer: 0,
+    explanation: "checkValidity() returns true/false based on HTML5 validation constraints (required, pattern, minlength, type, etc.). validationMessage contains the browser's localized error message. Other properties: validity.valid, validity.valueMissing, validity.patternMismatch, validity.typeMismatch, validity.tooLong, validity.rangeUnderflow.",
+    reference: "HTML Forms - Constraint Validation API"
+  },
+
+
+  // ==========================================
+  // RESPONSIVE DESIGN CSS (8 questions)
+  // ==========================================
+
+  // Responsive Design - Easy (3 questions)
+  {
+    id: 302,
+    category: "css-responsive",
+    difficulty: "easy",
+    question: "What is responsive web design?",
+    code: null,
+    options: [
+      "Making websites faster",
+      "Creating layouts that adapt to different screen sizes",
+      "Designing for specific browsers",
+      "Adding animations to websites"
+    ],
+    correctAnswer: 1,
+    explanation: "Responsive web design is an approach where layouts automatically adapt to different screen sizes and devices (desktop, tablet, mobile). It uses fluid grids, flexible images, and media queries to provide optimal viewing experience across devices.",
+    reference: "CSS Responsive - Introduction"
+  },
+  {
+    id: 303,
+    category: "css-responsive",
+    difficulty: "easy",
+    question: "What does a media query do in CSS?",
+    code: "@media (max-width: 768px) { .container { flex-direction: column; } }",
+    options: [
+      "Loads different CSS files",
+      "Applies styles only when conditions are met (like screen width)",
+      "Creates animations",
+      "Validates CSS"
+    ],
+    correctAnswer: 1,
+    explanation: "Media queries apply CSS conditionally based on device characteristics. Common features: width/height, min-width/max-width, orientation, aspect-ratio. The code shown applies column layout when viewport is 768px or less. This is the foundation of responsive design.",
+    reference: "CSS Responsive - Media Queries"
+  },
+  {
+    id: 304,
+    category: "css-responsive",
+    difficulty: "easy",
+    question: "What is the mobile-first approach?",
+    code: null,
+    options: [
+      "Designing for mobile devices first, then adding desktop styles with min-width queries",
+      "Only designing for mobile",
+      "Using smaller font sizes",
+      "Ignoring desktop users"
+    ],
+    correctAnswer: 0,
+    explanation: "Mobile-first means writing base styles for mobile, then using min-width media queries to add more styles for larger screens. This approach: 1) Forces content-first design, 2) Mobile CSS is simpler (less overriding), 3) Better performance (no loading desktop styles for mobile).",
+    reference: "CSS Responsive - Mobile First"
+  },
+
+  // Responsive Design - Medium (3 questions)
+  {
+    id: 305,
+    category: "css-responsive",
+    difficulty: "medium",
+    question: "What is the difference between min-width and max-width media queries?",
+    code: null,
+    options: [
+      "min-width targets mobile; max-width targets desktop",
+      "min-width applies at/above breakpoint; max-width applies at/below breakpoint",
+      "They are identical",
+      "min-width is faster"
+    ],
+    correctAnswer: 1,
+    explanation: "min-width: 768px means 'when viewport is 768px or wider'. max-width: 768px means 'when viewport is 768px or narrower'. Mobile-first uses min-width (base styles for mobile, add for larger). Desktop-first uses max-width (base for desktop, reduce for smaller).",
+    reference: "CSS Responsive - Breakpoints"
+  },
+  {
+    id: 306,
+    category: "css-responsive",
+    difficulty: "medium",
+    question: "What is a common pattern for responsive images?",
+    code: '<img srcset="img-400.jpg 400w, img-800.jpg 800w" sizes="(max-width: 600px) 400px, 800px" src="img-800.jpg" alt="Responsive image">',
+    options: [
+      "Using the same image at all sizes",
+      "Using srcset to provide multiple image sizes for different viewports",
+      "Hiding images on mobile",
+      "Only using SVG images"
+    ],
+    correctAnswer: 1,
+    explanation: "srcset provides multiple image sources with their intrinsic widths (400w, 800w). sizes tells the browser how wide the image will be at different breakpoints. The browser picks the most appropriate image based on device pixel ratio and viewport. This improves performance by not loading large images on small screens.",
+    reference: "CSS Responsive - Responsive Images"
+  },
+  {
+    id: 307,
+    category: "css-responsive",
+    difficulty: "medium",
+    question: "What does the rem unit represent in CSS?",
+    code: null,
+    options: [
+      "Pixels",
+      "Root element's font size",
+      "Current element's font size",
+      "Percentage of viewport"
+    ],
+    correctAnswer: 1,
+    explanation: "rem (root em) is relative to the root element's (<html>) font-size. If html { font-size: 16px; }, then 1rem = 16px everywhere. This makes it easy to scale everything proportionally by changing the root font-size. Useful for responsive typography.",
+    reference: "CSS Responsive - Units"
+  },
+
+  // Responsive Design - Hard (2 questions)
+  {
+    id: 308,
+    category: "css-responsive",
+    difficulty: "hard",
+    question: "What is the CSS property 'aspect-ratio' and when is it useful?",
+    code: ".video { aspect-ratio: 16 / 9; }",
+    options: [
+      "Sets the element's width/height ratio, preventing layout shift",
+      "Is ignored by browsers",
+      "Only works on images",
+      "Sets the screen aspect ratio"
+    ],
+    correctAnswer: 0,
+    explanation: "aspect-ratio: 16/9 reserves space for videos/images before they load, preventing Cumulative Layout Shift (CLS). Without it, the page jumps when media loads. It's better than the old padding-hack because it's a first-class CSS property.",
+    reference: "CSS Responsive - Aspect Ratio"
+  },
+  {
+    id: 309,
+    category: "css-responsive",
+    difficulty: "hard",
+    question: "What is container queries and how do they differ from media queries?",
+    code: "@container (max-width: 500px) { .card { flex-direction: column; } }",
+    options: [
+      "Container queries are faster than media queries",
+      "Container queries style based on parent container size; media queries based on viewport",
+      "They are identical",
+      "Media queries are deprecated"
+    ],
+    correctAnswer: 1,
+    explanation: "Container queries (@container) apply styles based on the size of a specific container element, not the viewport. This enables truly reusable components that adapt based on where they're placed, not just viewport size. You must set container-type on the container element first.",
+    reference: "CSS Responsive - Container Queries"
   }
 ];
 
