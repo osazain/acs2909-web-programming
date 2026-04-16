@@ -1,0 +1,38 @@
+{
+  "milestone": "cheatsheet",
+  "round": 1,
+  "status": "fail",
+  "assertionsSummary": {
+    "total": 17,
+    "passed": 16,
+    "failed": 1,
+    "blocked": 0
+  },
+  "passedAssertions": [
+    "VAL-EXT-001",
+    "VAL-EXT-002",
+    "VAL-CHEAT-001",
+    "VAL-CHEAT-002",
+    "VAL-CHEAT-003",
+    "VAL-CHEAT-004",
+    "VAL-CHEAT-005",
+    "VAL-CHEAT-006",
+    "VAL-CHEAT-007",
+    "VAL-CHEAT-008",
+    "VAL-CHEAT-009",
+    "VAL-CHEAT-010",
+    "VAL-CHEAT-011",
+    "VAL-CHEAT-012",
+    "VAL-CHEAT-013",
+    "VAL-CROSS-001"
+  ],
+  "failedAssertions": [
+    {
+      "id": "VAL-CROSS-002",
+      "reason": "Cheatsheet not pushed to GitHub. The push-cheatsheet feature is still pending. git status shows 'Your branch is ahead of origin/main by 13 commits'."
+    }
+  ],
+  "blockedAssertions": [],
+  "appliedUpdates": [],
+  "previousRound": null
+}
