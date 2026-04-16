@@ -1,0 +1,21 @@
+{
+  "milestone": "cheatsheet",
+  "round": 1,
+  "status": "pass",
+  "validatorsRun": {
+    "test": { "passed": true, "command": "echo No automated tests for content parity mission", "exitCode": 0 },
+    "typecheck": { "passed": true, "command": "echo No typecheck needed for content files", "exitCode": 0 },
+    "lint": { "passed": true, "command": "echo No linting needed for content files", "exitCode": 0 }
+  },
+  "reviewsSummary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "failedFeatures": []
+  },
+  "blockingIssues": [],
+  "appliedUpdates": [],
+  "suggestedGuidanceUpdates": [],
+  "rejectedObservations": [],
+  "previousRound": null
+}
