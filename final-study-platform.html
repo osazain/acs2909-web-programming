@@ -2048,7 +2048,7 @@
             },
 
             updateOverallProgress() {
-                const categories = ['internet', 'html', 'css-fundamentals', 'css-layout', 'js-basics', 'js-control-flow', 'js-functions', 'js-objects'];
+                const categories = ['internet', 'html', 'css-fundamentals', 'css-layout', 'js-basics', 'js-control-flow', 'js-functions', 'js-objects', 'js-classes', 'js-dom', 'js-events', 'html-forms', 'css-responsive', 'web-apis'];
                 let completed = 0;
                 categories.forEach(cat => {
                     if (this.state.lectureProgress[cat]) completed++;
@@ -2068,7 +2068,13 @@
                     { id: 'js-basics', title: 'JS Basics', icon: '⚡' },
                     { id: 'js-control-flow', title: 'JS Control Flow', icon: '🔀' },
                     { id: 'js-functions', title: 'JS Functions', icon: '⚙️' },
-                    { id: 'js-objects', title: 'JS Objects', icon: '📦' }
+                    { id: 'js-objects', title: 'JS Objects', icon: '📦' },
+                    { id: 'js-classes', title: 'JS Classes', icon: '🏗️' },
+                    { id: 'js-dom', title: 'JS DOM', icon: '🎯' },
+                    { id: 'js-events', title: 'JS Events', icon: '🖱️' },
+                    { id: 'html-forms', title: 'HTML Forms', icon: '📋' },
+                    { id: 'css-responsive', title: 'CSS Responsive', icon: '📱' },
+                    { id: 'web-apis', title: 'Web APIs', icon: '🔗' }
                 ];
 
                 const nav = document.getElementById('moduleNav');
@@ -2368,7 +2374,7 @@
                             <div class="mode-title">By Category</div>
                             <div class="mode-desc">Focus on a single topic area</div>
                             <div class="mode-meta">
-                                <span><i class="fas fa-list"></i> 8 categories</span>
+                                <span><i class="fas fa-list"></i> 14 categories</span>
                                 <span><i class="fas fa-clock"></i> Varies</span>
                             </div>
                         </div>
@@ -2808,7 +2814,7 @@
                 const output = document.getElementById('cheatsheetOutput');
                 const categories = type === 'personalized' && this.state.weakAreas.length > 0 
                     ? this.state.weakAreas 
-                    : ['internet', 'html', 'css-fundamentals', 'css-layout', 'js-basics', 'js-control-flow', 'js-functions', 'js-objects'];
+                    : ['internet', 'html', 'css-fundamentals', 'css-layout', 'js-basics', 'js-control-flow', 'js-functions', 'js-objects', 'js-classes', 'js-dom', 'js-events', 'html-forms', 'css-responsive', 'web-apis'];
 
                 const cheatSheetData = {
                     'internet': {
@@ -2919,6 +2925,90 @@
                                 <tr><td>Spread</td><td>{...obj} copies object</td></tr>
                             </table>
                         `
+                    },
+                    'js-classes': {
+                        title: '🏗️ JavaScript Classes',
+                        content: `
+                            <table class="cs-table">
+                                <tr><th>Concept</th><th>Description</th></tr>
+                                <tr><td>class</td><td>Template for creating objects</td></tr>
+                                <tr><td>constructor()</td><td>Initializes new instances</td></tr>
+                                <tr><td>extends</td><td>Creates child class inheriting parent</td></tr>
+                                <tr><td>super()</td><td>Calls parent constructor</td></tr>
+                                <tr><td>this</td><td>Refers to instance</td></tr>
+                                <tr><td>static</td><td>Method called on class, not instance</td></tr>
+                            </table>
+                        `
+                    },
+                    'js-dom': {
+                        title: '🎯 DOM Manipulation',
+                        content: `
+                            <table class="cs-table">
+                                <tr><th>Method</th><th>Description</th></tr>
+                                <tr><td>document.getElementById()</td><td>Get element by ID</td></tr>
+                                <tr><td>document.querySelector()</td><td>First matching CSS selector</td></tr>
+                                <tr><td>element.innerHTML</td><td>HTML content inside element</td></tr>
+                                <tr><td>element.style</td><td>Inline CSS styles</td></tr>
+                                <tr><td>element.classList</td><td>Add/remove CSS classes</td></tr>
+                                <tr><td>document.createElement()</td><td>Create new HTML element</td></tr>
+                            </table>
+                        `
+                    },
+                    'js-events': {
+                        title: '🖱️ JavaScript Events',
+                        content: `
+                            <table class="cs-table">
+                                <tr><th>Event</th><th>When it fires</th></tr>
+                                <tr><td>click</td><td>User clicks element</td></tr>
+                                <tr><td>submit</td><td>Form is submitted</td></tr>
+                                <tr><td>keydown/keyup</td><td>Keyboard key pressed/released</td></tr>
+                                <tr><td>mouseover/mouseout</td><td>Mouse enters/leaves element</td></tr>
+                                <tr><td>load</td><td>Resource finishes loading</td></tr>
+                                <tr><td>addEventListener()</td><td>Attaches event handler</td></tr>
+                            </table>
+                        `
+                    },
+                    'html-forms': {
+                        title: '📋 HTML Forms',
+                        content: `
+                            <table class="cs-table">
+                                <tr><th>Element</th><th>Purpose</th></tr>
+                                <tr><td>&lt;form&gt;</td><td>Container for form controls</td></tr>
+                                <tr><td>&lt;input&gt;</td><td>Text, checkbox, radio, etc.</td></tr>
+                                <tr><td>&lt;select&gt;</td><td>Dropdown list</td></tr>
+                                <tr><td>&lt;textarea&gt;</td><td>Multi-line text input</td></tr>
+                                <tr><td>&lt;button&gt;</td><td>Clickable button</td></tr>
+                                <tr><td>required</td><td>Makes field mandatory</td></tr>
+                            </table>
+                        `
+                    },
+                    'css-responsive': {
+                        title: '📱 CSS Responsive Design',
+                        content: `
+                            <table class="cs-table">
+                                <tr><th>Technique</th><th>Description</th></tr>
+                                <tr><td>@media</td><td>Apply styles based on screen size</td></tr>
+                                <tr><td>flexbox</td><td>Flexible box layout</td></tr>
+                                <tr><td>grid</td><td>Two-dimensional grid layout</td></tr>
+                                <tr><td>vw/vh</td><td>Viewport-relative units</td></tr>
+                                <tr><td>min-width</td><td>Styles apply at minimum width</td></tr>
+                                <tr><td>max-width</td><td>Styles apply at maximum width</td></tr>
+                            </table>
+                        `
+                    },
+                    'web-apis': {
+                        title: '🔗 Web APIs',
+                        content: `
+                            <table class="cs-table">
+                                <tr><th>API</th><th>Description</th></tr>
+                                <tr><td>localStorage</td><td>Store data locally in browser</td></tr>
+                                <tr><td>sessionStorage</td><td>Session-scoped storage</td></tr>
+                                <tr><td>fetch()</td><td>Make HTTP requests</td></tr>
+                                <tr><td>JSON.parse()</td><td>Parse JSON string to object</td></tr>
+                                <tr><td>JSON.stringify()</td><td>Convert object to JSON string</td></tr>
+                                <tr><td>setTimeout()</td><td>Execute function after delay</td></tr>
+                            </table>
+                        `
                     }
                 };
 
@@ -2983,7 +3073,13 @@
                     { id: 'js-basics', name: 'JS Basics' },
                     { id: 'js-control-flow', name: 'JS Control Flow' },
                     { id: 'js-functions', name: 'JS Functions' },
-                    { id: 'js-objects', name: 'JS Objects' }
+                    { id: 'js-objects', name: 'JS Objects' },
+                    { id: 'js-classes', name: 'JS Classes' },
+                    { id: 'js-dom', name: 'JS DOM' },
+                    { id: 'js-events', name: 'JS Events' },
+                    { id: 'html-forms', name: 'HTML Forms' },
+                    { id: 'css-responsive', name: 'CSS Responsive' },
+                    { id: 'web-apis', name: 'Web APIs' }
                 ];
 
                 const completedLectures = Object.keys(this.state.lectureProgress).length;
@@ -2994,7 +3090,7 @@
                     <div class="stats-cards">
                         <div class="stat-card">
                             <div class="stat-card-icon"><i class="fas fa-book"></i></div>
-                            <div class="stat-card-value">${completedLectures}/8</div>
+                            <div class="stat-card-value">${completedLectures}/14</div>
                             <div class="stat-card-label">Lectures Completed</div>
                         </div>
                         <div class="stat-card">
@@ -4086,7 +4182,13 @@ const dogWithAge = Object.assign({}, dog, { age: 3 });
                     { id: 'js-basics', name: 'JS Basics' },
                     { id: 'js-control-flow', name: 'JS Control Flow' },
                     { id: 'js-functions', name: 'JS Functions' },
-                    { id: 'js-objects', name: 'JS Objects' }
+                    { id: 'js-objects', name: 'JS Objects' },
+                    { id: 'js-classes', name: 'JS Classes' },
+                    { id: 'js-dom', name: 'JS DOM' },
+                    { id: 'js-events', name: 'JS Events' },
+                    { id: 'html-forms', name: 'HTML Forms' },
+                    { id: 'css-responsive', name: 'CSS Responsive' },
+                    { id: 'web-apis', name: 'Web APIs' }
                 ];
 
                 const container = document.getElementById('quizDashboard');
@@ -4098,7 +4200,7 @@ const dogWithAge = Object.assign({}, dog, { age: 3 });
                                 <button class="btn btn-secondary" style="text-align: left; padding: 16px 20px;"
                                         onclick="StudyPlatform.startQuiz('category', '${cat.id}')">
                                     <span style="font-size: 1.5rem; margin-right: 12px;">
-                                        ${cat.id === 'internet' ? '🌐' : cat.id === 'html' ? '📄' : cat.id.includes('css') ? '🎨' : '⚡'}
+                                        ${cat.id === 'internet' ? '🌐' : cat.id === 'html' ? '📄' : cat.id === 'html-forms' ? '📋' : cat.id === 'css-fundamentals' || cat.id === 'css-layout' || cat.id === 'css-responsive' ? '🎨' : cat.id === 'js-basics' || cat.id === 'js-control-flow' || cat.id === 'js-functions' || cat.id === 'js-objects' || cat.id === 'js-classes' || cat.id === 'js-dom' || cat.id === 'js-events' ? '⚡' : '🔗'}
                                     </span>
                                     ${cat.name}
                                     <span style="margin-left: auto; color: var(--text-muted);">
