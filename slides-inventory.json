@@ -1,5 +1,153 @@
 {
   "inventory": {
+    "courseTimeline": {
+      "sourceFile": "slides/New/Course Timeline - Internet Programming.html",
+      "lastUpdated": "2026-04-15",
+      "courseTitle": "Internet Programming (ACS-2909)",
+      "totalWeeks": 12,
+      "lectureColor": "#006fbf",
+      "assignmentColor": "#c47400",
+      "testColor": "#cd2026",
+      "weeks": [
+        {
+          "week": 1,
+          "dates": "January 5 and 7",
+          "topics": ["Introduction", "Expectations", "HTML basics"],
+          "lecture": true,
+          "assignment": null,
+          "exam": null,
+          "notes": []
+        },
+        {
+          "week": 2,
+          "dates": "January 12 and 14",
+          "topics": ["HTML", "CSS"],
+          "lecture": true,
+          "assignment": null,
+          "exam": null,
+          "notes": []
+        },
+        {
+          "week": 3,
+          "dates": "January 19 and 21",
+          "topics": ["CSS"],
+          "lecture": true,
+          "assignment": {"type": "handed out", "name": "Assignment 1", "dueDate": null},
+          "exam": null,
+          "notes": []
+        },
+        {
+          "week": 4,
+          "dates": "January 26 and 28",
+          "topics": ["JavaScript code basics"],
+          "lecture": true,
+          "assignment": null,
+          "exam": null,
+          "notes": ["Away on travel, no in person lecture"]
+        },
+        {
+          "week": 5,
+          "dates": "February 2 and 4",
+          "topics": ["JavaScript functions", "JavaScript objects"],
+          "lecture": true,
+          "assignment": null,
+          "exam": null,
+          "notes": []
+        },
+        {
+          "week": 6,
+          "dates": "February 9 and 11",
+          "topics": ["JavaScript JSON", "JavaScript Getters"],
+          "lecture": true,
+          "assignment": null,
+          "exam": {"type": "MIDTERM", "duration": "1 hour", "location": "in-class"},
+          "notes": ["MIDTERM before lecture"]
+        },
+        {
+          "week": 7,
+          "dates": "February 23 and 25",
+          "topics": ["JavaScript Inheritance", "JavaScript Classes"],
+          "lecture": true,
+          "assignment": {"type": "handed out", "name": "Assignment 2", "dueDate": null},
+          "exam": null,
+          "notes": []
+        },
+        {
+          "week": 8,
+          "dates": "March 2 and 4",
+          "topics": ["JavaScript DOM"],
+          "lecture": true,
+          "assignment": null,
+          "exam": null,
+          "notes": []
+        },
+        {
+          "week": 9,
+          "dates": "March 9 and 11",
+          "topics": ["JavaScript Events"],
+          "lecture": true,
+          "assignment": null,
+          "exam": null,
+          "notes": []
+        },
+        {
+          "week": 10,
+          "dates": "March 16 and 18",
+          "topics": ["Responsive design", "Forms"],
+          "lecture": true,
+          "assignment": {"type": "handed out", "name": "Assignment 3", "dueDate": null},
+          "exam": null,
+          "notes": []
+        },
+        {
+          "week": 11,
+          "dates": "March 23 and 25",
+          "topics": ["HTTP", "URLs", "XHR (XMLHttpRequest)"],
+          "lecture": true,
+          "assignment": null,
+          "exam": null,
+          "notes": []
+        },
+        {
+          "week": 12,
+          "dates": "March 30 and April 1",
+          "topics": ["Cookies", "Storage", "Web Workers", "Geolocation", "Next steps", "Industry standards"],
+          "lecture": true,
+          "assignment": null,
+          "exam": null,
+          "notes": []
+        }
+      ],
+      "assignments": [
+        {"name": "Assignment 1", "handedOut": "Week 3 (January 19/21)", "due": "Sunday, February 1, 9:00pm"},
+        {"name": "Assignment 2", "handedOut": "Week 7 (February 23/25)", "due": "Sunday, March 8, 9:00pm"},
+        {"name": "Assignment 3", "handedOut": "Week 10 (March 16/18)", "due": "Sunday, March 29, 9:00pm"}
+      ],
+      "exams": [
+        {"type": "MIDTERM", "date": "Week 6 (February 9/11)", "duration": "1 hour", "location": "in-class"},
+        {"type": "FINAL", "date": "Sometime in December", "duration": "3 hours", "location": "in person (scheduled by university)"}
+      ],
+      "specialDates": [
+        {"type": "Reading Week", "dates": "February 16 to 20", "note": "No lecture"}
+      ],
+      "topicCategories": {
+        "HTML": ["HTML basics", "HTML", "Forms"],
+        "CSS": ["CSS", "Responsive design"],
+        "JavaScript": [
+          "JavaScript code basics",
+          "JavaScript functions",
+          "JavaScript objects",
+          "JavaScript JSON",
+          "JavaScript Getters",
+          "JavaScript Inheritance",
+          "JavaScript Classes",
+          "JavaScript DOM",
+          "JavaScript Events"
+        ],
+        "Web APIs": ["HTTP", "URLs", "XHR", "Cookies", "Storage", "Web Workers", "Geolocation"],
+        "Course Info": ["Introduction", "Expectations", "Next steps", "Industry standards"]
+      }
+    },
     "slides": {
       "sourceFolder": "slides/",
       "htmlFilesCount": 28,
