@@ -1,6 +1,6 @@
 {
   "milestone": "parity",
-  "round": 1,
+  "round": 2,
   "status": "fail",
   "assertionsSummary": {
     "total": 13,
@@ -28,7 +28,7 @@
     }
   ],
   "appliedUpdates": [],
-  "previousRound": null,
+  "previousRound": ".factory/validation/parity/user-testing/synthesis.json (Round 1)",
   "flowReports": [
     {
       "group": "question-bank-parity",
