@@ -1,0 +1,123 @@
+{
+  "groupId": "inventory-validation",
+  "milestone": "inventory",
+  "assertions": ["VAL-INV-001", "VAL-INV-002", "VAL-INV-003"],
+  "status": "pass",
+  "isolationContext": {
+    "workingDirectory": "C:\\OsaZain_stuff\\edu\\ACSInternetProgramming\\acs2902-web-programming",
+    "tool": "file-review",
+    "notes": "Content parity validation - no services needed, static file review"
+  },
+  "testResults": [
+    {
+      "assertionId": "VAL-INV-001",
+      "assertionText": "All HTML slide files in slides/ and slides/New/ are identified and listed.",
+      "status": "pass",
+      "evidence": {
+        "slidesCount": 28,
+        "slides_NewCount": 14,
+        "files": [
+          {"filename": "Advanced Positioning Tutorial _ HTML & CSS Is Hard.html", "topicName": "Advanced Positioning Tutorial"},
+          {"filename": "Attributes and properties.html", "topicName": "Attributes and properties"},
+          {"filename": "Basic operators, maths.html", "topicName": "Basic operators, maths"},
+          {"filename": "Class basic syntax.html", "topicName": "Class basic syntax"},
+          {"filename": "Class inheritance.html", "topicName": "Class inheritance"},
+          {"filename": "Comparisons.html", "topicName": "Comparisons"},
+          {"filename": "CSS Box Model Tutorial _ HTML & CSS Is Hard.html", "topicName": "CSS Box Model Tutorial"},
+          {"filename": "CSS Selectors Tutorial _ HTML & CSS Is Hard.html", "topicName": "CSS Selectors Tutorial"},
+          {"filename": "CSS Tutorial _ HTML & CSS Is Hard.html", "topicName": "CSS Tutorial"},
+          {"filename": "Data types.html", "topicName": "Data types"},
+          {"filename": "DOM tree.html", "topicName": "DOM tree"},
+          {"filename": "Flexbox Tutorial _ HTML & CSS Is Hard.html", "topicName": "Flexbox Tutorial"},
+          {"filename": "Function expressions.html", "topicName": "Function expressions"},
+          {"filename": "Hello, world!.html", "topicName": "Hello, world!"},
+          {"filename": "Interaction_ alert, prompt, confirm.html", "topicName": "Interaction: alert, prompt, confirm"},
+          {"filename": "JSON methods, toJSON.html", "topicName": "JSON methods, toJSON"},
+          {"filename": "Links and Images Tutorial _ HTML & CSS Is Hard.html", "topicName": "Links and Images Tutorial"},
+          {"filename": "Logical operators.html", "topicName": "Logical operators"},
+          {"filename": "Methods of primitives.html", "topicName": "Methods of primitives"},
+          {"filename": "Modifying the document.html", "topicName": "Modifying the document"},
+          {"filename": "Object methods, _this_.html", "topicName": "Object methods, 'this'"},
+          {"filename": "Property getters and setters.html", "topicName": "Property getters and setters"},
+          {"filename": "Prototypal inheritance.html", "topicName": "Prototypal inheritance"},
+          {"filename": "Searching_ getElement_, querySelector_.html", "topicName": "Searching: getElement*, querySelector*"},
+          {"filename": "Styles and classes.html", "topicName": "Styles and classes"},
+          {"filename": "Type Conversions.html", "topicName": "Type Conversions"},
+          {"filename": "Variables.html", "topicName": "Variables"},
+          {"filename": "Walking the DOM.html", "topicName": "Walking the DOM"}
+        ],
+        "slides_New_files": [
+          {"filename": "Bubbling and capturing.html", "topicName": "Bubbling and capturing"},
+          {"filename": "Cookies, document.cookie.html", "topicName": "Cookies, document.cookie"},
+          {"filename": "Course Timeline - Internet Programming.html", "topicName": "Course Timeline - Internet Programming"},
+          {"filename": "Events_ change, input, cut, copy, paste.html", "topicName": "Events: change, input, cut, copy, paste"},
+          {"filename": "Form properties and methods.html", "topicName": "Form properties and methods"},
+          {"filename": "Forms_ event and method submit.html", "topicName": "Forms: event and method submit"},
+          {"filename": "HTML Forms Tutorial _ HTML & CSS Is Hard.html", "topicName": "HTML Forms Tutorial"},
+          {"filename": "HTTP request methods - HTTP _ MDN.html", "topicName": "HTTP request methods"},
+          {"filename": "HTTP response status codes - HTTP _ MDN.html", "topicName": "HTTP response status codes"},
+          {"filename": "Overview of HTTP - HTTP _ MDN.html", "topicName": "Overview of HTTP"},
+          {"filename": "Page_ DOMContentLoaded, load, beforeunload, unload.html", "topicName": "Page: DOMContentLoaded, load, beforeunload, unload"},
+          {"filename": "Responsive Design Tutorial _ HTML & CSS Is Hard.html", "topicName": "Responsive Design Tutorial"},
+          {"filename": "URL objects.html", "topicName": "URL objects"},
+          {"filename": "XMLHttpRequest.html", "topicName": "XMLHttpRequest"}
+        ]
+      },
+      "observation": "Slides inventory feature (inventory-slides-folder) successfully enumerated all HTML files. Found 28 files in slides/ and 14 in slides/New/, each with extracted topic names."
+    },
+    {
+      "assertionId": "VAL-INV-002",
+      "assertionText": "All topics from 'Course Timeline - Internet Programming.html' are extracted and organized by week.",
+      "status": "pass",
+      "evidence": {
+        "sourceFile": "slides/New/Course Timeline - Internet Programming.html",
+        "courseTitle": "Internet Programming (ACS-2909)",
+        "totalWeeks": 12,
+        "weeks": [
+          {"week": 1, "topics": ["Introduction", "Expectations", "HTML basics"]},
+          {"week": 2, "topics": ["HTML", "CSS"]},
+          {"week": 3, "topics": ["CSS"]},
+          {"week": 4, "topics": ["JavaScript code basics"]},
+          {"week": 5, "topics": ["JavaScript functions", "JavaScript objects"]},
+          {"week": 6, "topics": ["JavaScript JSON", "JavaScript Getters"]},
+          {"week": 7, "topics": ["JavaScript Inheritance", "JavaScript Classes"]},
+          {"week": 8, "topics": ["JavaScript DOM"]},
+          {"week": 9, "topics": ["JavaScript Events"]},
+          {"week": 10, "topics": ["Responsive design", "Forms"]},
+          {"week": 11, "topics": ["HTTP", "URLs", "XHR (XMLHttpRequest)"]},
+          {"week": 12, "topics": ["Cookies", "Storage", "Web Workers", "Geolocation", "Next steps", "Industry standards"]}
+        ]
+      },
+      "observation": "Course Timeline parsing feature (parse-course-timeline) successfully extracted all 12 weeks with their topics, assignments, and exam info into structured format."
+    },
+    {
+      "assertionId": "VAL-INV-003",
+      "assertionText": "Missing topics are identified by comparing Course Timeline against existing platform content.",
+      "status": "pass",
+      "evidence": {
+        "gapAnalysisSummary": {
+          "totalCourseTopics": 34,
+          "topicsWithQuestions": 30,
+          "topicsWithLectureContent": 27,
+          "topicsCompletelyMissing": 7
+        },
+        "missingTopics": [
+          {"topic": "JavaScript Classes (ES6)", "priority": "high"},
+          {"topic": "JavaScript DOM", "priority": "high"},
+          {"topic": "JavaScript Events", "priority": "high"},
+          {"topic": "JavaScript Inheritance (Prototypal)", "priority": "high"},
+          {"topic": "XHR / XMLHttpRequest", "priority": "medium"},
+          {"topic": "Cookies", "priority": "medium"},
+          {"topic": "Web Workers", "priority": "low"},
+          {"topic": "Geolocation API", "priority": "low"},
+          {"topic": "Responsive Design", "priority": "medium"},
+          {"topic": "HTML Forms", "priority": "medium"}
+        ]
+      },
+      "observation": "Gap analysis feature (gap-analysis) successfully compared Course Timeline topics against mega-question-bank.js and lecture-content.html. Identified 7 completely missing topics and 3 partial coverage topics with detailed priority rankings."
+    }
+  ],
+  "frictions": [],
+  "blockers": [],
+  "toolsUsed": ["file-review", "Read", "Grep"]
+}
