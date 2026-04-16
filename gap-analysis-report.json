@@ -1,0 +1,366 @@
+{
+  "reportDate": "2026-04-15",
+  "feature": "gap-analysis",
+  "purpose": "Compare Course Timeline topics against existing platform content (mega-question-bank.js, lecture-content.html). Identify which topics from slides/ exist in platform and which are missing.",
+  "sourceOfTruth": {
+    "file": "slides/New/Course Timeline - Internet Programming.html",
+    "parsedIn": "slides-inventory.json"
+  },
+  "platformFiles": {
+    "questionBank": "mega-question-bank.js",
+    "lectureContent": "lecture-content.html"
+  },
+
+  "courseTimeline": {
+    "totalWeeks": 12,
+    "topicsByWeek": [
+      {"week": 1, "topics": ["Introduction", "Expectations", "HTML basics"]},
+      {"week": 2, "topics": ["HTML", "CSS"]},
+      {"week": 3, "topics": ["CSS"]},
+      {"week": 4, "topics": ["JavaScript code basics"]},
+      {"week": 5, "topics": ["JavaScript functions", "JavaScript objects"]},
+      {"week": 6, "topics": ["JavaScript JSON", "JavaScript Getters"]},
+      {"week": 7, "topics": ["JavaScript Inheritance", "JavaScript Classes"]},
+      {"week": 8, "topics": ["JavaScript DOM"]},
+      {"week": 9, "topics": ["JavaScript Events"]},
+      {"week": 10, "topics": ["Responsive design", "Forms"]},
+      {"week": 11, "topics": ["HTTP", "URLs", "XHR (XMLHttpRequest)"]},
+      {"week": 12, "topics": ["Cookies", "Storage", "Web Workers", "Geolocation", "Next steps", "Industry standards"]}
+    ]
+  },
+
+  "platformCoverage": {
+    "questionBank": {
+      "totalQuestions": 231,
+      "categories": [
+        {"category": "internet", "count": 25, "topics": ["HTTP", "URLs", "DNS", "file paths", "CORS", "browser rendering"]},
+        {"category": "html", "count": 33, "topics": ["HTML basics", "semantic elements", "links", "images", "lists", "forms"]},
+        {"category": "css-fundamentals", "count": 34, "topics": ["selectors", "box model", "colors", "pseudo-classes", "specificity"]},
+        {"category": "css-layout", "count": 29, "topics": ["Flexbox", "positioning", "grid"]},
+        {"category": "js-basics", "count": 35, "topics": ["variables", "data types", "operators"]},
+        {"category": "js-control-flow", "count": 22, "topics": ["conditionals", "loops", "comparisons"]},
+        {"category": "js-functions", "count": 22, "topics": ["functions", "callbacks", "closures", "arrow functions", "hoisting"]},
+        {"category": "js-objects", "count": 31, "topics": ["objects", "prototypes", "JSON", "getters/setters"]}
+      ]
+    },
+    "lectureContent": {
+      "modules": ["internet-basics", "html", "css-fundamentals", "css-layout", "js-basics", "js-control", "js-functions", "js-objects"],
+      "topicsCovered": [
+        "HTTP Protocol", "Client-Server Model", "DNS", "File Paths",
+        "Document Structure", "Meta Tags", "Semantic Elements", "Text Elements", "Links",
+        "CSS Selectors", "Box Model", "Colors", "Pseudo-classes", "Specificity", "Units",
+        "Flexbox", "Positioning", "Grid",
+        "Variables", "Data Types", "Operators", "Type Conversions",
+        "Conditionals", "Loops", "Comparisons",
+        "Functions", "First-Class Functions", "Callbacks", "Closures", "Arrow Functions",
+        "Objects", "Prototypes", "JSON", "Getters/Setters", "Object Methods"
+      ]
+    }
+  },
+
+  "gapAnalysis": {
+    "summary": {
+      "totalCourseTopics": 34,
+      "topicsWithQuestions": 30,
+      "topicsWithLectureContent": 27,
+      "topicsCompletelyMissing": 7
+    },
+
+    "topicMapping": [
+      {
+        "courseTopic": "HTML basics",
+        "location": "slides/",
+        "qbCoverage": "partial",
+        "lcCoverage": "full",
+        "status": "covered",
+        "notes": "Basic HTML covered in question bank and lecture"
+      },
+      {
+        "courseTopic": "HTML",
+        "location": "slides/",
+        "qbCoverage": "full",
+        "lcCoverage": "full",
+        "status": "covered",
+        "notes": "Comprehensive HTML coverage in both files"
+      },
+      {
+        "courseTopic": "CSS",
+        "location": "slides/",
+        "qbCoverage": "full",
+        "lcCoverage": "full",
+        "status": "covered",
+        "notes": "CSS Fundamentals and CSS Layout covered"
+      },
+      {
+        "courseTopic": "Responsive design",
+        "location": "slides/New/",
+        "qbCoverage": "minimal",
+        "lcCoverage": "minimal",
+        "status": "partial",
+        "notes": "Viewport meta tag mentioned but no dedicated responsive design content"
+      },
+      {
+        "courseTopic": "Forms",
+        "location": "slides/New/",
+        "qbCoverage": "minimal",
+        "lcCoverage": "none",
+        "status": "partial",
+        "notes": "Form elements mentioned but form handling/validation not covered"
+      },
+      {
+        "courseTopic": "JavaScript code basics",
+        "location": "slides/",
+        "qbCoverage": "full",
+        "lcCoverage": "full",
+        "status": "covered",
+        "notes": "js-basics category covers this well"
+      },
+      {
+        "courseTopic": "JavaScript functions",
+        "location": "slides/",
+        "qbCoverage": "full",
+        "lcCoverage": "full",
+        "status": "covered",
+        "notes": "js-functions category covers this well"
+      },
+      {
+        "courseTopic": "JavaScript objects",
+        "location": "slides/",
+        "qbCoverage": "full",
+        "lcCoverage": "full",
+        "status": "covered",
+        "notes": "js-objects category covers this well"
+      },
+      {
+        "courseTopic": "JavaScript JSON",
+        "location": "slides/",
+        "qbCoverage": "full",
+        "lcCoverage": "full",
+        "status": "covered",
+        "notes": "JSON questions exist in js-objects"
+      },
+      {
+        "courseTopic": "JavaScript Getters",
+        "location": "slides/",
+        "qbCoverage": "full",
+        "lcCoverage": "full",
+        "status": "covered",
+        "notes": "Getter/setter questions exist"
+      },
+      {
+        "courseTopic": "JavaScript Inheritance",
+        "location": "slides/",
+        "qbCoverage": "minimal",
+        "lcCoverage": "partial",
+        "status": "partial",
+        "notes": "Prototypal inheritance mentioned but no dedicated inheritance questions"
+      },
+      {
+        "courseTopic": "JavaScript Classes",
+        "location": "slides/",
+        "qbCoverage": "none",
+        "lcCoverage": "none",
+        "status": "missing",
+        "priority": "high",
+        "notes": "ES6 class syntax completely missing"
+      },
+      {
+        "courseTopic": "JavaScript DOM",
+        "location": "slides/",
+        "qbCoverage": "none",
+        "lcCoverage": "none",
+        "status": "missing",
+        "priority": "high",
+        "notes": "DOM manipulation completely missing"
+      },
+      {
+        "courseTopic": "JavaScript Events",
+        "location": "slides/New/",
+        "qbCoverage": "none",
+        "lcCoverage": "none",
+        "status": "missing",
+        "priority": "high",
+        "notes": "Event handling completely missing"
+      },
+      {
+        "courseTopic": "HTTP",
+        "location": "slides/New/",
+        "qbCoverage": "partial",
+        "lcCoverage": "minimal",
+        "status": "partial",
+        "notes": "Basic HTTP covered but advanced topics missing"
+      },
+      {
+        "courseTopic": "URLs",
+        "location": "slides/New/",
+        "qbCoverage": "full",
+        "lcCoverage": "full",
+        "status": "covered",
+        "notes": "URL concepts covered in internet category"
+      },
+      {
+        "courseTopic": "XHR (XMLHttpRequest)",
+        "location": "slides/New/",
+        "qbCoverage": "none",
+        "lcCoverage": "none",
+        "status": "missing",
+        "priority": "medium",
+        "notes": "XHR/AJAX completely missing"
+      },
+      {
+        "courseTopic": "Cookies",
+        "location": "slides/New/",
+        "qbCoverage": "none",
+        "lcCoverage": "none",
+        "status": "missing",
+        "priority": "medium",
+        "notes": "Cookies completely missing"
+      },
+      {
+        "courseTopic": "Storage",
+        "location": "slides/New/",
+        "qbCoverage": "minimal",
+        "lcCoverage": "minimal",
+        "status": "partial",
+        "notes": "localStorage used internally but not taught"
+      },
+      {
+        "courseTopic": "Web Workers",
+        "location": "slides/New/",
+        "qbCoverage": "none",
+        "lcCoverage": "none",
+        "status": "missing",
+        "priority": "low",
+        "notes": "Web Workers completely missing"
+      },
+      {
+        "courseTopic": "Geolocation",
+        "location": "slides/New/",
+        "qbCoverage": "none",
+        "lcCoverage": "none",
+        "status": "missing",
+        "priority": "low",
+        "notes": "Geolocation API completely missing"
+      }
+    ],
+
+    "missingTopics": [
+      {
+        "topic": "JavaScript Classes (ES6)",
+        "priority": "high",
+        "sourceFiles": ["Class basic syntax.html"],
+        "needsQuestions": true,
+        "needsLecture": true,
+        "category": "js-classes"
+      },
+      {
+        "topic": "JavaScript DOM",
+        "priority": "high",
+        "sourceFiles": ["DOM tree.html", "Modifying the document.html", "Searching_ getElement_, querySelector_.html", "Walking the DOM.html", "Styles and classes.html"],
+        "needsQuestions": true,
+        "needsLecture": true,
+        "category": "js-dom"
+      },
+      {
+        "topic": "JavaScript Events",
+        "priority": "high",
+        "sourceFiles": ["Bubbling and capturing.html", "Events_ change, input, cut, copy, paste.html", "Page_ DOMContentLoaded, load, beforeunload, unload.html"],
+        "needsQuestions": true,
+        "needsLecture": true,
+        "category": "js-events"
+      },
+      {
+        "topic": "JavaScript Inheritance (Prototypal)",
+        "priority": "high",
+        "sourceFiles": ["Class inheritance.html", "Prototypal inheritance.html"],
+        "needsQuestions": true,
+        "needsLecture": true,
+        "category": "js-inheritance"
+      },
+      {
+        "topic": "XHR / XMLHttpRequest",
+        "priority": "medium",
+        "sourceFiles": ["XMLHttpRequest.html"],
+        "needsQuestions": true,
+        "needsLecture": true,
+        "category": "web-apis"
+      },
+      {
+        "topic": "Cookies",
+        "priority": "medium",
+        "sourceFiles": ["Cookies, document.cookie.html"],
+        "needsQuestions": true,
+        "needsLecture": true,
+        "category": "web-apis"
+      },
+      {
+        "topic": "Web Workers",
+        "priority": "low",
+        "sourceFiles": [],
+        "needsQuestions": true,
+        "needsLecture": true,
+        "category": "web-apis"
+      },
+      {
+        "topic": "Geolocation API",
+        "priority": "low",
+        "sourceFiles": [],
+        "needsQuestions": true,
+        "needsLecture": true,
+        "category": "web-apis"
+      },
+      {
+        "topic": "Responsive Design",
+        "priority": "medium",
+        "sourceFiles": ["Responsive Design Tutorial _ HTML & CSS Is Hard.html"],
+        "needsQuestions": true,
+        "needsLecture": true,
+        "category": "css-layout"
+      },
+      {
+        "topic": "HTML Forms",
+        "priority": "medium",
+        "sourceFiles": ["HTML Forms Tutorial _ HTML & CSS Is Hard.html", "Form properties and methods.html", "Forms_ event and method submit.html"],
+        "needsQuestions": true,
+        "needsLecture": true,
+        "category": "html"
+      }
+    ],
+
+    "partialCoverage": [
+      {
+        "topic": "Storage (localStorage/sessionStorage)",
+        "gap": "Used in lecture-content.html for localStorage but not explained as a topic",
+        "fix": "Add dedicated storage API questions and lecture content"
+      },
+      {
+        "topic": "Responsive Design",
+        "gap": "Viewport meta tag mentioned but responsive techniques not taught",
+        "fix": "Add media queries, mobile-first, responsive patterns"
+      },
+      {
+        "topic": "JavaScript Inheritance",
+        "gap": "Prototype chain covered but prototypal inheritance patterns not explained",
+        "fix": "Add inheritance pattern questions"
+      }
+    ]
+  },
+
+  "recommendations": {
+    "immediate": [
+      "Add JavaScript DOM questions (high priority, foundational for later topics)",
+      "Add JavaScript Events questions (high priority, used in Forms)",
+      "Add JavaScript Classes questions (high priority, ES6 syntax)"
+    ],
+    "next": [
+      "Add XHR/AJAX questions (medium priority)",
+      "Add Cookies questions (medium priority)",
+      "Add HTML Forms lecture content (medium priority)"
+    ],
+    "eventually": [
+      "Add Web Workers questions (low priority, advanced)",
+      "Add Geolocation questions (low priority, advanced)",
+      "Expand Responsive Design coverage"
+    ]
+  }
+}
