@@ -1,0 +1,67 @@
+{
+  "groupId": "VAL-PLATFORM-001",
+  "testedAt": "2026-04-16T00:00:00Z",
+  "isolation": {
+    "workingDirectory": "C:\\OsaZain_stuff\\edu\\ACSInternetProgramming\\acs2902-web-programming",
+    "filesTested": ["index.html", "final-study-platform.html"],
+    "testingMethod": "file content search and analysis"
+  },
+  "toolsUsed": ["grep", "read"],
+  "assertions": [
+    {
+      "id": "VAL-PLATFORM-001",
+      "title": "Platform UI updated - index.html and final-study-platform.html include all new categories and lecture modules in their navigation and displays",
+      "status": "fail",
+      "steps": [
+        {
+          "action": "Search for '8 detailed modules' and '14 detailed modules' text",
+          "expected": "Both files should say '14 detailed modules'",
+          "observed": "index.html line 1471 says '14 detailed modules' (CORRECT); final-study-platform.html line 1471 says '8 detailed modules' (INCORRECT - should be '14')"
+        },
+        {
+          "action": "Count topic-badge divs in the lecture display section",
+          "expected": "14 topic-badges should be displayed",
+          "observed": "index.html has 14 topic-badges (lines 1474-1487) - CORRECT; final-study-platform.html has only 8 topic-badges (lines 1474-1481) - INCORRECT, missing 6 new modules"
+        },
+        {
+          "action": "Verify JavaScript data arrays have 14 categories",
+          "expected": "categories array should include all 14 categories",
+          "observed": "Both files have correct JavaScript data: final-study-platform.html line 2051 and index.html line 1751 show categories = ['internet', 'html', 'css-fundamentals', 'css-layout', 'js-basics', 'js-control-flow', 'js-functions', 'js-objects', 'js-classes', 'js-dom', 'js-events', 'html-forms', 'css-responsive', 'web-apis']"
+        },
+        {
+          "action": "Verify modules array includes new modules",
+          "expected": "modules array should include js-classes, js-dom, js-events, html-forms, css-responsive, web-apis",
+          "observed": "Both files have correct modules data: final-study-platform.html lines 2072-2077 and index.html lines 1772-1777 show all 6 new modules"
+        },
+        {
+          "action": "Check for presence of new category strings in files",
+          "expected": "New category identifiers should exist in JavaScript data",
+          "observed": "All 6 new categories found: js-classes, js-dom, js-events, html-forms, css-responsive, web-apis present in both files' JavaScript data"
+        }
+      ],
+      "evidence": {
+        "screenshots": null,
+        "consoleErrors": null,
+        "network": null,
+        "fileFindings": {
+          "final-study-platform.html": {
+            "line1471": "Says '8 detailed modules' instead of '14 detailed modules'",
+            "lines1474-1481": "Only 8 topic-badges displayed (missing 6 new ones)",
+            "line2051": "JavaScript categories array correctly has 14 items",
+            "lines2072-2077": "JavaScript modules array correctly has all 6 new modules"
+          },
+          "index.html": {
+            "line1471": "Correctly says '14 detailed modules'",
+            "lines1474-1487": "All 14 topic-badges displayed correctly",
+            "line1751": "JavaScript categories array correctly has 14 items",
+            "lines1772-1777": "JavaScript modules array correctly has all 6 new modules"
+          }
+        }
+      },
+      "issues": "final-study-platform.html has DISPLAY inconsistency - the static HTML content at lines 1471-1481 only shows 8 modules instead of 14. The JavaScript data is correctly updated, but the hardcoded HTML display text and topic-badges were not updated to show all 14 modules. This is the bug that was mentioned in the previously known issue."
+    }
+  ],
+  "frictions": [],
+  "blockers": [],
+  "summary": "Tested VAL-PLATFORM-001: Platform UI updated with 14 categories. The assertion FAILS for final-study-platform.html because the static HTML display (lines 1471-1481) still shows '8 detailed modules' with only 8 topic-badges, when it should show '14 detailed modules' with all 14 topic-badges. The JavaScript data (categories and modules arrays) IS correctly updated to 14 items. index.html is CORRECT - it properly displays 14 detailed modules and all 14 topic-badges."
+}

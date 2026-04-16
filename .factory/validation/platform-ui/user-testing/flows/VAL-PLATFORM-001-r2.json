@@ -1,0 +1,49 @@
+{
+  "groupId": "VAL-PLATFORM-001",
+  "testedAt": "2026-04-16T00:00:00.000Z",
+  "isolation": {
+    "workingDirectory": "C:\\OsaZain_stuff\\edu\\ACSInternetProgramming\\acs2902-web-programming",
+    "testingTool": "file content search (grep, read)",
+    "noBrowserNeeded": true,
+    "noServicesNeeded": true
+  },
+  "toolsUsed": ["Grep", "Read", "Glob"],
+  "assertions": [
+    {
+      "id": "VAL-PLATFORM-001",
+      "title": "Platform UI updated - index.html and final-study-platform.html include all new categories and lecture modules in their navigation and displays",
+      "status": "fail",
+      "steps": [
+        {
+          "action": "Search final-study-platform.html for module count text",
+          "expected": "Should say '14 detailed modules'",
+          "observed": "Says '8 detailed modules' at line 1471"
+        },
+        {
+          "action": "Count topic-badge divs in final-study-platform.html lecture display",
+          "expected": "Should be 14 topic-badge divs",
+          "observed": "Found exactly 8 topic-badge divs (lines 1474-1481)"
+        },
+        {
+          "action": "Search index.html for module count text",
+          "expected": "Should say '14 detailed modules'",
+          "observed": "Says '14 detailed modules' at line 1471 - PASS"
+        },
+        {
+          "action": "Check if fix-final-study-platform-static-display feature exists",
+          "expected": "Feature branch should NOT exist (fix still PENDING)",
+          "observed": "No files found matching fix-final-study-platform* pattern - fix still PENDING"
+        }
+      ],
+      "evidence": {
+        "screenshots": [],
+        "consoleErrors": "N/A - static file content verification",
+        "network": "N/A - no network requests needed"
+      },
+      "issues": "final-study-platform.html still shows '8 detailed modules' instead of '14'. The fix feature fix-final-study-platform-static-display has NOT been completed. This is a re-run after round 1 failed, and the assertion still fails."
+    }
+  ],
+  "frictions": [],
+  "blockers": [],
+  "summary": "Tested VAL-PLATFORM-001 (ROUND 2 RE-RUN): assertion FAILS as expected. final-study-platform.html still shows '8 detailed modules' (line 1471) with only 8 topic-badge divs instead of 14. index.html correctly shows '14 detailed modules'. The fix feature fix-final-study-platform-static-display remains PENDING - no changes have been made since round 1."
+}
