@@ -240,6 +240,54 @@ Object.assign(user, { age: 25, name: "Bob" });
 
 ---
 
+### Object.keys()
+
+`Object.keys()` returns an array of an object's own enumerable property names (keys). Essential for iterating over object properties.
+
+```javascript
+// Syntax: Object.keys(obj)
+
+// Basic usage
+const person = { name: "Alice", age: 25, city: "NYC" };
+const keys = Object.keys(person);
+console.log(keys);  // ["name", "age", "city"]
+
+// Iteration with forEach
+Object.keys(person).forEach(key => {
+  console.log(`${key}: ${person[key]}`);
+});
+// Output:
+// name: Alice
+// age: 25
+// city: NYC
+
+// Creating a key-value array
+const entries = Object.keys(person).map(key => [key, person[key]]);
+// [["name", "Alice"], ["age", 25], ["city", "NYC"]]
+
+// Checking if object is empty
+const empty = {};
+Object.keys(empty).length === 0;  // true
+
+// Filtering object properties
+const scores = { alice: 85, bob: 92, charlie: 78 };
+const passingNames = Object.keys(scores).filter(name => scores[name] >= 80);
+// ["bob"] (alice has 85, charlie has 78)
+```
+
+**Use Cases:**
+
+| Use Case | Example |
+|----------|---------|
+| Iterate over object properties | `for (let key of Object.keys(obj)) { ... }` |
+| Get only keys meeting condition | `Object.keys(obj).filter(k => obj[k] > 5)` |
+| Count object properties | `Object.keys(obj).length` |
+| Transform keys | `Object.keys(obj).map(k => k.toUpperCase())` |
+
+**Key特性:** `Object.keys()` only returns **own** enumerable properties (not inherited). Returns keys in the same order as they appear in the object.
+
+---
+
 ### Practical Examples
 
 ```javascript
@@ -293,6 +341,9 @@ const dogWithAge = Object.assign({}, dog, { age: 3 });
 4. **What is a shallow copy?**
    - Top-level properties are copied, but nested objects still reference the original. Object.assign() does shallow copies.
 
+5. **What does Object.keys() return?**
+   - An array of the object's own enumerable property names (keys). Use for iteration: `Object.keys(obj).forEach(key => ...)`
+
 ---
 
 ## Extraction Summary
@@ -311,5 +362,6 @@ const dogWithAge = Object.assign({}, dog, { age: 3 });
 - **Dot notation**: `obj.property` - cleaner syntax, no special characters allowed
 - **Bracket notation**: `obj["property"]` - for keys with spaces, dynamic names, variables
 - **Object.assign(target, sources)**: Copy/modify properties from sources to target
+- **Object.keys(obj)**: Returns array of object's own enumerable keys
 - **Shallow copy**: `Object.assign({}, original)` - nested objects share references
 - **Use brackets for**: keys with spaces, dynamic property names, variables as keys
